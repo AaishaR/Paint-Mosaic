@@ -1,3 +1,5 @@
+/* @import 'swiper/css/bundle'; */
+
 :root {
     --background-colour-home1: rgba(199, 21, 60, 0.575);
     --background-colour-home2: rgba(199, 21, 60, 0.856);
@@ -37,3 +39,45 @@
     border-radius: 16px;
     height: 85%;
 }
+
+/* artwork styling *************************************************************************/
+.img-space{
+    background-color:var(--background-colour-home2);
+    width: 100%;
+}
+.artwork-img{
+    width: auto;
+    max-height: 400px;
+}
+
+.details-container  p , button {
+    background-color: var(--background-colour-home2);
+}
+
+.slick-dots {
+    background-color: var(--background-colour-home2);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin: 15px 0; /* Adjust the margin as needed */
+  }
+  
+  .slick-dots li {
+    margin: 0 5px; /* Adjust the margin as needed */
+  }
+  
+  /* Styling the dots themselves */
+  .slick-dots li button {
+    width: 10px; /* Set the desired width for the dots */
+    height: 10px; /* Set the desired height for the dots */
+    border: 2px solid #555; /* Border color for inactive dots */
+    background: transparent; /* Background color for inactive dots */
+    border-radius: 50%; /* Makes the dots circular */
+    transition: all 0.3s; /* Smooth transition when the dot becomes active */
+  }
+  
+  /* Styling the active dot */
+  .slick-dots li.slick-active button {
+    background: #555; /* Background color for active dot */
+  }

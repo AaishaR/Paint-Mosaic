@@ -1,7 +1,11 @@
-export default function ArtworkList() {
+import Artwork from "./Artwork";
+// import ArtworkGallery from "../utils/mediaSwiper"
+
+
+export default function ArtworkList({ artworks }) {
     return (
         <div className="artwork-list-container">
-            <h2>Artwork List</h2>
+            <Artwork artworks={artworks}/>
         </div>
     )
 }
