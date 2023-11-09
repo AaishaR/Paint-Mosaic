@@ -1,38 +1,39 @@
+:root {
+    --background-colour-home1: rgba(199, 21, 60, 0.575);
+    --background-colour-home2: rgba(199, 21, 60, 0.856);
+
+    --background-colour-artist1: rgba(16, 44, 36, 0.622);
+    --background-colour-artist2: rgba(16, 44, 36);
+
+    --background-color-dates: white;
+    --background-color-details: grey;
+}
+
+
+/* body  styling****************************************8*/
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: black;
+    color: white;
+}
+
+/* home pge  styling************************************************************************8*/
+/* App window  styling****************************************8*/
 .App {
-  text-align: center;
+    background-color: var(--background-colour-home1);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* main container  styling****************************************8*/
+.Main-container {
+    background-color: var(--background-colour-home2);
+    padding: 40px;
+    margin: 40px;
+    border-radius: 16px;
+    height: 85%;
 }
