@@ -34,10 +34,25 @@
 /* main container  styling****************************************8*/
 .Main-container {
     background-color: var(--background-colour-home2);
-    padding: 40px;
+    /* padding: 40px; */
     margin: 40px;
     border-radius: 16px;
     height: 85%;
+    border: 2.5px solid white;
+}
+
+/* navbar styling *************************************************************************/
+.navbar-container{
+    background-color: var(--background-colour-home2);
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+}
+.navbar-container img{
+    background-color: var(--background-colour-home2);
+    width: 100px;
+    height: 100px;
+    border-radius: 16px;
 }
 
 /* artwork styling *************************************************************************/
@@ -48,6 +63,7 @@
 .artwork-img{
     width: auto;
     max-height: 400px;
+    
 }
 
 .details-container  p , button {
@@ -64,11 +80,13 @@
   }
   
   .slick-dots li {
+    background-color: var(--background-colour-home2);
     margin: 0 5px; /* Adjust the margin as needed */
   }
   
   /* Styling the dots themselves */
   .slick-dots li button {
+    background-color: var(--background-colour-home2);
     width: 10px; /* Set the desired width for the dots */
     height: 10px; /* Set the desired height for the dots */
     border: 2px solid #555; /* Border color for inactive dots */

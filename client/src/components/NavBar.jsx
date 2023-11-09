@@ -1,8 +1,15 @@
+import logo from '../media/logo.png'
+
 
 export default function Navbar() {
     return (
         <div className="navbar-container">
-            <h2>Navbar</h2>
+            <img src={logo} alt='paint mosaic logo'/>
+            <div className='button-container'>
+                <button>Account</button>
+                <button>shopping cart</button>
+            </div>
+
         </div>
     )
 }
