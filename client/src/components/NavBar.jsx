@@ -1,13 +1,14 @@
+import { Link } from 'react-router-dom'
 import logo from '../media/logo.png'
 
 
 export default function Navbar() {
     return (
         <div className="navbar-container">
-            <img src={logo} alt='paint mosaic logo'/>
+            <Link to='/'><img src={logo} alt='paint mosaic logo' /></Link>
             <div className='button-container'>
-                <button>Account</button>
-                <button>shopping cart</button>
+                <Link to='/Account'>Account</Link>
+                <Link to='/cart'>shopping cart</Link>
             </div>
 
         </div>

@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
+
 import './App.css';
-import ArtworkList from './components/ArtworkList';
 import Navbar from './components/NavBar';
-import { getArtwork } from './apiService';
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/homePage'
+import Cart from './pages/cart'
+import Account from './pages/account'
+import Artist from './pages/artist'
 
 function App() {
 
-  const [artworks, setArtworks] = useState([])
-
-  useEffect(()=>{
-    getArtwork().then((data) => {
-      setArtworks(data)
-    })
-  }, []);
-
   return (
-    <div className="App">
-      <div className='Main-container'>
-        <Navbar/>
-        <ArtworkList artworks={artworks}/>
-      </div>
+    <Router>
       
-    </div>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<HomePage/>} />
+          <Route path='/cart'  element={<Cart/>} />
+          <Route path='/account'  element={<Account/>} />
+          <Route path='/artist'  element={<Artist/>} />
+        </Routes>
+     
+    </Router>
   );
 }
 
