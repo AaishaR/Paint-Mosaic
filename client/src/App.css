@@ -34,39 +34,59 @@
 /* main container  styling****************************************8*/
 .Main-container {
     background-color: var(--background-colour-home2);
-    /* padding: 40px; */
     margin: 40px;
     border-radius: 16px;
     height: 85%;
     border: 2.5px solid white;
 }
 
+/* artist profile container styling */
+.artist-profile-container {
+    background-color: var(--background-colour-artist2);
+    margin: 40px;
+    border-radius: 16px;
+    height: 100%;
+    border: 2.5px solid white;
+}
+
 /* navbar styling *************************************************************************/
-.navbar-container{
-    background-color: var(--background-colour-home2);
+.navbar-container {
     border-radius: 16px;
     display: flex;
     justify-content: space-between;
 }
-.navbar-container img{
-    background-color: var(--background-colour-home2);
+
+.navbar-container img {
     width: 100px;
     height: 100px;
+}
+
+.artist-navbar {
+    background-color: var(--background-colour-artist2);
+    width: 100%;
+    border-radius: 16px;
+}
+
+.home-navbar {
+    background-color: var(--background-colour-home2);
+    width: 100%;
     border-radius: 16px;
 }
 
 /* artwork styling *************************************************************************/
-.img-space{
-    background-color:var(--background-colour-home2);
+.img-space {
+    background-color: var(--background-colour-home2);
     width: 100%;
 }
-.artwork-img{
+
+.artwork-img {
     width: auto;
     max-height: 400px;
-    
+
 }
 
-.details-container  p , button {
+.details-container p,
+button {
     background-color: var(--background-colour-home2);
 }
 
@@ -76,26 +96,27 @@
     justify-content: center;
     list-style: none;
     padding: 0;
-    margin: 15px 0; /* Adjust the margin as needed */
-  }
-  
-  .slick-dots li {
+    margin: 15px 0;
+}
+
+.slick-dots li {
     background-color: var(--background-colour-home2);
-    margin: 0 5px; /* Adjust the margin as needed */
-  }
-  
-  /* Styling the dots themselves */
-  .slick-dots li button {
+    margin: 0 5px;
+}
+
+.slick-dots li button {
     background-color: var(--background-colour-home2);
-    width: 10px; /* Set the desired width for the dots */
-    height: 10px; /* Set the desired height for the dots */
-    border: 2px solid #555; /* Border color for inactive dots */
-    background: transparent; /* Background color for inactive dots */
-    border-radius: 50%; /* Makes the dots circular */
-    transition: all 0.3s; /* Smooth transition when the dot becomes active */
-  }
-  
-  /* Styling the active dot */
-  .slick-dots li.slick-active button {
-    background: #555; /* Background color for active dot */
-  }
+    width: 10px;
+    height: 10px;
+    border: 2px solid #555;
+    background: transparent;
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+
+.slick-dots li.slick-active button {
+    background: #555;
+}
+
+/* artist page styling ********************************************************8*/

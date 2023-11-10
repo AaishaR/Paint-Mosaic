@@ -12,15 +12,15 @@ function App() {
 
   return (
     <Router>
-      
-        <Navbar />
-        <Routes>
-          <Route path='/' element={<HomePage/>} />
-          <Route path='/cart'  element={<Cart/>} />
-          <Route path='/account'  element={<Account/>} />
-          <Route path='/artist'  element={<Artist/>} />
-        </Routes>
-     
+
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/cart' element={<Cart />} />
+        <Route path='/account' element={<Account />} />
+        <Route path='/artist' element={<Artist />} />
+      </Routes>
+
     </Router>
   );
 }

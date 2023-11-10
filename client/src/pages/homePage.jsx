@@ -1,4 +1,4 @@
-import ArtworkList from "../components/ArtworkList"
+import ArtworkSlider from "../components/ArtworkSlider"
 import { useEffect, useState } from 'react';
 import { getArtwork } from '../apiService';
 
@@ -12,10 +12,10 @@ export default function HomePage() {
         })
     }, []);
     return (
-        <div className="main-container">
-            <div className='Main-container'>
-                <ArtworkList artworks={artworks} />
-            </div>
+
+        <div className='Main-container'>
+            <ArtworkSlider artworks={artworks} />
         </div>
+
     )
 }

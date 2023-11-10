@@ -16,4 +16,9 @@ async function addArtwork(artwork) {
   return await artworkModel.create(artwork);
 }
 
-module.exports =  { getAllArtwork, addArtwork }
+async function findAtrist(name) {
+  return await artworkModel.find({"artist.name" : name});
+}
+
+
+module.exports =  { getAllArtwork, addArtwork, findAtrist }
