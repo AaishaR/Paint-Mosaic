@@ -11,6 +11,7 @@ export default function HomePage() {
             setArtworks(data)
         })
     }, []);
+
     return (
 
         <div className='Main-container'>

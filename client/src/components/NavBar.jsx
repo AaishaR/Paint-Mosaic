@@ -5,7 +5,7 @@ import logo from '../media/logo.png'
 export default function Navbar() {
 
     // const navigate = useNavigate();
-    const isArtistProfile = useMatch('/artist');
+    const isArtistProfile = useMatch('/artist/:artistName');
 
     const navBarClass = isArtistProfile ? 'artist-navbar' : 'home-navbar';
 

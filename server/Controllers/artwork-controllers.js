@@ -24,7 +24,7 @@ async function postArtwork(req, res) {
     }
 }
 
-async function getAtrist(req, res){
+async function getAtrist(req, res) {
     try {
         // console.log(req.params.name)
         const artwork = await model.findAtrist(req.params.name);
@@ -37,4 +37,16 @@ async function getAtrist(req, res){
     }
 }
 
-module.exports = { getArtwork, postArtwork, getAtrist }
+async function deleteArt(req, res) {
+    try {
+        const artwork = await model.deleteArtwork(req.params.id);
+        res.status(201);
+        res.send(JSON.stringify({ messgae: 'artwork deleted' }));
+
+    } catch (e) {
+        console.log(e);
+        res.status(500);
+    }
+}
+
+module.exports = { getArtwork, postArtwork, getAtrist, deleteArt }

@@ -17,8 +17,12 @@ async function addArtwork(artwork) {
 }
 
 async function findAtrist(name) {
-  return await artworkModel.find({"artist.name" : name});
+  return await artworkModel.find({ "artist.name": name });
+}
+
+async function deleteArtwork(id) {
+  return await artworkModel.deleteOne({ _id: id });
 }
 
 
-module.exports =  { getAllArtwork, addArtwork, findAtrist }
+module.exports = { getAllArtwork, addArtwork, findAtrist, deleteArtwork }

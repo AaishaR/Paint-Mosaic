@@ -1,17 +1,44 @@
+import { useEffect, useState } from "react";
+import { getArtist } from "../apiService";
+import { useParams } from "react-router-dom";
+import { useCart } from "../contexts/cartContext";
 
 
-export default function ArtworkList({ artworks }) {
+export default function ArtistList() {
+
+    const { addToCart } = useCart();
+
+    const handleClick = (item) => {
+
+        // console.log('Handling click for item:', item);
+        addToCart(item);
+    }
+
+    const { artistName } = useParams();
+
+    const [artist, setArtist] = useState([])
+
+    useEffect(() => {
+        getArtist(artistName).then((data) => {
+            setArtist(data)
+        })
+    }, [artistName]);
+
     return (
         <div className="artwork-list-container">
-            {artworks.length ? artworks.map((artwork) => (
-                <div key={artwork._id} className="artwork-slide">
+            <h2>{artistName}</h2>
+            {artist.length ? artist.map((artwork, index) => (
+                <div key={index} className="artwork-list-container">
                     <div className="img-space">
                         <img className="artwork-img" src={artwork.image} alt="artwork" />
                     </div>
                     <div className="details-container">
-                        <div className="artist-details">
-                            <p>{artwork.artist.name}</p>
+                        <div className="artwork-detials">
                             <p>{artwork.title}</p>
+                            <p>Desctiption: {artwork.description}</p>
+                        </div>
+
+                        <div className="artist-details">
                             <div className="sub-artist-details">
                                 <p>{artwork.category}</p>
                                 <p>{artwork.material}</p>
@@ -19,15 +46,12 @@ export default function ArtworkList({ artworks }) {
                             </div>
 
                         </div>
-
-                        <div className="artwork-detials">
-                            <div className="pricing-container">
-                                <p>{artwork.price}</p>
-                                <button>Add to Cart</button>
-                                <button>Bid</button>
-                            </div>
-                            <p>{artwork.description}</p>
+                        <div className="pricing-container">
+                            <p>{artwork.price}</p>
+                            <button onClick={() => { handleClick(artwork) }}>Add to Cart</button>
+                            <button>Bid</button>
                         </div>
+
                     </div>
                 </div>
             )) :

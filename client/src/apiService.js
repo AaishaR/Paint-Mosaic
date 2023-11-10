@@ -11,4 +11,17 @@ async function getArtwork() {
     }
 }
 
-module.exports = { getArtwork }
+
+//fetch all work by one artist for artist profile
+async function getArtist(name) {
+    try {
+        const data = await fetch(`${url}/artwork/artist/${name}`);
+        const response = await data.json();
+        // console.log(response, '🐸🐸 ' )
+        return response;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+module.exports = { getArtwork, getArtist }
