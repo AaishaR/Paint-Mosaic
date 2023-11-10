@@ -1,4 +1,5 @@
-import { useCart } from "../contexts/cartContext"
+import { useCart } from "../contexts/cartContext";
+import { MdOutlineDeleteForever} from 'react-icons/md';
 
 export default function Cart() {
 
@@ -34,7 +35,7 @@ export default function Cart() {
                             <div className="pricing-container">
                                 <p>{item.qty}</p>
                                 <p>{item.price}</p>
-                                <button onClick={() => { handleClick(item) }}>Remove</button>
+                                <button onClick={() => { handleClick(item) }}><MdOutlineDeleteForever className="remove"/></button>
                             </div>
 
                         </div>

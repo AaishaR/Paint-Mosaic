@@ -9,6 +9,7 @@ import Account from './pages/account'
 import Artist from './pages/artist'
 import { CartProvider } from './contexts/cartContext';
 
+
 function App() {
 
   return (

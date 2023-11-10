@@ -3,7 +3,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/cartContext';
-
+import { RiShoppingBag3Fill } from 'react-icons/ri';
+import { BiDollarCircle } from 'react-icons/bi';
 
 export default function ArtworkSlider({ artworks }) {
 
@@ -34,12 +35,21 @@ export default function ArtworkSlider({ artworks }) {
                         </div>
                         <div className="details-container">
                             <div className="artist-details">
-                                <Link to={`/artist/${encodeURIComponent(artwork.artist.name)}`}><p>{artwork.artist.name}</p></Link>
-                                <p>{artwork.title}</p>
+                                <h1>{artwork.title}</h1>
+                                <p>By - <Link to={`/artist/${encodeURIComponent(artwork.artist.name)}`}>{artwork.artist.name}</Link></p>
                                 <div className="sub-artist-details">
-                                    <p>{artwork.category}</p>
-                                    <p>{artwork.material}</p>
-                                    <p>{artwork.dimensions}</p>
+                                    <div className='category'>
+                                        <p className='title'>Category</p>
+                                        <p className='title-values'>{artwork.category}</p>
+                                    </div>
+                                    <div className='material'>
+                                        <p className='title'>Material</p>
+                                        <p className='title-values'>{artwork.material}</p>
+                                    </div>
+                                    <div className='size'>
+                                        <p className='title'>Size</p>
+                                        <p className='title-values'>{artwork.dimensions}</p>
+                                    </div>
                                 </div>
 
                             </div>
@@ -47,10 +57,11 @@ export default function ArtworkSlider({ artworks }) {
                             <div className="artwork-detials">
                                 <div className="pricing-container">
                                     <p>{artwork.price}</p>
-                                    <button onClick={() => { handleClick(artwork) }}>Add to Cart</button>
-                                    <button>Bid</button>
+                                    <button onClick={() => { handleClick(artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
+                                    <button><BiDollarCircle className="bid" /></button>
                                 </div>
-                                <p>{artwork.description}</p>
+                                <p className='title'>Description</p>
+                                <p  className='title-values'>{artwork.description}</p>
                             </div>
                         </div>
                     </div>

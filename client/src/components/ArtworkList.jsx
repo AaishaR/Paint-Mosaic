@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { getArtist } from "../apiService";
 import { useParams } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
-
+import { RiShoppingBag3Fill} from 'react-icons/ri'
+import { BiDollarCircle} from 'react-icons/bi';
 
 export default function ArtistList() {
 
@@ -48,8 +49,8 @@ export default function ArtistList() {
                         </div>
                         <div className="pricing-container">
                             <p>{artwork.price}</p>
-                            <button onClick={() => { handleClick(artwork) }}>Add to Cart</button>
-                            <button>Bid</button>
+                            <button onClick={() => { handleClick(artwork) }}><RiShoppingBag3Fill className="addTobag"/></button>
+                            <button><BiDollarCircle className="bid"/></button>
                         </div>
 
                     </div>

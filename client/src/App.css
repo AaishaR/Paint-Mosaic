@@ -1,122 +1,233 @@
-/* @import 'swiper/css/bundle'; */
-
 :root {
-    --background-colour-home1: rgba(199, 21, 60, 0.575);
-    --background-colour-home2: rgba(199, 21, 60, 0.856);
-
-    --background-colour-artist1: rgba(16, 44, 36, 0.622);
-    --background-colour-artist2: rgba(16, 44, 36);
-
-    --background-color-dates: white;
-    --background-color-details: grey;
+    --primary-color: #00464F; /* Dark Teal */
+  --accent-color: #007B86; /* Teal */
+  --background-color: #F4F4F4; /* Light Gray */
+  --text-color: #333333; /* Dark Charcoal */
+  --highlight-color: #4CAF50; /* Mint */
+  --accent-background-color: #2C3E50; /* Dark Slate Gray */
+  --link-color: #4169E1; /* Royal Blue */
 }
 
-
-/* body  styling****************************************8*/
-* {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-    background-color: black;
-    color: white;
+body {
+    background-color: #F4F4F4;
+    color: #333333;
 }
 
-/* home pge  styling************************************************************************8*/
-/* App window  styling****************************************8*/
-.App {
-    background-color: var(--background-colour-home1);
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-}
-
-
-/* main container  styling****************************************8*/
-.Main-container {
-    background-color: var(--background-colour-home2);
-    margin: 40px;
-    border-radius: 16px;
-    height: 85%;
-    border: 2.5px solid white;
-}
-
-/* artist profile container styling */
-.artist-profile-container {
-    background-color: var(--background-colour-artist2);
-    margin: 40px;
-    border-radius: 16px;
-    height: 100%;
-    border: 2.5px solid white;
-}
-
-/* navbar styling *************************************************************************/
+/* Navbar */
 .navbar-container {
-    border-radius: 16px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #00464F;
+    color: #b2f1e8;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo{
+    display: flex;
+    align-items: center;
 }
 
 .navbar-container img {
-    width: 100px;
-    height: 100px;
+    /* background-color: var(--backgroud-color-home1); */
+    height: 40px;
+    margin-right: 10px;
 }
 
-.artist-navbar {
-    background-color: var(--background-colour-artist2);
-    width: 100%;
-    border-radius: 16px;
+.navbar-container span{
+    color: white;
+    font-weight: bold;
+    font-size: medium;
 }
 
-.home-navbar {
-    background-color: var(--background-colour-home2);
-    width: 100%;
-    border-radius: 16px;
+.button-container {
+    /* background-color: var(--backgroud-color-home1); */
+    display: flex;
+    gap: 1rem;
+    font-size: 1.5rem;
+    color: white
 }
 
-/* artwork styling *************************************************************************/
+/* Main Container (Home Page) */
+.Main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+/* Artwork Slider */
+.artwork-container {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    max-width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+    /* display: flex; */
+}
+
+.artwork-slide {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    height: 800px;
+    padding: 1rem;
+    width: 300px;
+    /* background-color: var(--backgroud-color-home2); */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* border:  solid; */
+    /* border-radius: 10px; */
+    margin-bottom: 1rem;
+    /* text-align: center; */
+    /* align-items: center; */
+}
+
 .img-space {
-    background-color: var(--background-colour-home2);
-    width: 100%;
+    /* background-color: var(--backgroud-color-home1); */
+    width: 80%;
+    min-height: 300px;
+    max-height: 500px;
+    overflow: hidden;
+    margin-left: 100px;
+    margin-right: 100px;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
 }
 
-.artwork-img {
-    width: auto;
-    max-height: 400px;
-
+.img-space img {
+    width: 80%;
+    min-height: 300px;
+    max-height: 460px;
+    border: 14px solid black;
+    /* border-radius: 5px; */
 }
 
-.details-container p,
-button {
-    background-color: var(--background-colour-home2);
+.details-container{
+    
+    display: flex;
+    justify-content: space-evenly;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+.artist-details {
+    width: 50%;
+    margin-top: 1rem;
+    margin-right: 5.5rem;
+}
+
+
+
+.sub-artist-details{
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+.title , .title-values{
+    display: flex;
+    justify-content: space-between;
+}
+.title{
+    font-size: small;
+    font-weight: 900;
+}
+
+.title-values{
+    font-size: 10px;
+    font-weight: 100;
+}
+
+.artwork-details{
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.pricing-container {
+    display: flex;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+    /* flex-direction: column; */
+    /* align-items: center; */
+}
+
+.pricing-container p {
+    margin-bottom: 0.5rem;
+}
+
+.pricing-container button {
+    /* background-color: #4caf50; */
+    color: black;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+}
+
+.artwork-slide {
+    min-height: 300px;
+}
+
+.bid {
+    /* background-color: black; */
+    color: black;
+}
+
+/* Shopping Cart and Account buttons in Navbar */
+.user,
+.shopping_basket {
+    /* background-color: #113536 ; */
+    font-size: 1.5rem ;
+    color: whitesmoke ;
+    text-decoration: none ;
+    border-bottom: none;
+}
+
+
+/* Total Container in Cart Page */
+.total-container {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+a:hover {
+    color: #4caf50;
 }
 
 .slick-dots {
-    background-color: var(--background-colour-home2);
+    bottom: 30px !important;
     display: flex;
     justify-content: center;
     list-style: none;
     padding: 0;
     margin: 15px 0;
-}
-
-.slick-dots li {
-    background-color: var(--background-colour-home2);
+  }
+  .slick-dots li {
+   
     margin: 0 5px;
-}
-
-.slick-dots li button {
-    background-color: var(--background-colour-home2);
+  }
+  .slick-dots li button {
+   
     width: 10px;
     height: 10px;
     border: 2px solid #555;
     background: transparent;
     border-radius: 50%;
     transition: all 0.3s;
-}
-
-
-.slick-dots li.slick-active button {
+  }
+  .slick-dots li.slick-active button {
     background: #555;
-}
-
-/* artist page styling ********************************************************8*/
+  }

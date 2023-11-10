@@ -1,5 +1,6 @@
 import { Link, useMatch } from 'react-router-dom'
-import logo from '../media/logo.png'
+import logo from '../media/mosaic.png';
+import { RiAccountPinCircleLine, RiShoppingCartFill } from 'react-icons/ri'
 
 
 export default function Navbar() {
@@ -12,10 +13,14 @@ export default function Navbar() {
     return (
 
         <div className={`navbar-container ${navBarClass}`}>
-            <Link to='/'><img src={logo} alt='paint mosaic logo' /></Link>
+            <div className='logo'>
+
+                <Link to='/'><img src={logo} alt='paint mosaic logo' /></Link>
+                <Link to='/'><span>Paint Mosaic</span></Link>
+            </div>
             <div className='button-container'>
-                <Link to='/Account'>Account</Link>
-                <Link to='/cart'>shopping cart</Link>
+                <Link to='/Account' ><RiAccountPinCircleLine className="user" /></Link>
+                <Link to='/cart'><RiShoppingCartFill className="shopping_basket" /></Link>
             </div>
         </div>
 
