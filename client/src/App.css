@@ -34,6 +34,7 @@ body {
 .logo {
     display: flex;
     align-items: center;
+    margin-left: 10px;
 }
 
 .navbar-container .logo {
@@ -51,9 +52,13 @@ body {
 .button-container {
     /* background-color: var(--backgroud-color-home1); */
     display: flex;
-    gap: 1rem;
+    gap: 3rem;
     font-size: 1.5rem;
     color: white
+}
+
+.shopping_basket {
+    margin-right: 20px;
 }
 
 /* Main Container (Home Page) */
@@ -130,6 +135,10 @@ body {
     display: flex;
     justify-content: space-between;
 
+}
+
+.questionmark {
+    margin-top: 1px;
 }
 
 .title,
@@ -420,4 +429,78 @@ a:hover {
     margin-top: 1rem;
     text-align: right;
     font-size: medium;
+}
+
+/* account page styling ****************************************** */
+
+.account-container {
+    margin: 60px;
+    display: flex;
+    width: 90%;
+    height: 80vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.background-design {
+    width: 50%;
+    height: 100%;
+}
+
+.background-design img {
+    height: 100%;
+}
+
+
+.login-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 8px;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Additional styles for the logged-in state */
+.logged-in-message {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.logout-button {
+    background-color: #f44336;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f;
 }

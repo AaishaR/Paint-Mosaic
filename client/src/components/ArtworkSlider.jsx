@@ -3,7 +3,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { Link } from 'react-router-dom'
 import { useCart } from '../contexts/cartContext';
-import { RiShoppingBag3Fill } from 'react-icons/ri';
+import { RiShoppingBag3Fill, RiQuestionLine } from 'react-icons/ri';
 import { BiDollarCircle } from 'react-icons/bi';
 
 export default function ArtworkSlider({ artworks }) {
@@ -36,7 +36,7 @@ export default function ArtworkSlider({ artworks }) {
                         <div className="details-container">
                             <div className="artist-details">
                                 <h1>{artwork.title}</h1>
-                                <p>By - <Link to={`/artist/${encodeURIComponent(artwork.artist.name)}`}>{artwork.artist.name}</Link></p>
+                                <p>By - <Link to={`/artist/${encodeURIComponent(artwork.artist.name)}`}>{artwork.artist.name} <RiQuestionLine className='questionmark'/></Link></p>
                                 <div className="sub-artist-details">
                                     <div className='category'>
                                         <p className='title'>Category</p>
