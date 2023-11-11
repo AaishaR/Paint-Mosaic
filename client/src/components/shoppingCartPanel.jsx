@@ -33,22 +33,23 @@ const ShoppingCartPanel = ({ onClose, isOpen }) => {
               <img className="art-img" src={item.image} alt="artwork" />
             </div>
             <div className="cart-details-container">
-              <div className="art-detials">
+              <div className="cart-art-detials">
                 <p>{item.title} by {item.artist.name}</p>
               </div>
 
               <div className="qty-pricing-container">
-                <p>{item.qty}</p>
+                <p> {item.qty}</p>
+                <p> x </p>
                 <p>{item.price}</p>
-                <button onClick={() => { handleClick(item) }}><MdOutlineDeleteForever className="remove" /></button>
+                <div onClick={() => { handleClick(item) }}><MdOutlineDeleteForever className="remove" /></div>
               </div>
             </div>
           </div>
         )) :
-          <p>shopping cart is empty</p>}
+          <p className='empty-cart'>shopping cart is empty</p>}
 
         <div className="total-container">
-          <p>Total Price: {totalPrice.toFixed(2)}</p>
+          <p>Total Price: ${totalPrice.toFixed(2)}</p>
         </div>
 
       </div>
