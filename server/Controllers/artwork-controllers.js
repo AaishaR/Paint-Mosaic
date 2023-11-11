@@ -8,7 +8,7 @@ async function getArtwork(req, res) {
         res.send(artwork);
     } catch (e) {
         console.log(e);
-        res.sendStatus(500);
+        res.status(500).json({ e: 'Internal Server Error' });
     }
 }
 
@@ -24,10 +24,10 @@ async function postArtwork(req, res) {
     }
 }
 
-async function getAtrist(req, res) {
+async function getArtist(req, res) {
     try {
         // console.log(req.params.name)
-        const artwork = await model.findAtrist(req.params.name);
+        const artwork = await model.findArtist(req.params.name);
         // console.log(artwork);
         res.status(200);
         res.send(artwork);
@@ -49,4 +49,4 @@ async function deleteArt(req, res) {
     }
 }
 
-module.exports = { getArtwork, postArtwork, getAtrist, deleteArt }
+module.exports = { getArtwork, postArtwork, getArtist, deleteArt }
