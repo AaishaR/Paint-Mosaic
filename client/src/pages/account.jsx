@@ -7,6 +7,7 @@ export default function Account() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showSignUp, setShowSignUp] = useState(false);
+    const [showSignIn, setShowSignIn] = useState(true);
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -25,6 +26,7 @@ export default function Account() {
     };
 
     const handleToggleForm = () => {
+        setShowSignIn(!showSignIn);
         setShowSignUp(!showSignUp);
     };
 
@@ -34,31 +36,32 @@ export default function Account() {
                 <img src={desingImg} />
             </div>
             <div className="login-container">
-                {isLoggedIn ? (
-                    <div>
-                        <p>Welcome, {username}!</p>
-                        <button onClick={handleLogout}>Logout</button>
-                    </div>
-                ) : (
-                    <form>
-                        <label>Username:</label>
-                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}
-                        />
-                        <label>Password:</label>
-                        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}  />
-                        <button type="button" onClick={handleLogin}> Login </button>
+                {showSignIn && (
+                    isLoggedIn ? (
                         <div>
-                            <span onClick={handleToggleForm}>Create an account</span>
+                            <p>Welcome, {username}!</p>
+                            <button className='logout-button' onClick={handleLogout}>Logout</button>
                         </div>
-                    </form>
-                )}
+                    ) : (
+                        <form>
+                            <label>Username:</label>
+                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}
+                            />
+                            <label>Password:</label>
+                            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <button className='login-btn' type="button" onClick={handleLogin}> Login </button>
+                            <div>
+                                <span onClick={handleToggleForm}>Create an account</span>
+                            </div>
+                        </form>
+                    ))}
 
                 {showSignUp && (
                     <form>
                         <label>New Username:</label>
-                        <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)}/>
+                        <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
                         <label>New Password:</label>
-                        <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)}/>
+                        <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                         <label>Re-enter Password:</label>
                         <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                         <div>
@@ -70,7 +73,7 @@ export default function Account() {
                                 Buy
                             </label>
                         </div>
-                        <button type="button" onClick={handleSignUp}> Sign Up </button>
+                        <button className='login-btn' type="button" onClick={handleSignUp}> Sign Up </button>
                         <div>
                             <span onClick={handleToggleForm}>Back to Login</span>
                         </div>
