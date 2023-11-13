@@ -4,8 +4,10 @@ const User = require('./../models/userSchema');
 const SECRET_KEY = process.env.SECRET_KEY || 'i-am-really-trying-to-understand-this-shizz';
 
 const create = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email: email });
+  const { username, password, role } = req.body;
+  console.log('data that is being sent in: ',req.body);
+  const user = await User.findOne({ username: username });
+  console.log('this is the found user ',user);
   if (user)
     return res
       .status(409)

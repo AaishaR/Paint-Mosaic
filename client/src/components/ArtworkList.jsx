@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArtist } from "../apiService";
+import { getArtist } from "../services/apiService";
 import { useParams } from "react-router-dom";
 import { useCart } from "../contexts/cartContext";
 import { RiShoppingBag3Fill } from 'react-icons/ri'

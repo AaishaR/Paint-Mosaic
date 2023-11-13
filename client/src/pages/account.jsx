@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import desingImg from '../media/default.jpg'
+import apiServiceJWT from '../services/JWTService';
+import { useNavigate } from 'react-router-dom';
+import auth from '../utils/auth';
 
-export default function Account() {
+export default function Account(props) {
+
+    let navigate = useNavigate();
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
@@ -11,7 +16,7 @@ export default function Account() {
     const [newUsername, setNewUsername] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [accountType, setAccountType] = useState('');
+    const [role, setRole] = useState('');
 
     const handleLogin = () => {
         setIsLoggedIn(true);
@@ -21,7 +26,27 @@ export default function Account() {
         setIsLoggedIn(false);
     };
 
-    const handleSignUp = () => {
+    const handleSignUp = async (e) => {
+        //register a new user
+        // Check the client-session to see how to handle redirects
+        e.preventDefault();
+        // const { email, password, role } = state;
+        const user = { username: newUsername, password: newPassword, role: role };
+        console.log(user)
+        const res = await apiServiceJWT.register(user);
+
+        if (res.error) {
+            console.log(res.error)
+            alert(`${res.message}`);
+            setIsLoggedIn(false);
+            setShowSignUp(true);
+        } else {
+            const { accessToken } = res;
+            localStorage.setItem('accessToken', accessToken);
+            props.setIsAuthenticated(true);
+            // auth.login(() => navigate('/profile'));
+        }
+
         setIsLoggedIn(true);
     };
 
@@ -66,10 +91,11 @@ export default function Account() {
                         <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
                         <div>
                             <label>
-                                <input type="radio" name="accountType" value="sell" checked={accountType === 'sell'} onChange={() => setAccountType('sell')} />Sell
+                                <input type="radio" name="role" value="seller" checked={role === 'seller'} onChange={() => setRole('seller')} />
+                                Sell
                             </label>
                             <label>
-                                <input type="radio" name="accountType" value="buy" checked={accountType === 'buy'} onChange={() => setAccountType('buy')} />
+                                <input type="radio" name="role" value="buyer" checked={role === 'buyer'} onChange={() => setRole('buyer')} />
                                 Buy
                             </label>
                         </div>
