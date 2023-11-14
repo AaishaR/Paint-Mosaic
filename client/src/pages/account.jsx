@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import mona1 from '../media/monalisa1.jpg'
 import mona2 from '../media/monalisa2.jpg'
 import apiServiceJWT from '../services/JWTService';
@@ -25,7 +25,7 @@ export default function Account(props) {
         e.preventDefault();
         const user = { username, password };
         const res = await apiServiceJWT.login(user);
-        
+
         if (res.error) {
             alert(`${res.message}`);
             setShowSignIn(false);
@@ -35,25 +35,34 @@ export default function Account(props) {
             // console.log(res)
             setUesrInfo(userDetails);
             localStorage.setItem('accessToken', accessToken);
+            // console.log('before: ' , props.isAuthenticated)
             props.setIsAuthenticated(true);
             setShowSignIn(true);
             setShowSignUp(false);
         }
     };
+    // console.log('after: ' , props.isAuthenticated)
 
-    const handleLogout = () => {
-        // console.log('we here')
+    const handleLogout = async () => {
         removeToken();
         handleAuth();
     };
 
-    const removeToken = async () => {
-        await apiServiceJWT.logout('accessToken');
+    const removeToken = () => {
+        apiServiceJWT.logout('accessToken');
     };
+
     const handleAuth = () => {
         props.setIsAuthenticated(false);
-        setShowSignIn(true);
+        setShowSignIn(true)
+        // console.log(props.isAuthenticated);
+        window.location.reload();
+        // auth.logout(() => navigate('/account'));
     };
+
+    useEffect(() => {
+
+    }, [props.isAuthenticated])
 
     //creating a new user
     const handleSignUp = async (e) => {
@@ -91,9 +100,9 @@ export default function Account(props) {
             </div>
             <div className="login-container">
                 {showSignIn && (
-                     props.isAuthenticated && props.user ? ( //
+                    props.isAuthenticated && props.user ? ( //
                         <div>
-                            <UserDetails user={ userInfo !== '' ? userInfo :props.user } />
+                            <UserDetails user={userInfo !== '' ? userInfo : props.user} />
                             <button className='logout-button' onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (

@@ -31,7 +31,7 @@ function App() {
         setFavList(list);
       }
     })();
-  }, [token, setIsAuthenticated, setUserinfo, setFavList, favList])
+  }, [token, favList])
   
   // console.log('userinfo before return', userInfo);
 
