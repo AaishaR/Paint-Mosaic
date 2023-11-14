@@ -2,7 +2,7 @@ import ArtworkList from "../components/ArtworkList"
 import { useEffect, useState } from 'react';
 import { getArtwork } from '../services/apiService';
 
-export default function Artist() {
+export default function Artist(props) {
 
     const [artworks, setArtworks] = useState([])
 
@@ -13,7 +13,7 @@ export default function Artist() {
     }, []);
     return (
         <div className='artist-profile-container'>
-            <ArtworkList artworks={artworks} />
+            <ArtworkList artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} />
         </div>
     )
 }

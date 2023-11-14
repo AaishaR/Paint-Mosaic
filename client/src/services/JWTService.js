@@ -3,10 +3,8 @@ const BASE_URL = 'http://localhost:3000/user';
 const apiServiceJWT = {};
 
 apiServiceJWT.register = (user) => {
-  return fetch(`${BASE_URL}/user/register`, {
+  return fetch(`${BASE_URL}/register`, {
     method: 'POST',
-    // credentials: 'include',
-    //mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   })
@@ -15,16 +13,18 @@ apiServiceJWT.register = (user) => {
 };
 
 apiServiceJWT.login = (user) => {
-  return fetch(`${BASE_URL}/user/login`, {
+  return fetch(`${BASE_URL}/login`, {
     method: 'POST',
-    //   credentials: 'include',
-    //   mode: 'cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   })
     .then((res) => res.json())
     .catch((err) => console.log(err));
 
+};
+
+apiServiceJWT.logout = (tokenName) => {
+  localStorage.removeItem(tokenName);
 };
 
 apiServiceJWT.getUser = async (token) => {

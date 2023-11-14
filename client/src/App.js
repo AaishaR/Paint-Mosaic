@@ -27,15 +27,13 @@ function App() {
         const user = await apiServiceJWT.getUser(token);
         setIsAuthenticated(true);
         setUserinfo({...user});
-        // console.log('user: ', user);
-        // console.log('userinfo', userInfo);
         const list = user.favoriteArtworks;
         setFavList(list);
       }
     })();
   }, [token, setIsAuthenticated, setUserinfo, setFavList])
   
-  console.log('userinfo before return', userInfo);
+  // console.log('userinfo before return', userInfo);
 
   return (
     <Router>
@@ -44,10 +42,9 @@ function App() {
 
           <Navbar />
           <Routes>
-            <Route path='/' element={userInfo && <HomePage setFavList={setFavList} favList={favList} user={userInfo} />} />
-            {/* <Route path='/cart' element={<Cart />} /> */}
-            <Route path='/account' element={<Account setIsAuthenticated={setIsAuthenticated} />} />
-            <Route path='/artist/:artistName' element={<Artist />} />
+            <Route exact path='/' element={<HomePage setFavList={setFavList} favList={favList} user={userInfo} />} />
+            <Route path='/account' element={<Account setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} user={userInfo} />} />
+            <Route path='/artist/:artistName' element={<Artist setFavList={setFavList} favList={favList} user={userInfo}/>} />
           </Routes>
         </FavProvider>
       </CartProvider>

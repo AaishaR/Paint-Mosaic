@@ -18,12 +18,10 @@ export default function Account(props) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState('');
-    const [userInfo, setUesrInfo] = useState('');
 
     //loggin in with existing user
     const handleLogin = async (e) => {
         e.preventDefault();
-        // const { username, password } = state;
         const user = { username, password };
         const res = await apiServiceJWT.login(user);
 
@@ -31,20 +29,25 @@ export default function Account(props) {
             alert(`${res.message}`);
             setShowSignUp(true);
         } else {
-            const { accessToken, userDetails } = res;
-            setUesrInfo(userDetails);
+            const { accessToken } = res;
             localStorage.setItem('accessToken', accessToken);
             props.setIsAuthenticated(true);
             setShowSignIn(true);
             setShowSignUp(false);
-            // auth.login(() => navigate('/profile'));
         }
-
-        // setIsLoggedIn(true);
     };
 
     const handleLogout = () => {
-        // setIsLoggedIn(false);
+        removeToken();
+        handleAuth();
+    };
+
+    const removeToken = () => {
+        apiServiceJWT.logout('accessToken');
+    };
+    const handleAuth = () => {
+        props.setIsAuthenticated(false);
+        setShowSignIn(true);
     };
 
     //creating a new user
@@ -52,7 +55,6 @@ export default function Account(props) {
         //register a new user
         // Check the client-session to see how to handle redirects
         e.preventDefault();
-        // const { email, password, role } = state;
         const user = { username: newUsername, password: newPassword, role: role };
         console.log(user)
         const res = await apiServiceJWT.register(user);
@@ -67,10 +69,7 @@ export default function Account(props) {
             props.setIsAuthenticated(true);
             setShowSignIn(true);
             setShowSignUp(false);
-            // auth.login(() => navigate('/profile'));
         }
-
-        // setIsLoggedIn(true);
     };
 
     const handleToggleForm = () => {
@@ -87,10 +86,9 @@ export default function Account(props) {
             </div>
             <div className="login-container">
                 {showSignIn && (
-                    props.setIsAuthenticated ? (
+                    props.isAuthenticated ? (
                         <div>
-                            {/* render another component */}
-                            <UserDetails userDetails={userInfo}/>
+                            <UserDetails user={props.user} />
                             <button className='logout-button' onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (
