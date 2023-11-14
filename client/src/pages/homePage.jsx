@@ -2,7 +2,7 @@ import ArtworkSlider from "../components/ArtworkSlider"
 import { useEffect, useState } from 'react';
 import { getArtwork } from '../services/apiService';
 
-export default function HomePage() {
+export default function HomePage(props) {
 
     const [artworks, setArtworks] = useState([])
 
@@ -13,10 +13,12 @@ export default function HomePage() {
     }, []);
 
     return (
-
-        <div className='Main-container'>
-            <ArtworkSlider artworks={artworks} />
-        </div>
+        <>
+            {artworks.length && <div className='Main-container'>
+                <ArtworkSlider artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} />
+            </div>
+            }
+        </>
 
     )
 }

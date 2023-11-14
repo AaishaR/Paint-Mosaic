@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Artwork = require('./artworkSchemas');
 
 const MsgSchema = {
     sender: {
@@ -7,10 +8,7 @@ const MsgSchema = {
     },
     msg: {
         text: {
-            type: String
-        },
-        images: {
-            type: String
+            type: String,
         }
     }
 }
@@ -29,10 +27,9 @@ const UserSchema = {
         enum: ['buyer', 'seller'],
         required: true,
     },
-    messages : [MsgSchema]
+    messages : [MsgSchema],
+    favoriteArtworks :[Artwork.schema],
 
 }
-
-
 
 module.exports = mongoose.model('user', UserSchema);

@@ -12,9 +12,16 @@ router.delete('/artwork/:id', deleteArt);
 
 //routes for user authentication and authorisation
 
-router.post('/register', userController.create);
-router.post('/login', userController.login);
-router.get('/profile', authMiddleware, userController.profile);
-router.post('/logout', authMiddleware, userController.logout);
+router.post('/user/register', userController.create);
+router.post('/user/login', userController.login);
+router.get('/user/profile', authMiddleware, userController.profile);
+router.post('/user/logout', authMiddleware, userController.logout);
+router.get('/user', userController.getUser);
+
+//updating user profile
+
+router.post('/user/addFav', userController.addtofav);
+router.post('/user/removeFav', userController.removeFav);
+// router.post('/sendMsg', userController.addMessage);
 
 module.exports = router;

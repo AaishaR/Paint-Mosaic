@@ -1,14 +1,15 @@
 import { useState } from 'react';
-import desingImg from '../media/default.jpg'
+import mona1 from '../media/monalisa1.jpg'
+import mona2 from '../media/monalisa2.jpg'
 import apiServiceJWT from '../services/JWTService';
 import { useNavigate } from 'react-router-dom';
 import auth from '../utils/auth';
+import UserDetails from '../components/userDetails';
 
 export default function Account(props) {
 
     let navigate = useNavigate();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [showSignUp, setShowSignUp] = useState(false);
@@ -17,15 +18,36 @@ export default function Account(props) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState('');
+    const [userInfo, setUesrInfo] = useState('');
 
-    const handleLogin = () => {
-        setIsLoggedIn(true);
+    //loggin in with existing user
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        // const { username, password } = state;
+        const user = { username, password };
+        const res = await apiServiceJWT.login(user);
+
+        if (res.error) {
+            alert(`${res.message}`);
+            setShowSignUp(true);
+        } else {
+            const { accessToken, userDetails } = res;
+            setUesrInfo(userDetails);
+            localStorage.setItem('accessToken', accessToken);
+            props.setIsAuthenticated(true);
+            setShowSignIn(true);
+            setShowSignUp(false);
+            // auth.login(() => navigate('/profile'));
+        }
+
+        // setIsLoggedIn(true);
     };
 
     const handleLogout = () => {
-        setIsLoggedIn(false);
+        // setIsLoggedIn(false);
     };
 
+    //creating a new user
     const handleSignUp = async (e) => {
         //register a new user
         // Check the client-session to see how to handle redirects
@@ -38,16 +60,17 @@ export default function Account(props) {
         if (res.error) {
             console.log(res.error)
             alert(`${res.message}`);
-            setIsLoggedIn(false);
             setShowSignUp(true);
         } else {
             const { accessToken } = res;
             localStorage.setItem('accessToken', accessToken);
             props.setIsAuthenticated(true);
+            setShowSignIn(true);
+            setShowSignUp(false);
             // auth.login(() => navigate('/profile'));
         }
 
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
     };
 
     const handleToggleForm = () => {
@@ -58,13 +81,16 @@ export default function Account(props) {
     return (
         <div className="account-container">
             <div className='background-design'>
-                <img src={desingImg} />
+                {props.setIsAuthenticated ? (
+                    <img src={mona2} alt='img' />
+                ) : (<img src={mona1} alt='img' />)}
             </div>
             <div className="login-container">
                 {showSignIn && (
-                    isLoggedIn ? (
+                    props.setIsAuthenticated ? (
                         <div>
-                            <p>Welcome, {username}!</p>
+                            {/* render another component */}
+                            <UserDetails userDetails={userInfo}/>
                             <button className='logout-button' onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (
