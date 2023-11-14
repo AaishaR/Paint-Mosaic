@@ -67,7 +67,7 @@ apiServiceJWT.removeFav = async (_id, artworkId) => {
 }
 
 apiServiceJWT.addMsg = async (username, recieverName ,msg) => {
-  console.log(recieverName)
+  // console.log(recieverName)
   try {
     const response = await fetch(`${BASE_URL}/addmsg`, {
       method: 'POST',

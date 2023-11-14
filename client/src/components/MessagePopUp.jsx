@@ -6,7 +6,7 @@ export default function Popup(props) {
 
     const handleSend = () => {
         // Close the pop-up
-        console.log(props.recevierName)
+        // console.log(props.recevierName)
         apiServiceJWT.addMsg(props.user.username, props.recevierName, inputText )
         props.onClose();
     };

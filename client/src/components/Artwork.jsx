@@ -69,13 +69,15 @@ export default function Artwork(props) {
                             <div className="pricing-container">
                                 <p>{props.artwork.price}</p>
                                 <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
-                                <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
+                                {props.isAuthenticated &&
+                                    <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
+                                }
                             </div>
                             <p className='title'>Description</p>
                             <p className='title-values'>{props.artwork.description}</p>
                         </div>
                     </div>
-                </div> 
+                </div>
                 :
                 <div className="artwork-list-element">
 
@@ -109,7 +111,9 @@ export default function Artwork(props) {
                             <div className="pricing-container">
                                 <p>{props.artwork.price}</p>
                                 <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
-                                <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
+                                {props.isAuthenticated &&
+                                    <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
+                                }
 
                             </div>
                         </div>

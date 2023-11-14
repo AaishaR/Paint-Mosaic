@@ -18,7 +18,7 @@ export default function ArtworkSlider(props) {
         <div className="artwork-container">
             <Slider {...SliderSettings}>
                 {props.artworks.length ? props.artworks.map((artwork, index) => (
-                    <Artwork key={index} artwork={artwork} favList={props.favList} setFavList={props.setFavList} user={props.user} slider={true}/>
+                    <Artwork key={index} artwork={artwork} favList={props.favList} setFavList={props.setFavList} user={props.user} slider={true} isAuthenticated={props.isAuthenticated}/>
                 )) :
                     <p>There are no art pieces available yet</p>}
             </Slider>

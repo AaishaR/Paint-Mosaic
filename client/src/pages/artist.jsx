@@ -13,7 +13,7 @@ export default function Artist(props) {
     }, []);
     return (
         <div className='artist-profile-container'>
-            <ArtworkList artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} />
+            <ArtworkList artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} isAuthenticated={props.isAuthenticated} />
         </div>
     )
 }

@@ -31,12 +31,14 @@ export default function ArtistList(props) {
         <div className="artwork-list-container">
             <div className="list-header">
                 <h2>{artistName}</h2>
-                <button className="msg-btn" onClick={openPopup}><BiSolidMessageEdit className="message-icon" /></button>
+                {props.isAuthenticated &&
+                    <button className="msg-btn" onClick={openPopup}><BiSolidMessageEdit className="message-icon" /></button>
+                }
                 {popupOpen && <Popup onClose={closePopup} user={props.user} recevierName={artistName}/>}
 
             </div>
             {artist.length ? artist.map((artwork, index) => (
-                <Artwork key={index} artwork={artwork} favList={props.favList} setFavList={props.setFavList} user={props.user} slider={false} />
+                <Artwork key={index} artwork={artwork} favList={props.favList} setFavList={props.setFavList} user={props.user} slider={false} isAuthenticated={props.isAuthenticated} />
 
             )) :
                 <p>There are no art pieces available yet</p>}

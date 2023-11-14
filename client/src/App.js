@@ -31,7 +31,7 @@ function App() {
         setFavList(list);
       }
     })();
-  }, [token, setIsAuthenticated, setUserinfo, setFavList])
+  }, [token, setIsAuthenticated, setUserinfo, setFavList, favList])
   
   // console.log('userinfo before return', userInfo);
 
@@ -42,9 +42,9 @@ function App() {
 
           <Navbar />
           <Routes>
-            <Route exact path='/' element={<HomePage setFavList={setFavList} favList={favList} user={userInfo} />} />
+            <Route exact path='/' element={<HomePage setFavList={setFavList} favList={favList} user={userInfo} isAuthenticated={isAuthenticated} />} />
             <Route path='/account' element={<Account setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} user={userInfo} />} />
-            <Route path='/artist/:artistName' element={<Artist setFavList={setFavList} favList={favList} user={userInfo}/>} />
+            <Route path='/artist/:artistName' element={<Artist setFavList={setFavList} favList={favList} user={userInfo} isAuthenticated={isAuthenticated}/>} />
           </Routes>
         </FavProvider>
       </CartProvider>

@@ -280,12 +280,48 @@ a:hover {
     flex-direction: column;
 }
 
+.msg-list-container{
+    width: auto;
+    min-height: 200px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.fav-list-container{
+    width: auto;
+    max-height: 250px;
+    min-height: 200px;
+    overflow-y: auto;
+}
+
 .message-container{
     max-height: 300px;
     padding: 20px;
-    width: 350px;
+    width: auto;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
     overflow-y: auto;
+}
+
+.fav-item-container{
+    display: flex;
+    max-height: 300px;
+    padding: 20px;
+    width: auto;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
+    overflow-y: auto;
+    align-items: center;
+}
+
+.fav-item-container img{
+    padding-right: 8px;
+    border-radius: 5px;
+    width: 80px;
+    height: 80px;
+}
+
+.fav-item-container p{
+    font-size: smaller;
+    font-weight: bold;
 }
 
 .artwork-list-element {
@@ -470,6 +506,8 @@ a:hover {
     width: 90%;
     height: 80vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+
 }
 
 .background-design {
@@ -483,7 +521,8 @@ a:hover {
 
 
 .login-container {
-    max-width: 400px;
+    max-width: 60%;
+    min-width: 40%;
     margin: auto;
     padding: 20px;
     border: 1px solid #ccc;

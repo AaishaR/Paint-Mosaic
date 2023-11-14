@@ -36,9 +36,9 @@ export const CartProvider = ({ children }) => {
         setCart(newCart)
     }
 
-    useEffect(() => {
-        console.log(cart);
-    }, [cart])
+    // useEffect(() => {
+    //     console.log(cart);
+    // }, [cart])
 
     return (
         <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>

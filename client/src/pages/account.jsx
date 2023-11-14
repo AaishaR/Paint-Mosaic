@@ -28,10 +28,11 @@ export default function Account(props) {
         
         if (res.error) {
             alert(`${res.message}`);
+            setShowSignIn(false);
             setShowSignUp(true);
         } else {
             const { accessToken, userDetails } = res;
-            console.log(res)
+            // console.log(res)
             setUesrInfo(userDetails);
             localStorage.setItem('accessToken', accessToken);
             props.setIsAuthenticated(true);
@@ -41,12 +42,13 @@ export default function Account(props) {
     };
 
     const handleLogout = () => {
+        // console.log('we here')
         removeToken();
         handleAuth();
     };
 
-    const removeToken = () => {
-        apiServiceJWT.logout('accessToken');
+    const removeToken = async () => {
+        await apiServiceJWT.logout('accessToken');
     };
     const handleAuth = () => {
         props.setIsAuthenticated(false);

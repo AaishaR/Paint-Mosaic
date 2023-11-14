@@ -1,20 +1,29 @@
-import Message from "./message"
+import FavItem from "./favItem";
+import Message from "./message";
 
 export default function UserDetails(props) {
-
-    // console.log("we here: ", props.user)
 
     return (
         <>
             {props.user && <div className='user-container'>
-                <p>Welcome, {props.user?.username}!</p>
-                <h3>your messages: </h3>
-                {props.user?.messages.length ? props.user.messages.map((msg, index) => (
-                <Message key={index} msg={msg}  />
+                <h2>Welcome, {props.user?.username}!</h2>
 
-            )) :
-                <p>No new Messages</p>}
+                <h3>your messages: </h3>
+                <div className="msg-list-container">
+                    {props.user?.messages.length ? props.user.messages.map((msg, index) => (
+                        <Message key={index} msg={msg} />
+
+                    )) :
+                        <p>No new Messages</p>}
+                </div>
+
                 <h3>your liked items: </h3>
+                <div className="fav-list-container">
+                    {props.user?.favoriteArtworks.length ? props.user.favoriteArtworks.map((artwork, index) => (
+                        <FavItem key={index} artwork={artwork} />
+                    )) :
+                        <p>You have no items in your favourite list</p>}
+                </div>
 
             </div>}
         </>
