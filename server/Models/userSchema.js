@@ -7,9 +7,7 @@ const MsgSchema = {
         required: true,
     },
     msg: {
-        text: {
-            type: String,
-        }
+        type: String,
     }
 }
 

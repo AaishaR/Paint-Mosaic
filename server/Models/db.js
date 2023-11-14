@@ -27,10 +27,19 @@ async function deleteArtwork(id) {
 }
 
 
-async function addMessage(senderName, recieverName, msg) {
+async function addMsgToUser(username, recieverName, msg) {
+  console.log(username)
+  console.log(recieverName)
+  console.log(msg)
   try {
-    const user = await userModel.findById(recieverName);
-    user.message.push({ senderName, msg });
+    const user = await userModel.findOne({ username: recieverName });
+    console.log(user)
+    // console.log(user)
+    if (!user) {
+      console.error('User not found');
+      return;
+    }
+    user.messages.push({ sender: username, msg: msg });
     await user.save();
   } catch (error) {
     console.error(error);
@@ -48,8 +57,8 @@ async function addFavoriteArtwork(userId, artwork) {
 };
 
 async function removeFavoriteArtwork(_id , artworkId) {
-  console.log(_id)
-  console.log(artworkId)
+  // console.log(_id)
+  // console.log(artworkId)
   try {
     const user = await userModel.findById(_id);
     console.log(user)
@@ -66,4 +75,4 @@ async function removeFavoriteArtwork(_id , artworkId) {
 
 
 
-module.exports = { getAllArtwork, addArtwork, findArtist, deleteArtwork, addMessage, addFavoriteArtwork, removeFavoriteArtwork }
+module.exports = { getAllArtwork, addArtwork, findArtist, deleteArtwork, addMsgToUser, addFavoriteArtwork, removeFavoriteArtwork }

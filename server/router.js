@@ -14,7 +14,7 @@ router.delete('/artwork/:id', deleteArt);
 
 router.post('/user/register', userController.create);
 router.post('/user/login', userController.login);
-router.get('/user/profile', authMiddleware, userController.profile);
+// router.get('/user/profile', authMiddleware, userController.profile);
 router.post('/user/logout', authMiddleware, userController.logout);
 router.get('/user', userController.getUser);
 
@@ -22,6 +22,6 @@ router.get('/user', userController.getUser);
 
 router.post('/user/addFav', userController.addtofav);
 router.post('/user/removeFav', userController.removeFav);
-// router.post('/sendMsg', userController.addMessage);
+router.post('/user/addmsg', userController.addMsg);
 
 module.exports = router;

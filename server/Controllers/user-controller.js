@@ -61,16 +61,6 @@ const getUser = async (req, res) => {
   }
 }
 
-const profile = async (req, res) => {
-  try {
-    const { _id, firstName, lastName } = req.user;
-    const user = { _id, firstName, lastName };
-    res.status(200).send(user);
-  } catch {
-    res.status(404).send({ error, message: 'Resource not found' });
-  }
-};
-
 const logout = (req, res) => {
   // delete the token client side upon logout.
   // you would invalidate the token here.
@@ -100,5 +90,17 @@ const removeFav = async (req, res) => {
   }
 }
 
+const addMsg = async (req, res) => {
+  console.log(req.body)
+  const { username, recieverName, msg } = req.body;
+  try {
+    await userModel.addMsgToUser(username, recieverName, msg);
+    res.status(200).json({ success: true, message: 'Sent message to the artist successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+}
 
-module.exports = { create, login, getUser, profile, logout, addtofav, removeFav };
+
+module.exports = { create, login, getUser, logout, addtofav, removeFav, addMsg };
