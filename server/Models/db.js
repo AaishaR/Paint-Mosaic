@@ -28,12 +28,12 @@ async function deleteArtwork(id) {
 
 
 async function addMsgToUser(username, recieverName, msg) {
-  console.log(username)
-  console.log(recieverName)
-  console.log(msg)
+  // console.log(username)
+  // console.log(recieverName)
+  // console.log(msg)
   try {
     const user = await userModel.findOne({ username: recieverName });
-    console.log(user)
+    // console.log(user)
     // console.log(user)
     if (!user) {
       console.error('User not found');

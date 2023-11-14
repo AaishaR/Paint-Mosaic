@@ -91,7 +91,7 @@ const removeFav = async (req, res) => {
 }
 
 const addMsg = async (req, res) => {
-  console.log(req.body)
+  // console.log(req.body)
   const { username, recieverName, msg } = req.body;
   try {
     await userModel.addMsgToUser(username, recieverName, msg);

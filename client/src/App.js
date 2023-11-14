@@ -26,7 +26,7 @@ function App() {
       if(token){
         const user = await apiServiceJWT.getUser(token);
         setIsAuthenticated(true);
-        setUserinfo({...user});
+        setUserinfo(user);
         const list = user.favoriteArtworks;
         setFavList(list);
       }

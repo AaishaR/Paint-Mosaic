@@ -18,18 +18,21 @@ export default function Account(props) {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState('');
+    const [userInfo, setUesrInfo] = useState('');
 
     //loggin in with existing user
     const handleLogin = async (e) => {
         e.preventDefault();
         const user = { username, password };
         const res = await apiServiceJWT.login(user);
-
+        
         if (res.error) {
             alert(`${res.message}`);
             setShowSignUp(true);
         } else {
-            const { accessToken } = res;
+            const { accessToken, userDetails } = res;
+            console.log(res)
+            setUesrInfo(userDetails);
             localStorage.setItem('accessToken', accessToken);
             props.setIsAuthenticated(true);
             setShowSignIn(true);
@@ -56,7 +59,7 @@ export default function Account(props) {
         // Check the client-session to see how to handle redirects
         e.preventDefault();
         const user = { username: newUsername, password: newPassword, role: role };
-        console.log(user)
+        // console.log(user)
         const res = await apiServiceJWT.register(user);
 
         if (res.error) {
@@ -80,15 +83,15 @@ export default function Account(props) {
     return (
         <div className="account-container">
             <div className='background-design'>
-                {props.setIsAuthenticated ? (
+                {props.isAuthenticated ? (
                     <img src={mona2} alt='img' />
                 ) : (<img src={mona1} alt='img' />)}
             </div>
             <div className="login-container">
                 {showSignIn && (
-                    props.isAuthenticated ? (
+                     props.isAuthenticated && props.user ? ( //
                         <div>
-                            <UserDetails user={props.user} />
+                            <UserDetails user={ userInfo !== '' ? userInfo :props.user } />
                             <button className='logout-button' onClick={handleLogout}>Logout</button>
                         </div>
                     ) : (
