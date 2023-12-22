@@ -26,7 +26,7 @@ const postArtwork = async (req: Request, res: Response): Promise<Response> => {
 const getArtist = async (req: Request, res: Response): Promise<Response> => {
     try {
         // console.log(req.params.name)
-        const artwork = await artworkModel.findOne({ "artist.name": req.params.name });
+        const artwork = await artworkModel.find({ "artist.name": req.params.name });
         // console.log(artwork);
         return res.status(201).json({ stauts: 201, message: 'got artist', artwork: artwork });
 

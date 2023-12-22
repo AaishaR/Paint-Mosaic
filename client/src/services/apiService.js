@@ -14,6 +14,7 @@ async function getArtwork() {
 
 //fetch all work by one artist for artist profile
 async function getArtist(name) {
+    console.log('here')
     try {
         const data = await fetch(`${url}/artwork/artist/${name}`);
         const response = await data.json();

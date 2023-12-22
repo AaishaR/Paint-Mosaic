@@ -16,9 +16,9 @@ export const FavProvider = ({ children }) => {
         setFavourite(newItem);
     };
 
-    useEffect(() => {
-        console.log(favourite);
-    }, [favourite])
+    // useEffect(() => {
+    //     console.log(favourite);
+    // }, [favourite])
 
     return (
         <FavContext.Provider value={{ favourite, favouriteToggle }}>

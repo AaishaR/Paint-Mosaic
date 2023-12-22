@@ -23,9 +23,11 @@ export default function ArtistList(props) {
 
     useEffect(() => {
         getArtist(artistName).then((data) => {
-            setArtist(data)
+            // console.log('data:', data)
+            setArtist(data.artwork)
         })
     }, [artistName]);
+    // console.log('artist: ', artist)
 
     return (
         <div className="artwork-list-container">
