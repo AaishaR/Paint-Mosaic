@@ -65,7 +65,7 @@ export default function Artwork(props) {
 
                         </div>
 
-                        <div className="artwork-detials">
+                        <div className="artwork-details">
                             <div className="pricing-container">
                                 <p>{props.artwork.price}</p>
                                 <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
