@@ -34,7 +34,7 @@ const ShoppingCartPanel = ({ onClose, isOpen }) => {
             </div>
             <div className="cart-details-container">
               <div className="cart-art-detials">
-                <p>{item.title} by {item.artist.name}</p>
+                <p>{item.title} by - {item.artist.name}</p>
               </div>
 
               <div className="qty-pricing-container">
@@ -46,7 +46,8 @@ const ShoppingCartPanel = ({ onClose, isOpen }) => {
             </div>
           </div>
         )) :
-          <p className='empty-cart'>shopping cart is empty</p>}
+
+          <p className='empty-cart'>Your shopping cart is empty.</p>}
 
         <div className="total-container">
           <p>Total Price: ${totalPrice.toFixed(2)}</p>

@@ -18,7 +18,49 @@
 body {
     background-color: #F4F4F4;
     color: #333333;
+    font-size: 18px;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+    /* Styles for mobile devices */
+    body {
+        font-size: 16px;
+    }
+
+    .navbar-container .logo {
+        margin-right: 5px;
+    }
+
+    .shopping_basket {
+        margin-right: 10px;
+    }
+
+    .details-container {
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+        margin: 0 15px 15px;
+    }
+
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+
+    /* Styles for tablets */
+    body {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    /* Styles for desktops and larger screens */
+    body {
+        font-size: 20px;
+    }
+}
+
 
 /* Navbar */
 .navbar-container {
@@ -28,113 +70,84 @@ body {
     padding: 1rem;
     background-color: #00464F;
     color: #b2f1e8;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
 }
 
 .logo {
     display: flex;
     align-items: center;
-    margin-left: 10px;
+    /* margin-left: 10px; */
 }
 
 .navbar-container .logo {
-    /* background-color: var(--backgroud-color-home1); */
     height: 40px;
-    margin-right: 10px;
+    /* margin-right: 10px; */
 }
 
 .navbar-container span {
     color: white;
     font-weight: bold;
-    font-size: medium;
+    font-size: 16px;
 }
 
 .button-container {
-    /* background-color: var(--backgroud-color-home1); */
+    width: 30%;
     display: flex;
-    gap: 3rem;
+    justify-content: space-between;
     font-size: 1.5rem;
     color: white
 }
 
-.shopping_basket {
-    margin-right: 20px;
-}
-
 /* Main Container (Home Page) */
 .Main-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
 }
 
 /* Artwork Slider */
 .artwork-container {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    max-width: 700px;
-    margin: 0 auto;
+    width: 100%;
     overflow: hidden;
-    /* display: flex; */
-}
-
-.artwork-slide {
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-    height: 800px;
-    padding: 1rem;
-    min-width: 300px;
-    /* background-color: var(--backgroud-color-home2); */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    /* border:  solid; */
-    /* border-radius: 10px; */
-    margin-bottom: 1rem;
-    /* text-align: center; */
-    /* align-items: center; */
 }
 
 .img-space {
-    /* background-color: var(--backgroud-color-home1); */
-    width: 80%;
+    width: 100%;
     min-height: 300px;
     max-height: 500px;
     overflow: hidden;
-    margin-left: 100px;
-    margin-right: 100px;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
 }
 
 .img-space img {
-    width: 80%;
+    width: 93%;
     min-height: 300px;
     max-height: 460px;
     border: 14px solid black;
-    /* border-radius: 5px; */
 }
 
 .details-container {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 0 15px 15px;
+}
 
+.artist-details h1 {
+    font-size: 2em;
+    width: 100%;
+}
+
+.artist-name {
     display: flex;
-    justify-content: space-evenly;
-    margin-left: 50px;
-    margin-right: 50px;
-    margin-bottom: 50px;
+    width: 100%;
+    flex-direction: column;
 }
 
-.artist-details {
-    width: 50%;
-    margin-top: 1rem;
-    margin-right: 5.5rem;
-}
 
 .sub-artist-details {
+    width: 90%;
     display: flex;
     justify-content: space-between;
-
 }
 
 .questionmark {
@@ -148,29 +161,24 @@ body {
 }
 
 .title {
-    font-size: small;
     font-weight: 900;
 }
 
 .title-values {
-    font-size: 10px;
-    font-weight: 100;
+    font-size: 12px;
 }
 
 .artwork-details {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    width: 50%;
+    width: 90%;
 }
 
 .pricing-container {
     display: flex;
-    margin-top: 2rem;
-    display: flex;
+    width: 100%;
     justify-content: space-between;
-    margin-bottom: 2.5rem;
-    /* flex-direction: column; */
-    /* align-items: center; */
 }
 
 .pricing-container p {
@@ -178,40 +186,26 @@ body {
 }
 
 .pricing-container button {
-    /* background-color: #4caf50; */
     color: black;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 0.5rem;
-}
-
-.artwork-slide {
-    min-height: 300px;
-}
-
-.bid {
-    /* background-color: black; */
-    color: black;
 }
 
 /* Shopping Cart and Account buttons in Navbar */
 .user,
 .shopping_basket {
-    /* background-color: #113536 ; */
-    font-size: 1.5rem;
     color: whitesmoke;
     text-decoration: none;
     border-bottom: none;
 }
 
-
 /* Total Container in Cart Page */
-.total-container {
+/* .total-container {
     margin-top: 1rem;
     text-align: right;
-}
+} */
 
 
 a {
@@ -223,33 +217,7 @@ a:hover {
     color: #4caf50;
 }
 
-.slick-dots {
-    bottom: 30px !important;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    margin: 15px 0;
-}
 
-.slick-dots li {
-
-    margin: 0 5px;
-}
-
-.slick-dots li button {
-
-    width: 10px;
-    height: 10px;
-    border: 2px solid #555;
-    background: transparent;
-    border-radius: 50%;
-    transition: all 0.3s;
-}
-
-.slick-dots li.slick-active button {
-    background: #555;
-}
 
 /* artist profile page styling ***************************************/
 .artwork-list-container {
@@ -257,44 +225,44 @@ a:hover {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
 }
 
-.list-header{
+.list-header {
     display: flex;
     width: 50%;
     justify-content: space-between;
     align-items: center;
 }
 
-.msg-btn{
+.msg-btn {
     border: none;
     background-color: transparent;
     cursor: pointer;
 }
 
-.message-icon{
+.message-icon {
     margin-top: 40px;
     font-size: 24px;
 }
 
-.popup-content{
+.popup-content {
     display: flex;
     flex-direction: column;
 }
 
-.msg-list-container{
+.msg-list-container {
     width: auto;
     min-height: 200px;
     max-height: 250px;
     overflow-y: auto;
 }
 
-.fav-list-container{
+.fav-list-container {
     width: auto;
     max-height: 250px;
     min-height: 200px;
     overflow-y: auto;
 }
 
-.message-container{
+.message-container {
     max-height: 300px;
     padding: 20px;
     width: auto;
@@ -302,7 +270,7 @@ a:hover {
     overflow-y: auto;
 }
 
-.fav-item-container{
+.fav-item-container {
     display: flex;
     max-height: 300px;
     padding: 20px;
@@ -312,14 +280,14 @@ a:hover {
     align-items: center;
 }
 
-.fav-item-container img{
+.fav-item-container img {
     padding-right: 8px;
     border-radius: 5px;
     width: 80px;
     height: 80px;
 }
 
-.fav-item-container p{
+.fav-item-container p {
     font-size: smaller;
     font-weight: bold;
 }
@@ -373,7 +341,6 @@ a:hover {
 .artwork-list-container h2 {
     margin-left: 90px;
     padding-top: 40px;
-    /* margin-top: 80px !important; */
 }
 
 /* shopping cart styling ********************************************* */
@@ -381,24 +348,17 @@ a:hover {
 .shopping-cart-panel {
     position: fixed;
     top: 0;
-    right: -50%;
-    /* Initially off-screen */
+    right: -40%;
     height: 100vh;
-    width: 50%;
-    /* Adjust this value based on your design */
+    width: 100%;
     background-color: white;
     transition: right 0.5s ease-in-out;
-    /* Add a smooth transition effect */
     overflow-y: auto;
-    /* Make the panel scrollable */
     z-index: 999;
-    /* Ensure the panel is above other elements */
 }
 
 .shopping-cart-panel.open {
     right: 0;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    /* Slide the panel in when the 'open' class is present */
 }
 
 .panel-header {
@@ -406,61 +366,55 @@ a:hover {
     justify-content: space-between;
     color: #333;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0 1rem; 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .panel-header h3 {
-    margin-left: 40px;
-    margin-right: 170px;
+    margin-right: 1rem;
+    font-size: 22px;
 }
 
 .close-icon {
-    margin-right: 40px;
+    /* margin: 0 1rem; */
     right: 0;
 }
 
 
 .cart-main-container {
     position: absolute;
-    padding: 1rem;
     z-index: 1000;
     color: #333;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    width: 95%;
-    font-size: medium;
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+    width: 100%;
+    font-size: 16px;
 }
 
-.empty-cart {
-    margin: 40px;
+.empty-cart{
+    margin: 1rem 0 0 1rem;
 }
-
 
 .cart-list-container {
     display: flex;
-    /* align-items: center; */
-    margin-bottom: 1rem;
+    width: 100%;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 0.2rem;
 }
 
 .img-icon {
-    position: relative;
-    width: 20%;
+    /* position: relative; */
+    width: 30%;
     height: auto;
-    margin-right: 1rem;
 }
 
 .img-icon img {
-    margin: 5px;
     width: 100%;
     height: auto;
     border-radius: 2px;
 }
 
 .cart-details-container {
-    /* flex-grow: 1; */
     display: flex;
-    /* flex-direction: column; */
     color: black;
     width: 100%;
     justify-content: space-around;
@@ -469,13 +423,13 @@ a:hover {
 .cart-art-detials {
     display: flex;
     width: 50%;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     align-items: center;
 }
 
 .cart-art-detials p {
     font-weight: bold;
-    font-size: small;
+    font-size: 12px;
 }
 
 .qty-pricing-container {
@@ -488,14 +442,12 @@ a:hover {
 
 .remove {
     color: red;
-    /* Adjust the color as needed */
     cursor: pointer;
 }
 
 .total-container {
-    margin-top: 1rem;
-    text-align: right;
-    font-size: medium;
+    margin: 1rem;
+    font-size: 14px;
 }
 
 /* account page styling ****************************************** */
