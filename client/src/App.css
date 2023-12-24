@@ -130,11 +130,11 @@ body {
 }
 
 .artwork-slide {
-    height: 800px;
+    /* height: 800px; */
     /* padding: 1rem; */
     /* width: 15rem; */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 3.9rem;
+    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+    /* margin-bottom: 3.9rem; */
 }
 
 .img-space {
@@ -244,28 +244,7 @@ a:hover {
     color: #4caf50;
 }
 
-.slick-dots {
-    bottom: 30px !important;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    /* padding: 0; */
-    /* margin: 15px 0; */
-}
 
-.slick-dots li button {
-
-    width: 10px;
-    height: 10px;
-    border: 2px solid #555;
-    background: transparent;
-    border-radius: 50%;
-    transition: all 0.3s;
-}
-
-.slick-dots li.slick-active button {
-    background: #555;
-}
 
 /* artist profile page styling ***************************************/
 .artwork-list-container {
