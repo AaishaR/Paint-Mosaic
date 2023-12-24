@@ -134,7 +134,7 @@ body {
     /* padding: 1rem; */
     /* width: 15rem; */
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    /* margin-bottom: 1rem; */
+    margin-bottom: 3.9rem;
 }
 
 .img-space {
@@ -180,28 +180,28 @@ body {
 }
 
 .title {
-    font-size: small;
+    /* font-size: small; */
     font-weight: 900;
 }
 
 .title-values {
-    font-size: 10px;
-    font-weight: 100;
+    font-size: 12px;
+    /* font-weight: 100; */
 }
 
 .artwork-details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 50%;
+    width: 90%;
 }
 
 .pricing-container {
     display: flex;
     width: 100%;
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem; */
     justify-content: space-between;
-    margin-bottom: 2.5rem;
+    /* margin-bottom: 2.5rem; */
 }
 
 .pricing-container p {
@@ -215,16 +215,7 @@ body {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 0.5rem;
-}
-
-.artwork-slide {
-    min-height: 300px;
-}
-
-.bid {
-    /* background-color: black; */
-    color: black;
+    /* margin-top: 0.5rem; */
 }
 
 /* Shopping Cart and Account buttons in Navbar */
@@ -236,7 +227,6 @@ body {
     text-decoration: none;
     border-bottom: none;
 }
-
 
 /* Total Container in Cart Page */
 .total-container {
@@ -259,13 +249,8 @@ a:hover {
     display: flex;
     justify-content: center;
     list-style: none;
-    padding: 0;
-    margin: 15px 0;
-}
-
-.slick-dots li {
-
-    margin: 0 5px;
+    /* padding: 0; */
+    /* margin: 15px 0; */
 }
 
 .slick-dots li button {
