@@ -94,8 +94,8 @@ export default function Artwork(props) {
                         <div className="el">
 
 
-                            <div className="artist-details">
-                                <div className="sub-artist-details">
+                            <div className="artist-details-el">
+                                <div className="sub-artist-details-el">
                                     <div className='category'>
                                         <p className='title'>Category</p>
                                         <p className='title-values'>{props.artwork.category}</p>
@@ -111,7 +111,7 @@ export default function Artwork(props) {
                                 </div>
 
                             </div>
-                            <div className="pricing-container">
+                            <div className="pricing-container-el">
                                 <p>{props.artwork.price}</p>
                                 <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
                                 {props.isAuthenticated &&
