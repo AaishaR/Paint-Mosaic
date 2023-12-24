@@ -12,7 +12,7 @@ export default function ArtworkSlider(props) {
         slidesToScroll: 1,
         arrows: false,
         autoplay: true,    
-        autoplaySpeed: 5000
+        autoplaySpeed: 7000
     };
 
     return (

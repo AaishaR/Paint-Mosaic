@@ -47,7 +47,10 @@ export default function Artwork(props) {
                     <div className="details-container">
                         <div className="artist-details">
                             <h1>{props.artwork.title}</h1>
-                            <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{props.artwork.artist.name} <RiQuestionLine className='questionmark' /></Link></p>
+                            <div className='artist-name'>
+
+                                <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{props.artwork.artist.name} <RiQuestionLine className='questionmark' /></Link></p>
+                            </div>
                             <div className="sub-artist-details">
                                 <div className='category'>
                                     <p className='title'>Category</p>

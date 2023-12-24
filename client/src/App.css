@@ -43,15 +43,6 @@ body {
         margin: 0 15px 15px;
     }
 
-    .artist-details {
-        width: 10%;
-        /* margin: 0.5rem 0.5rem 0 0; */
-    }
-
-    .artist-details h1 {
-        font-size: 22px;
-    }
-
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -89,7 +80,6 @@ body {
 }
 
 .navbar-container .logo {
-    /* background-color: var(--backgroud-color-home1); */
     height: 40px;
     margin-right: 10px;
 }
@@ -101,7 +91,6 @@ body {
 }
 
 .button-container {
-    /* background-color: var(--backgroud-color-home1); */
     display: flex;
     gap: 3rem;
     font-size: 1.5rem;
@@ -117,24 +106,12 @@ body {
     display: flex;
     width: 100%;
     align-items: center;
-    /* margin: 0 auto; */
-    /* padding: 1rem; */
 }
 
 /* Artwork Slider */
 .artwork-container {
     width: 100%;
-    /* margin: 0 auto; */
     overflow: hidden;
-
-}
-
-.artwork-slide {
-    /* height: 800px; */
-    /* padding: 1rem; */
-    /* width: 15rem; */
-    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
-    /* margin-bottom: 3.9rem; */
 }
 
 .img-space {
@@ -142,7 +119,6 @@ body {
     min-height: 300px;
     max-height: 500px;
     overflow: hidden;
-    /* margin: 0 0.1rem; */
 }
 
 .img-space img {
@@ -153,18 +129,26 @@ body {
 }
 
 .details-container {
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    /* margin: 0 50px 50px; */
+    margin: 0 15px 15px;
 }
 
-.artist-details {
-    width: 90%;
-    /* margin: 1rem 5.5rem 0 0; */
+.artist-details h1 {
+    font-size: 2em;
+    width: 100%;
 }
+
+.artist-name {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
 
 .sub-artist-details {
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }
@@ -180,13 +164,11 @@ body {
 }
 
 .title {
-    /* font-size: small; */
     font-weight: 900;
 }
 
 .title-values {
     font-size: 12px;
-    /* font-weight: 100; */
 }
 
 .artwork-details {
@@ -199,9 +181,7 @@ body {
 .pricing-container {
     display: flex;
     width: 100%;
-    /* margin-top: 0.5rem; */
     justify-content: space-between;
-    /* margin-bottom: 2.5rem; */
 }
 
 .pricing-container p {
@@ -209,13 +189,11 @@ body {
 }
 
 .pricing-container button {
-    /* background-color: #4caf50; */
     color: black;
     padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    /* margin-top: 0.5rem; */
 }
 
 /* Shopping Cart and Account buttons in Navbar */
