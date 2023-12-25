@@ -505,3 +505,16 @@ input {
 .logout-button:hover {
     background-color: #d32f2f;
 }
+
+.link{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0.5rem 0;
+}
+
+.radio-buttons{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
