@@ -1,6 +1,6 @@
 import { useCart } from '../contexts/cartContext';
 import { useState, useEffect } from 'react';
-import { RiShoppingBag3Fill, RiQuestionLine } from 'react-icons/ri';
+import { RiShoppingBag3Fill, RiQuestionLine, RiFileInfoLine } from 'react-icons/ri';
 import { TiBookmark } from 'react-icons/ti';
 import apiServiceJWT from '../services/JWTService';
 import { Link } from 'react-router-dom';
@@ -84,46 +84,48 @@ export default function Artwork(props) {
                 :
                 <div className="artwork-list-element">
 
-                    <div className="details-container-el">
-                        <div className="art-detials">
-                            <h3>{props.artwork.title}</h3>
-                            <p className='title'>Desctiption </p>
-                            <p>{props.artwork.description}</p>
-                        </div>
+                    <div className='art-title'>
+                        <h3>{props.artwork.title}</h3>
+                    </div>
 
-                        <div className="el">
+                    <div className='list-container'>
+                        <div className="details-container-el">
+                            <div className="img-icon-space">
+                                <img className="artwork-img" src={props.artwork.image} alt="artwork" />
+                            </div>
 
+                            <div className="el">
 
-                            <div className="artist-details-el">
                                 <div className="sub-artist-details-el">
                                     <div className='category'>
-                                        <p className='title'>Category</p>
-                                        <p className='title-values'>{props.artwork.category}</p>
-                                    </div>
-                                    <div className='material'>
-                                        <p className='title'>Material</p>
-                                        <p className='title-values'>{props.artwork.material}</p>
-                                    </div>
-                                    <div className='size'>
-                                        <p className='title'>Size</p>
-                                        <p className='title-values'>{props.artwork.dimensions}</p>
+                                        <p className='title'><RiFileInfoLine /></p>
+                                        <p className='title-values'>Category: {props.artwork.category}</p>
+                                        <p className='title-values'>Material: {props.artwork.material}</p>
+                                        <p className='title-values'>Size: {props.artwork.dimensions}</p>
                                     </div>
                                 </div>
 
-                            </div>
-                            <div className="pricing-container-el">
-                                <p>{props.artwork.price}</p>
-                                <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
-                                {props.isAuthenticated &&
-                                    <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
-                                }
 
+                                <div className='pricing-space'>
+
+                                    <div className="pricing-container">
+                                        <p>{props.artwork.price}</p>
+                                        <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
+                                        {props.isAuthenticated &&
+                                            <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
+                                        }
+
+                                    </div>
+                                </div>
                             </div>
+
+
+                        </div>
+                        <div className="art-detials">
+                            {/* <p className='title'>Desctiption:</p> */}
+                            <p>{props.artwork.description}</p>
                         </div>
 
-                    </div>
-                    <div className="img-icon-space">
-                        <img className="artwork-img" src={props.artwork.image} alt="artwork" />
                     </div>
                 </div>}
         </>

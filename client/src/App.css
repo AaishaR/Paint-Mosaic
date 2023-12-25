@@ -28,20 +28,7 @@ body {
         font-size: 16px;
     }
 
-    .navbar-container .logo {
-        margin-right: 5px;
-    }
-
-    .shopping_basket {
-        margin-right: 10px;
-    }
-
-    .details-container {
-        flex-direction: column;
-        justify-content: center;
-        width: 100%;
-        margin: 0 15px 15px;
-    }
+    
 
 }
 
@@ -76,12 +63,15 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    /* margin-left: 10px; */
 }
 
 .navbar-container .logo {
     height: 40px;
-    /* margin-right: 10px; */
+    margin-right: 0.3rem;
+}
+
+.shopping_basket {
+    margin-right: 0.5rem;
 }
 
 .navbar-container span {
@@ -129,7 +119,7 @@ body {
     flex-direction: column;
     justify-content: center;
     width: 100%;
-    margin: 0 15px 15px;
+    margin: 0 1rem 1rem;
 }
 
 .artist-details h1 {
@@ -161,7 +151,7 @@ body {
 }
 
 .title {
-    font-weight: 900;
+    font-weight: 700;
 }
 
 .title-values {
@@ -293,41 +283,56 @@ a:hover {
     font-weight: bold;
 }
 
-.artwork-list-element {
-    display: flex;
-
-    /* justify-content: space-evenly; */
+.art-title {
     width: 100%;
-    /* height: auto; */
+    margin: 0 1rem;
 }
 
-.details-container-el {
+.artwork-list-element {
     width: 100%;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
 
-    /* justify-content: space-evenly; */
-    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
+}
+
+.list-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    margin-right: 1rem;
+
+}
+
+
+.details-container-el {
+    display: flex;
     border-radius: 4px;
+
 }
 
 .img-icon-space {
-    width: 70%;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
     display: flex;
-    /* justify-content: flex-end; */
-    /* align-items: center; */
+    width: 30%;
+    align-items: center;
 }
 
 .img-icon-space img {
-    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
     width: 100%;
-    /* height: auto; */
+}
+
+.sub-artist-details-el{
+    display: flex;
+    flex-direction: column;
+    margin: 0 1rem;
+}
+
+.pricing-space{
+    width: 90%;
+    margin: 0 1rem;
 }
 
 .art-detials {
-    /* width: 100%; */
     display: flex;
-    flex-direction: column;
-    /* flex: 1; */
-    margin: 0 1rem;
 }
 
 .art-detials p {
@@ -335,10 +340,8 @@ a:hover {
 }
 
 .el {
-    /* margin: 30px; */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 /* shopping cart styling ********************************************* */
@@ -346,7 +349,7 @@ a:hover {
 .shopping-cart-panel {
     position: fixed;
     top: 0;
-    right: -40%;
+    right: -100%;
     height: 100vh;
     width: 100%;
     background-color: white;
