@@ -28,7 +28,8 @@ body {
         font-size: 16px;
     }
 
-    
+
+
 
 }
 
@@ -293,7 +294,7 @@ a:hover {
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
 }
 
-.list-container{
+.list-container {
     display: flex;
     flex-direction: column;
     margin: 0 1rem;
@@ -314,13 +315,13 @@ a:hover {
     width: 100%;
 }
 
-.sub-artist-details-el{
+.sub-artist-details-el {
     display: flex;
     flex-direction: column;
     margin: 0 1rem;
 }
 
-.pricing-space{
+.pricing-space {
     width: 90%;
     margin: 0 1rem;
 }
@@ -361,7 +362,7 @@ a:hover {
     justify-content: space-between;
     color: #333;
     align-items: center;
-    padding: 0 1rem; 
+    padding: 0 1rem;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -371,7 +372,6 @@ a:hover {
 }
 
 .close-icon {
-    /* margin: 0 1rem; */
     right: 0;
 }
 
@@ -380,12 +380,11 @@ a:hover {
     position: absolute;
     z-index: 1000;
     color: #333;
-    /* box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); */
     width: 100%;
     font-size: 16px;
 }
 
-.empty-cart{
+.empty-cart {
     margin: 1rem 0 0 1rem;
 }
 
@@ -418,7 +417,6 @@ a:hover {
 .cart-art-detials {
     display: flex;
     width: 50%;
-    /* margin-bottom: 1rem; */
     align-items: center;
 }
 
@@ -448,26 +446,15 @@ a:hover {
 /* account page styling ****************************************** */
 
 .account-container {
-    margin: 60px;
+    width: 100%;
+    /*taking out 3rem for the navbar*/
+    min-height: calc(100vh - 3rem);
     display: flex;
-    width: 90%;
-    height: 80vh;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    justify-content: center;
-
+    align-items: center;
 }
-
-.background-design {
-    width: 50%;
-    height: 100%;
-}
-
-.background-design img {
-    height: 100%;
-}
-
 
 .login-container {
+    width: 100%;
     max-width: 60%;
     min-width: 40%;
     margin: auto;
@@ -483,12 +470,12 @@ form {
 }
 
 label {
-    margin-bottom: 8px;
+    margin-bottom: 0.5rem;
 }
 
 input {
-    padding: 8px;
-    margin-bottom: 16px;
+    padding: 0.5rem;
+    margin-bottom: 0.6rem;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
@@ -496,7 +483,7 @@ input {
 .login-btn {
     background-color: #007B86;
     color: white;
-    padding: 10px;
+    padding: 0.7rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -504,7 +491,7 @@ input {
 
 .logged-in-message {
     font-size: 18px;
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
 }
 
 .logout-button {
