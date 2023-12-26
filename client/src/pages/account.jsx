@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-import mona1 from '../media/monalisa1.jpg'
-import mona2 from '../media/monalisa2.jpg'
 import apiServiceJWT from '../services/JWTService';
 import { useNavigate } from 'react-router-dom';
 import auth from '../utils/auth';
@@ -93,11 +91,6 @@ export default function Account(props) {
 
     return (
         <div className="account-container">
-            <div className='background-design'>
-                {props.isAuthenticated ? (
-                    <img src={mona2} alt='img' />
-                ) : (<img src={mona1} alt='img' />)}
-            </div>
             <div className="login-container">
                 {showSignIn && (
                     props.isAuthenticated && props.user ? ( //
@@ -113,7 +106,7 @@ export default function Account(props) {
                             <label>Password:</label>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             <button className='login-btn' type="button" onClick={handleLogin}> Login </button>
-                            <div>
+                            <div className='link'>
                                 <span onClick={handleToggleForm}>Create an account</span>
                             </div>
                         </form>
@@ -127,7 +120,7 @@ export default function Account(props) {
                         <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                         <label>Re-enter Password:</label>
                         <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-                        <div>
+                        <div className='radio-buttons'>
                             <label>
                                 <input type="radio" name="role" value="seller" checked={role === 'seller'} onChange={() => setRole('seller')} />
                                 Sell
@@ -138,7 +131,7 @@ export default function Account(props) {
                             </label>
                         </div>
                         <button className='login-btn' type="button" onClick={handleSignUp}> Sign Up </button>
-                        <div>
+                        <div className='link'>
                             <span onClick={handleToggleForm}>Back to Login</span>
                         </div>
                     </form>
