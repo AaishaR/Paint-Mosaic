@@ -116,24 +116,5 @@ const putRemoveFav = async (req: Request, res: Response): Promise<Response> => {
   }
 }
 
-const putAddMsg = async (req: Request, res: Response): Promise<Response> => {
-  // console.log(req.body)
-  try {
-    const { username, recieverName, msg } = req.body;
-    const user = await User.findOne({ username: recieverName });
-    if (!user) {
-      console.error('User not found');
-      return res.status(400).json({ error: "User does not exists" });
-    }
-    user.messages.push({ sender: username, msg: msg });
-    await user.save();
-    // await userModel.addMsgToUser(username, recieverName, msg);
-    return res.status(200).json({ success: true, message: 'Sent message to the artist successfully' });
-  } catch (error) {
-    console.error(error);
-    return res.status(500).json({ success: false, message: 'Internal server error' });
-  }
-}
 
-
-export default { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, putAddMsg };
+export default { postRegister, postLogin, getUser, putAddToFav, putRemoveFav };
