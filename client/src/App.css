@@ -240,17 +240,10 @@ a:hover {
     flex-direction: column;
 }
 
-.msg-list-container {
-    width: auto;
-    min-height: 200px;
-    max-height: 250px;
-    overflow-y: auto;
-}
-
 .fav-list-container {
-    width: auto;
-    max-height: 250px;
-    min-height: 200px;
+    /* width: auto; */
+    height: 5rem;
+    /* min-height: 200px; */
     overflow-y: auto;
 }
 
@@ -262,26 +255,27 @@ a:hover {
     overflow-y: auto;
 }
 
+.user-container{
+    width: 100%;
+}
+
 .fav-item-container {
     display: flex;
-    max-height: 300px;
-    padding: 20px;
-    width: auto;
+    min-height: 3rem;
+    max-height: 15rem;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.275);
     overflow-y: auto;
     align-items: center;
 }
 
 .fav-item-container img {
-    padding-right: 8px;
-    border-radius: 5px;
-    width: 80px;
-    height: 80px;
+    /* border-radius: 5px; */
+    width: 30%;
 }
 
 .fav-item-container p {
-    font-size: smaller;
-    font-weight: bold;
+    font-size: 12px;
+    /* font-weight: bold; */
 }
 
 .art-title {
