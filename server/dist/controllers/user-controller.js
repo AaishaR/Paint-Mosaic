@@ -16,8 +16,6 @@ const postRegister = async (req, res) => {
     const { username, password, role } = req.body;
     if (!username || !password || !role)
         return res.status(400).json({ error: "Credentials not provided correctly" });
-    // const { username, password, role } = req.body;
-    // console.log('data that is being sent in: ', req.body);
     const user = await userSchema_1.default.findOne({ username: username });
     console.log('this is the found user ', user);
     if (user)
