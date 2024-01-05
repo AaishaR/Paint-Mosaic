@@ -5,7 +5,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/homePage';
 import Account from './pages/account';
 import Artist from './pages/artist';
-import { CartProvider } from './contexts/cartContext';
 import { FavProvider } from './contexts/favouriteContext';
 import auth from './utils/auth';
 import { useEffect, useState } from 'react';
@@ -37,9 +36,7 @@ function App() {
 
   return (
     <Router>
-      <CartProvider>
         <FavProvider>
-
           <Navbar />
           <Routes>
             <Route exact path='/' element={<HomePage setFavList={setFavList} favList={favList} user={userInfo} isAuthenticated={isAuthenticated} />} />
@@ -47,7 +44,6 @@ function App() {
             <Route path='/artist/:artistName' element={<Artist setFavList={setFavList} favList={favList} user={userInfo} isAuthenticated={isAuthenticated}/>} />
           </Routes>
         </FavProvider>
-      </CartProvider>
 
 
     </Router>

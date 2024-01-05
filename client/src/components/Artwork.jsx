@@ -1,4 +1,3 @@
-import { useCart } from '../contexts/cartContext';
 import { useState, useEffect } from 'react';
 import { RiShoppingBag3Fill, RiQuestionLine, RiFileInfoLine } from 'react-icons/ri';
 import { TiBookmark } from 'react-icons/ti';
@@ -8,11 +7,10 @@ import { Link } from 'react-router-dom';
 export default function Artwork(props) {
 
     const [isArtworkFavorited, setIsArtworkFavorited] = useState(false)
-    const { addToCart } = useCart();
 
-    const handleClick = (item) => {
-        addToCart(item);
-    }
+    // const handleClick = (item) => {
+    //     addToCart(item);
+    // }
 
     const handleClickToFav = (item) => {
         const isFavorited = props.favList.filter(el => el._id === item._id);
@@ -71,7 +69,7 @@ export default function Artwork(props) {
                         <div className="artwork-details">
                             <div className="pricing-container">
                                 <p>{props.artwork.price}</p>
-                                <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
+                                {/* <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button> */}
                                 {props.isAuthenticated &&
                                     <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
                                 }
@@ -110,7 +108,7 @@ export default function Artwork(props) {
 
                                     <div className="pricing-container">
                                         <p>{props.artwork.price}</p>
-                                        <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button>
+                                        {/* <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button> */}
                                         {props.isAuthenticated &&
                                             <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
                                         }

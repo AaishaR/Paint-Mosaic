@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom'
 import logo from '../media/mosaic.png';
-import { RiAccountPinCircleLine, RiShoppingCartFill } from 'react-icons/ri'
-import { useState } from 'react';
-import ShoppingCartPanel from './shoppingCartPanel';
+import { RiAccountPinCircleLine } from 'react-icons/ri'
 
 
 export default function Navbar() {
