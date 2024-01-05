@@ -4,11 +4,11 @@ import UserDetails from '../components/userDetails';
 
 export default function Account(props) {
 
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showSignUp, setShowSignUp] = useState(false);
     const [showSignIn, setShowSignIn] = useState(true);
-    const [newUsername, setNewUsername] = useState('');
+    const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [role, setRole] = useState('');
@@ -17,7 +17,7 @@ export default function Account(props) {
     //loggin in with existing user
     const handleLogin = async (e) => {
         e.preventDefault();
-        const user = { username, password };
+        const user = { email, password };
         const res = await apiServiceJWT.login(user);
 
         if (res.error) {
@@ -59,7 +59,7 @@ export default function Account(props) {
         //register a new user
         // Check the client-session to see how to handle redirects
         e.preventDefault();
-        const user = { username: newUsername, password: newPassword, role: role };
+        const user = { email: newEmail, password: newPassword, role: role };
         // console.log(user)
         const res = await apiServiceJWT.register(user);
 
@@ -92,8 +92,8 @@ export default function Account(props) {
                         </div>
                     ) : (
                         <form>
-                            <label>Username:</label>
-                            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)}
+                            <label>Email:</label>
+                            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
                             />
                             <label>Password:</label>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -106,8 +106,8 @@ export default function Account(props) {
 
                 {showSignUp && (
                     <form>
-                        <label>New Username:</label>
-                        <input type="text" value={newUsername} onChange={(e) => setNewUsername(e.target.value)} />
+                        <label>Email:</label>
+                        <input type="text" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
                         <label>New Password:</label>
                         <input type="password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
                         <label>Re-enter Password:</label>
