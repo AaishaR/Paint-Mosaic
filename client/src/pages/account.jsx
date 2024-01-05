@@ -14,9 +14,29 @@ export default function Account(props) {
     const [role, setRole] = useState('');
     const [userInfo, setUesrInfo] = useState('');
 
+
+    //**************************************** */
+    const [errEmail, setErrEmail] = useState('');
+    const [errPassword, setErrPassword] = useState('');
+
     //loggin in with existing user
-    const handleLogin = async (e) => {
+    const handleLogin =  (e) => {
         e.preventDefault();
+
+        //add input validation for email & password
+        setErrPassword(password.trim() === '' ? 'Please enter a password.' : '');
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailRegex.test(email)) {
+            setErrEmail('');
+            (!errPassword.length) && registering()
+        } else {
+            setErrEmail('Please enter correct email address.');
+        }
+    };
+
+    const registering = async () => {
         const user = { email, password };
         const res = await apiServiceJWT.login(user);
 
@@ -33,7 +53,7 @@ export default function Account(props) {
             setShowSignIn(true);
             setShowSignUp(false);
         }
-    };
+    }
 
     const handleLogout = async () => {
         removeToken();
@@ -95,8 +115,10 @@ export default function Account(props) {
                             <label>Email:</label>
                             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
                             />
+                            {errEmail ? <p className='err-msg'>{errEmail}</p> : null}
                             <label>Password:</label>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            {errPassword ? <p className='err-msg'>{errPassword}</p> : null}
                             <button className='login-btn' type="button" onClick={handleLogin}> Login </button>
                             <div className='link'>
                                 <span onClick={handleToggleForm}>Create an account</span>
