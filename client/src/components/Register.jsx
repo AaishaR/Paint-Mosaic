@@ -10,6 +10,7 @@ export default function Register(props) {
 
     const [errEmail, setErrEmail] = useState('');
     const [errPassword, setErrPassword] = useState('');
+    const [errRole, setErrRole] = useState('');
 
     const handleSignUp = async (e) => {
         // Check the client-session to see how to handle redirects
@@ -20,9 +21,11 @@ export default function Register(props) {
             password.trim() === '' || confirmPassword.trim() === '' ? 'Please enter a password' : password !== confirmPassword ? 'Passwords do not match! Please re-enter' : ''
         );
 
+        setErrRole(role === '' ? 'Please select one of the roles.' : '')
+
         if (emailRegex.test(email)) {
             setErrEmail('');
-            (!errPassword.length) && (confirmPassword.trim() !== '') && registering();
+            (!errRole.length && !errPassword.length) && (confirmPassword.trim() !== '') && registering();
         } else {
             setErrEmail('Please enter correct email address');
         }
@@ -71,6 +74,7 @@ export default function Register(props) {
                         Buy
                     </label>
                 </div>
+                {errRole ? <p className='err-msg'>{errRole}</p> : null}
                 <button className='login-btn' type="button" onClick={handleSignUp}> Sign Up </button>
                 <div className='link'>
                     <span onClick={handleToggleForm}>Back to Login</span>
