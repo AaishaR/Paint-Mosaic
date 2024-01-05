@@ -1,16 +1,12 @@
 import { useState, useEffect } from 'react';
-import { RiShoppingBag3Fill, RiQuestionLine, RiFileInfoLine } from 'react-icons/ri';
+import { RiQuestionLine, RiFileInfoLine } from 'react-icons/ri';
 import { TiBookmark } from 'react-icons/ti';
 import apiServiceJWT from '../services/JWTService';
 import { Link } from 'react-router-dom';
 
 export default function Artwork(props) {
 
-    const [isArtworkFavorited, setIsArtworkFavorited] = useState(false)
-
-    // const handleClick = (item) => {
-    //     addToCart(item);
-    // }
+    const [isArtworkFavorited, setIsArtworkFavorited] = useState(false);
 
     const handleClickToFav = (item) => {
         const isFavorited = props.favList.filter(el => el._id === item._id);

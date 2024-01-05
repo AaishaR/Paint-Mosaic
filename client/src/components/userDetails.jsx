@@ -1,4 +1,4 @@
-import FavItem from "./favItem";
+import FavItem from "./FavItem";
 
 export default function UserDetails(props) {
 
