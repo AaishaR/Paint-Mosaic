@@ -7,13 +7,6 @@ import ShoppingCartPanel from './shoppingCartPanel';
 
 export default function Navbar() {
 
-    const [isPanelOpen, setIsPanelOpen] = useState(false);
-
-    const togglePanel = () => {
-        setIsPanelOpen((prev) => !prev);
-    };
-
-
     return (
 
         <div className="navbar-container">
@@ -29,10 +22,6 @@ export default function Navbar() {
                 <Link to="/Account">
                     <RiAccountPinCircleLine className="user" />
                 </Link>
-                <div onClick={togglePanel}>
-                    <RiShoppingCartFill className="shopping_basket" />
-                </div>
-                {isPanelOpen && <ShoppingCartPanel isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)} />}
             </div>
         </div>
 
