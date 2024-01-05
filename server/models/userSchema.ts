@@ -1,15 +1,6 @@
 const mongoose = require('mongoose');
 import artworkModel from "./artworkSchemas";
 
-const MsgSchema = {
-    sender: {
-        type: String,
-        required: true,
-    },
-    msg: {
-        type: String,
-    }
-}
 
 const UserSchema = {
     username: {
@@ -25,7 +16,6 @@ const UserSchema = {
         enum: ['buyer', 'seller'],
         required: true,
     },
-    messages : [MsgSchema],
     favoriteArtworks :[artworkModel.schema],
 
 }

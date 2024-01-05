@@ -16,8 +16,6 @@ const postRegister = async (req, res) => {
     const { username, password, role } = req.body;
     if (!username || !password || !role)
         return res.status(400).json({ error: "Credentials not provided correctly" });
-    // const { username, password, role } = req.body;
-    // console.log('data that is being sent in: ', req.body);
     const user = await userSchema_1.default.findOne({ username: username });
     console.log('this is the found user ', user);
     if (user)
@@ -110,23 +108,4 @@ const putRemoveFav = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-const putAddMsg = async (req, res) => {
-    // console.log(req.body)
-    try {
-        const { username, recieverName, msg } = req.body;
-        const user = await userSchema_1.default.findOne({ username: recieverName });
-        if (!user) {
-            console.error('User not found');
-            return res.status(400).json({ error: "User does not exists" });
-        }
-        user.messages.push({ sender: username, msg: msg });
-        await user.save();
-        // await userModel.addMsgToUser(username, recieverName, msg);
-        return res.status(200).json({ success: true, message: 'Sent message to the artist successfully' });
-    }
-    catch (error) {
-        console.error(error);
-        return res.status(500).json({ success: false, message: 'Internal server error' });
-    }
-};
-exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, putAddMsg };
+exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav };

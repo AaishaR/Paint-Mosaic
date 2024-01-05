@@ -1,12 +1,8 @@
 import { useEffect, useState } from 'react';
 import apiServiceJWT from '../services/JWTService';
-import { useNavigate } from 'react-router-dom';
-import auth from '../utils/auth';
 import UserDetails from '../components/userDetails';
 
 export default function Account(props) {
-
-    let navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -33,13 +29,11 @@ export default function Account(props) {
             // console.log(res)
             setUesrInfo(userDetails);
             localStorage.setItem('accessToken', accessToken);
-            // console.log('before: ' , props.isAuthenticated)
             props.setIsAuthenticated(true);
             setShowSignIn(true);
             setShowSignUp(false);
         }
     };
-    // console.log('after: ' , props.isAuthenticated)
 
     const handleLogout = async () => {
         removeToken();
@@ -53,9 +47,7 @@ export default function Account(props) {
     const handleAuth = () => {
         props.setIsAuthenticated(false);
         setShowSignIn(true)
-        // console.log(props.isAuthenticated);
         window.location.reload();
-        // auth.logout(() => navigate('/account'));
     };
 
     useEffect(() => {

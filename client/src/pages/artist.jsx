@@ -8,12 +8,10 @@ export default function Artist(props) {
 
     useEffect(() => {
         getArtwork().then((data) => {
-            // console.log('data:',data)
             setArtworks(data)
         })
     }, []);
 
-    // console.log('here', artworks)
     return (
         <div className='artist-profile-container'>
             <ArtworkList artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} isAuthenticated={props.isAuthenticated} />

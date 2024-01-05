@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const FavContext = createContext();
 
@@ -15,10 +15,6 @@ export const FavProvider = ({ children }) => {
 
         setFavourite(newItem);
     };
-
-    // useEffect(() => {
-    //     console.log(favourite);
-    // }, [favourite])
 
     return (
         <FavContext.Provider value={{ favourite, favouriteToggle }}>

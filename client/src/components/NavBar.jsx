@@ -1,18 +1,9 @@
 import { Link } from 'react-router-dom'
 import logo from '../media/mosaic.png';
-import { RiAccountPinCircleLine, RiShoppingCartFill } from 'react-icons/ri'
-import { useState } from 'react';
-import ShoppingCartPanel from './shoppingCartPanel';
+import { RiAccountPinCircleLine } from 'react-icons/ri'
 
 
 export default function Navbar() {
-
-    const [isPanelOpen, setIsPanelOpen] = useState(false);
-
-    const togglePanel = () => {
-        setIsPanelOpen((prev) => !prev);
-    };
-
 
     return (
 
@@ -29,10 +20,6 @@ export default function Navbar() {
                 <Link to="/Account">
                     <RiAccountPinCircleLine className="user" />
                 </Link>
-                <div onClick={togglePanel}>
-                    <RiShoppingCartFill className="shopping_basket" />
-                </div>
-                {isPanelOpen && <ShoppingCartPanel isOpen={isPanelOpen} onClose={() => setIsPanelOpen(false)} />}
             </div>
         </div>
 
