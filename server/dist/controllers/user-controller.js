@@ -13,10 +13,10 @@ const SECRET_KEY = 'i-am-really-trying-to-understand-this-shizz';
 //process.env.SECRET_KEY || 
 dotenv_1.default.config({ path: path_1.default.join(__dirname, '..', '..', '.env') });
 const postRegister = async (req, res) => {
-    const { username, password, role } = req.body;
-    if (!username || !password || !role)
+    const { email, password, role } = req.body;
+    if (!email || !password || !role)
         return res.status(400).json({ error: "Credentials not provided correctly" });
-    const user = await userSchema_1.default.findOne({ username: username });
+    const user = await userSchema_1.default.findOne({ email: email });
     console.log('this is the found user ', user);
     if (user)
         return res.status(400).json({ error: "Account with this username already exists" });
@@ -40,10 +40,10 @@ const postRegister = async (req, res) => {
 const postLogin = async (req, res) => {
     // console.log(req.body)
     try {
-        const { username, password } = req.body;
-        if (!username || !password)
+        const { email, password } = req.body;
+        if (!email || !password)
             return res.status(400).json({ error: "Credentials not provided correctly" });
-        const user = await userSchema_1.default.findOne({ username });
+        const user = await userSchema_1.default.findOne({ email });
         if (!user)
             return res.status(400).json({ error: "User does not exists" });
         const validatedPass = await bcrypt_1.default.compare(password, user.password);

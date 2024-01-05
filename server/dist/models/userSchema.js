@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose = require('mongoose');
 const artworkSchemas_1 = __importDefault(require("./artworkSchemas"));
 const UserSchema = {
-    username: {
+    email: {
         type: String,
         required: true,
     },

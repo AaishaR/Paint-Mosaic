@@ -14,10 +14,10 @@ dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
 const postRegister = async (req: Request, res: Response): Promise<Response> => {
 
-  const { username, password, role } = req.body;
-  if (!username || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
+  const { email, password, role } = req.body;
+  if (!email || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
 
-  const user = await User.findOne({ username: username });
+  const user = await User.findOne({ email: email });
   console.log('this is the found user ', user);
 
   if (user) return res.status(400).json({ error: "Account with this username already exists" });
@@ -43,9 +43,9 @@ const postRegister = async (req: Request, res: Response): Promise<Response> => {
 const postLogin = async (req: Request, res: Response): Promise<Response> => {
   // console.log(req.body)
   try {
-    const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ error: "Credentials not provided correctly" })
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ error: "Credentials not provided correctly" })
+    const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "User does not exists" });
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) return res.status(401).json({ error: "Incorrect password" });
