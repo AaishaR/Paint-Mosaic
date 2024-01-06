@@ -8,9 +8,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const path_1 = __importDefault(require("path"));
 const userSchema_1 = __importDefault(require("./../models/userSchema"));
-// const userModel = require('../models/db')
-const SECRET_KEY = 'i-am-really-trying-to-understand-this-shizz';
-//process.env.SECRET_KEY || 
+const userUtils_1 = require("../utils/userUtils");
+const SECRET_KEY = process.env.SECRET_KEY;
 dotenv_1.default.config({ path: path_1.default.join(__dirname, '..', '..', '.env') });
 const postRegister = async (req, res) => {
     const { email, password, role } = req.body;
@@ -59,15 +58,11 @@ const postLogin = async (req, res) => {
 };
 const getUser = async (req, res) => {
     try {
-        const { authorization } = req.headers;
-        if (!authorization) {
-            return res.status(401).send('Authorization header is missing');
-        }
-        const _id = jsonwebtoken_1.default.verify(authorization, SECRET_KEY)._id;
-        const user = await userSchema_1.default.findById({ _id });
-        if (!user) {
-            return res.status(401).send('User does not exists');
-        }
+        const validatedUser = await (0, userUtils_1.validateUser)(req);
+        if (!validatedUser || !validatedUser.userId || !validatedUser.user)
+            return res.status(401).json({ error: validatedUser });
+        const { user } = validatedUser;
+        console.log(user);
         return res.status(200).send(user);
     }
     catch (error) {

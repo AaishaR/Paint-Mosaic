@@ -5,9 +5,9 @@ import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
 import path from 'path';
 import User from './../models/userSchema';
-// const userModel = require('../models/db')
-const SECRET_KEY = 'i-am-really-trying-to-understand-this-shizz';
-//process.env.SECRET_KEY || 
+import { validateUser } from '../utils/userUtils'
+
+const SECRET_KEY = process.env.SECRET_KEY!;
 
 dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
 
@@ -60,17 +60,12 @@ const postLogin = async (req: Request, res: Response): Promise<Response> => {
 
 const getUser = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      return res.status(401).send('Authorization header is missing');
-    }
-    const _id = (jwt.verify(authorization, SECRET_KEY) as JwtPayload)._id;
+    const validatedUser = await validateUser(req);
+    if (!validatedUser || !validatedUser.userId || !validatedUser.user) return res.status(401).json({ error: validatedUser });
 
-    const user = await User.findById({ _id });
-    if (!user) {
+    const { user } = validatedUser;
+    console.log(user);
 
-      return res.status(401).send('User does not exists');
-    }
     return res.status(200).send(user);
   } catch (error) {
     console.error(error)
