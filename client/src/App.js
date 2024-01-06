@@ -22,15 +22,21 @@ function App() {
 
   useEffect(()=>{
     (async () => {
+      console.log('token: ', token);
       if(token){
         const user = await apiServiceJWT.getUser(token);
-        setIsAuthenticated(true);
-        setUserinfo(user);
-        const list = user.favoriteArtworks;
-        setFavList(list);
+        // console.log('user', user)
+        if(user) {
+
+          console.log('we hereee')
+          setIsAuthenticated(true);
+          setUserinfo(user);
+          const list =  user.favoriteArtworks;
+          setFavList(list);
+        }
       }
     })();
-  }, [token, favList])
+  }, [token])
   
   // console.log('userinfo before return', userInfo);
 

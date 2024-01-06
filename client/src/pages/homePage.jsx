@@ -14,9 +14,9 @@ export default function HomePage(props) {
 
     return (
         <>
-            {artworks.length && <div className='Main-container'>
+            {artworks.length ? <div className='Main-container'>
                 <ArtworkSlider artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} isAuthenticated={props.isAuthenticated} />
-            </div>
+            </div> : <div> <p> No Artwork Available</p></div>
             }
         </>
 

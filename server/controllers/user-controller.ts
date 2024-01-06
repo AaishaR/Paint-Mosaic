@@ -1,23 +1,24 @@
 import bcrypt from 'bcrypt';
-import dotenv from "dotenv";
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
 import path from 'path';
 import User from './../models/userSchema';
-// const userModel = require('../models/db')
-const SECRET_KEY = 'i-am-really-trying-to-understand-this-shizz';
-//process.env.SECRET_KEY || 
+import { validateUser } from '../utils/userUtils'
 
-dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
+import dotenv from "dotenv";
+dotenv.config({ path: '../.env' });
+
+// const SECRET_KEY  = process.env.SECRET_KEY!;
 
 
 const postRegister = async (req: Request, res: Response): Promise<Response> => {
 
-  const { username, password, role } = req.body;
-  if (!username || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
 
-  const user = await User.findOne({ username: username });
+  const { email, password, role } = req.body;
+  if (!email || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
+
+  const user = await User.findOne({ email: email });
   console.log('this is the found user ', user);
 
   if (user) return res.status(400).json({ error: "Account with this username already exists" });
@@ -32,8 +33,12 @@ const postRegister = async (req: Request, res: Response): Promise<Response> => {
     });
     const { _id } = await newUser.save();
 
-    const accessToken = jwt.sign({ _id }, SECRET_KEY);
+    // console.log('_id:', _id);
+    // console.log('SECRET_KEY:', SECRET_KEY);
+    const accessToken = jwt.sign({ _id }, process.env.SECRET_KEY!);
+    console.log(accessToken)
     return res.status(201).json({ accessToken });
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -43,14 +48,14 @@ const postRegister = async (req: Request, res: Response): Promise<Response> => {
 const postLogin = async (req: Request, res: Response): Promise<Response> => {
   // console.log(req.body)
   try {
-    const { username, password } = req.body;
-    if (!username || !password) return res.status(400).json({ error: "Credentials not provided correctly" })
-    const user = await User.findOne({ username });
+    const { email, password } = req.body;
+    if (!email || !password) return res.status(400).json({ error: "Credentials not provided correctly" })
+    const user = await User.findOne({ email });
     if (!user) return res.status(400).json({ error: "User does not exists" });
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) return res.status(401).json({ error: "Incorrect password" });
 
-    const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);
+    const accessToken = jwt.sign({ _id: user._id }, process.env.SECRET_KEY!);
     return res.status(200).json({ accessToken, userDetails: user });
     // res.status(200).send({ accessToken, userDetails: user });
   } catch (error) {
@@ -60,17 +65,12 @@ const postLogin = async (req: Request, res: Response): Promise<Response> => {
 
 const getUser = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const { authorization } = req.headers;
-    if (!authorization) {
-      return res.status(401).send('Authorization header is missing');
-    }
-    const _id = (jwt.verify(authorization, SECRET_KEY) as JwtPayload)._id;
+    const validatedUser = await validateUser(req);
+    if (!validatedUser || !validatedUser.userId || !validatedUser.user) return res.status(401).json({ error: validatedUser });
 
-    const user = await User.findById({ _id });
-    if (!user) {
+    const { user } = validatedUser;
+    console.log(user);
 
-      return res.status(401).send('User does not exists');
-    }
     return res.status(200).send(user);
   } catch (error) {
     console.error(error)

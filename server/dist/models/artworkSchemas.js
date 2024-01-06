@@ -21,10 +21,6 @@ const ArtworkSchema = {
         type: String,
         required: true,
     },
-    auction: {
-        type: Boolean,
-        required: true,
-    },
     material: {
         type: String,
         required: true,
@@ -32,10 +28,6 @@ const ArtworkSchema = {
     category: {
         type: String,
         required: true,
-    },
-    rating: {
-        type: Number,
-        default: 0,
     },
     artist: {
         name: {
