@@ -15,10 +15,13 @@ async function validateUser(req) {
         const { authorization } = req.headers;
         if (!authorization)
             return false;
+        console.log(authorization);
         const userId = tokenToUserId(authorization);
+        console.log(userId);
         if (!userId)
             return false;
-        const user = await userSchema_1.default.findOne({ userId });
+        const user = await userSchema_1.default.findOne({ _id: userId });
+        console.log('found user: ', user);
         if (!user)
             return false;
         return { userId, user };
@@ -30,9 +33,11 @@ async function validateUser(req) {
 exports.validateUser = validateUser;
 function tokenToUserId(token) {
     const SECRET_KEY = process.env.SECRET_KEY;
+    console.log('SC: ', SECRET_KEY);
     try {
         const decodedToken = jsonwebtoken_1.default.verify(token, SECRET_KEY);
-        return decodedToken.userId;
+        console.log('decode : ', decodedToken);
+        return decodedToken._id;
     }
     catch (error) {
         return undefined;

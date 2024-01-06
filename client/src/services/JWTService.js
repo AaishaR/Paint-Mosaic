@@ -3,14 +3,20 @@ const BASE_URL = 'http://localhost:3000/user';
 
 const apiServiceJWT = {};
 
-apiServiceJWT.register = (user) => {
-  return fetch(`${BASE_URL}/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(user),
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+apiServiceJWT.register = async (user) => {
+  try {
+    const response = await fetch(`${BASE_URL}/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(user),
+    })
+
+    return await response.json();
+
+  } catch (error) {
+    console.log(error)
+    throw error;
+  }
 };
 
 apiServiceJWT.login = (user) => {
@@ -39,8 +45,8 @@ apiServiceJWT.getUser = async (token) => {
       return await response.json();
     } else {
       if (response.status === 401) {
-        apiServiceJWT.logout('accessToken');
-        // console.error('Unauthorized access. Redirecting to login page or logging out.');
+        // apiServiceJWT.logout('accessToken');
+        console.error('Unauthorized access. Redirecting to login page or logging out.');
 
       } else {
         console.error(`Error: ${response.status} - ${response.statusText}`);

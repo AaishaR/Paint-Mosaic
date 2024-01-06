@@ -12,11 +12,14 @@ export async function validateUser(req: Request | any): Promise<any> {
 
         if (!authorization) return false;
 
+        console.log(authorization)
         const userId = tokenToUserId(authorization);
+        console.log(userId);
         if (!userId) return false;
 
-        const user = await User.findOne({ userId });
+        const user = await User.findOne({ _id : userId });
 
+        console.log('found user: ', user)
         if (!user) return false;
 
         return { userId, user };
@@ -27,9 +30,11 @@ export async function validateUser(req: Request | any): Promise<any> {
 
 export function tokenToUserId(token: string) {
     const SECRET_KEY = process.env.SECRET_KEY!;
+    console.log('SC: ', SECRET_KEY)
     try {
-        const decodedToken = jwt.verify(token, SECRET_KEY) as { userId: string };
-        return decodedToken.userId;
+        const decodedToken = jwt.verify(token, SECRET_KEY) as { _id: string };
+        console.log('decode : ', decodedToken)
+        return decodedToken._id;
     } catch (error) {
         return undefined;
     }

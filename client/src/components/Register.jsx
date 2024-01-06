@@ -40,7 +40,9 @@ export default function Register(props) {
             alert(`${res.message}`);
             props.setShowSignUp(true);
         } else {
+
             const { accessToken } = res;
+            console.log('AT ', accessToken)
             localStorage.setItem('accessToken', accessToken);
             props.setIsAuthenticated(true);
             props.setShowSignIn(true);

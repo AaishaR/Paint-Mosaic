@@ -25,9 +25,10 @@ function App() {
       console.log('token: ', token);
       if(token){
         const user = await apiServiceJWT.getUser(token);
-        console.log('user', user)
+        // console.log('user', user)
         if(user) {
 
+          console.log('we hereee')
           setIsAuthenticated(true);
           setUserinfo(user);
           const list =  user.favoriteArtworks;
@@ -35,7 +36,7 @@ function App() {
         }
       }
     })();
-  }, [token, favList])
+  }, [token])
   
   // console.log('userinfo before return', userInfo);
 

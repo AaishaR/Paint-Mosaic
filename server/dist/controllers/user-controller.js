@@ -4,13 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const dotenv_1 = __importDefault(require("dotenv"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const path_1 = __importDefault(require("path"));
 const userSchema_1 = __importDefault(require("./../models/userSchema"));
 const userUtils_1 = require("../utils/userUtils");
-const SECRET_KEY = process.env.SECRET_KEY;
-dotenv_1.default.config({ path: path_1.default.join(__dirname, '..', '..', '.env') });
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({ path: '../.env' });
+// const SECRET_KEY  = process.env.SECRET_KEY!;
 const postRegister = async (req, res) => {
     const { email, password, role } = req.body;
     if (!email || !password || !role)
@@ -28,7 +27,10 @@ const postRegister = async (req, res) => {
             password: hash,
         });
         const { _id } = await newUser.save();
-        const accessToken = jsonwebtoken_1.default.sign({ _id }, SECRET_KEY);
+        // console.log('_id:', _id);
+        // console.log('SECRET_KEY:', SECRET_KEY);
+        const accessToken = jsonwebtoken_1.default.sign({ _id }, process.env.SECRET_KEY);
+        console.log(accessToken);
         return res.status(201).json({ accessToken });
     }
     catch (error) {
@@ -48,7 +50,7 @@ const postLogin = async (req, res) => {
         const validatedPass = await bcrypt_1.default.compare(password, user.password);
         if (!validatedPass)
             return res.status(401).json({ error: "Incorrect password" });
-        const accessToken = jsonwebtoken_1.default.sign({ _id: user._id }, SECRET_KEY);
+        const accessToken = jsonwebtoken_1.default.sign({ _id: user._id }, process.env.SECRET_KEY);
         return res.status(200).json({ accessToken, userDetails: user });
         // res.status(200).send({ accessToken, userDetails: user });
     }

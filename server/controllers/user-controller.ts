@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt';
-import dotenv from "dotenv";
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { JwtPayload } from 'jsonwebtoken';
@@ -7,12 +6,14 @@ import path from 'path';
 import User from './../models/userSchema';
 import { validateUser } from '../utils/userUtils'
 
-const SECRET_KEY = process.env.SECRET_KEY!;
+import dotenv from "dotenv";
+dotenv.config({ path: '../.env' });
 
-dotenv.config({ path: path.join(__dirname, '..', '..', '.env') });
+// const SECRET_KEY  = process.env.SECRET_KEY!;
 
 
 const postRegister = async (req: Request, res: Response): Promise<Response> => {
+
 
   const { email, password, role } = req.body;
   if (!email || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
@@ -32,8 +33,12 @@ const postRegister = async (req: Request, res: Response): Promise<Response> => {
     });
     const { _id } = await newUser.save();
 
-    const accessToken = jwt.sign({ _id }, SECRET_KEY);
+    // console.log('_id:', _id);
+    // console.log('SECRET_KEY:', SECRET_KEY);
+    const accessToken = jwt.sign({ _id }, process.env.SECRET_KEY!);
+    console.log(accessToken)
     return res.status(201).json({ accessToken });
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
@@ -50,7 +55,7 @@ const postLogin = async (req: Request, res: Response): Promise<Response> => {
     const validatedPass = await bcrypt.compare(password, user.password);
     if (!validatedPass) return res.status(401).json({ error: "Incorrect password" });
 
-    const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);
+    const accessToken = jwt.sign({ _id: user._id }, process.env.SECRET_KEY!);
     return res.status(200).json({ accessToken, userDetails: user });
     // res.status(200).send({ accessToken, userDetails: user });
   } catch (error) {
