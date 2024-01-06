@@ -15,7 +15,7 @@ export default function Account(props) {
         <div className="account-container">
             <div className="login-container">
                 {showSignIn && (
-                    <Login setShowSignIn={setShowSignIn} showSignIn={showSignIn} setShowSignUp={setShowSignUp} showSignUp={showSignUp} setIsAuthenticated={props.setIsAuthenticated} isAuthenticated={props.isAuthenticated}></Login>
+                    <Login setShowSignIn={setShowSignIn} showSignIn={showSignIn} setShowSignUp={setShowSignUp} showSignUp={showSignUp} setIsAuthenticated={props.setIsAuthenticated} isAuthenticated={props.isAuthenticated} user={props.user}></Login>
                 )}
 
                 {showSignUp && (
