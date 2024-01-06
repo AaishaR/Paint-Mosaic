@@ -19,7 +19,7 @@ export default function Account(props) {
                 )}
 
                 {showSignUp && (
-                    <Register setShowSignIn={setShowSignIn} showSignIn={showSignIn} setShowSignUp={setShowSignUp} showSignUp={showSignUp} ></Register>
+                    <Register setShowSignIn={setShowSignIn} showSignIn={showSignIn} setShowSignUp={setShowSignUp} showSignUp={showSignUp} setIsAuthenticated={props.setIsAuthenticated} ></Register>
                 )}
             </div>
         </div>
