@@ -1,3 +1,4 @@
+
 const BASE_URL = 'http://localhost:3000/user';
 
 const apiServiceJWT = {};
@@ -34,7 +35,18 @@ apiServiceJWT.getUser = async (token) => {
       headers: { 'Authorization': `${token}` }
     });
 
-    if (response.ok) return await response.json();
+    if (response.ok) {
+      return await response.json();
+    } else {
+      if (response.status === 401) {
+        apiServiceJWT.logout('accessToken');
+        // console.error('Unauthorized access. Redirecting to login page or logging out.');
+
+      } else {
+        console.error(`Error: ${response.status} - ${response.statusText}`);
+      }
+    }
+
   } catch (e) {
     throw new Error(e);
   }
@@ -45,7 +57,7 @@ apiServiceJWT.addFav = async (_id, artwork) => {
     const response = await fetch(`${BASE_URL}/addFav`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({_id, artwork}),
+      body: JSON.stringify({ _id, artwork }),
     });
     if (response.ok) return await response.json();
   } catch (e) {
@@ -58,7 +70,7 @@ apiServiceJWT.removeFav = async (_id, artworkId) => {
     const response = await fetch(`${BASE_URL}/removeFav`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({_id, artworkId}),
+      body: JSON.stringify({ _id, artworkId }),
     });
     if (response.ok) return await response.json();
   } catch (e) {
@@ -66,13 +78,13 @@ apiServiceJWT.removeFav = async (_id, artworkId) => {
   }
 }
 
-apiServiceJWT.addMsg = async (username, recieverName ,msg) => {
+apiServiceJWT.addMsg = async (username, recieverName, msg) => {
   // console.log(recieverName)
   try {
     const response = await fetch(`${BASE_URL}/addmsg`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({username, recieverName ,msg}),
+      body: JSON.stringify({ username, recieverName, msg }),
     });
     if (response.ok) return await response.json();
   } catch (e) {
