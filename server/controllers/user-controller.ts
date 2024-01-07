@@ -1,8 +1,6 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { JwtPayload } from 'jsonwebtoken';
-import path from 'path';
 import User from './../models/userSchema';
 import { validateUser } from '../utils/userUtils'
 
@@ -69,7 +67,7 @@ const getUser = async (req: Request, res: Response): Promise<Response> => {
     if (!validatedUser || !validatedUser.userId || !validatedUser.user) return res.status(401).json({ error: validatedUser });
 
     const { user } = validatedUser;
-    console.log(user);
+    // console.log(user);
 
     return res.status(200).send(user);
   } catch (error) {
