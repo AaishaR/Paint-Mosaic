@@ -25,10 +25,11 @@ export default function Artwork(props) {
     };
 
     useEffect(() => {
-        let newArr = props.favList.filter(el => el._id === props.artwork._id);
-        setIsArtworkFavorited(newArr.length)
+        let newArr = props.favList.filter(el => el._id === props.artwork._id); 
+        setIsArtworkFavorited(newArr.length) 
 
-    }, [props.favList])
+        // eslint-disable-next-line
+    }, [props.favList]) 
 
     return (
         <>
