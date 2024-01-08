@@ -384,12 +384,8 @@ input {
     /* margin-bottom: 16px; */
 }
 
-.logout-button {
-    background-color: #f44336;
-    color: white;
-    cursor: pointer;
-    border: none;
-    border-radius: 4px;
+.bg-custom-color {
+    background-color: var(--primary-color);
 }
 
 .logout-button:hover {

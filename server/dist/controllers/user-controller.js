@@ -64,7 +64,7 @@ const getUser = async (req, res) => {
         if (!validatedUser || !validatedUser.userId || !validatedUser.user)
             return res.status(401).json({ error: validatedUser });
         const { user } = validatedUser;
-        console.log(user);
+        // console.log(user);
         return res.status(200).send(user);
     }
     catch (error) {

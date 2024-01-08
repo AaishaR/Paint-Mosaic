@@ -15,13 +15,13 @@ async function validateUser(req) {
         const { authorization } = req.headers;
         if (!authorization)
             return false;
-        console.log(authorization);
+        // console.log(authorization)
         const userId = tokenToUserId(authorization);
         // console.log(userId);
         if (!userId)
             return false;
         const user = await userSchema_1.default.findOne({ _id: userId });
-        console.log('found user: ', user);
+        // console.log('found user: ', user)
         if (!user)
             return false;
         return { userId, user };

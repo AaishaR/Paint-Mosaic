@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@testing-library/jest-dom": "^5.17.0",
@@ -44,6 +45,7 @@
   },
   "devDependencies": {
     "@klarr-agency/circum-icons-react": "^2.0.2",
+    "@tailwindcss/forms": "^0.5.2",
     "@types/node": "^20.10.4",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.17",
