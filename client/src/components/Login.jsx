@@ -68,6 +68,7 @@ export default function Login(props) {
     };
 
     return (
+
         <div>
             {
                 props.isAuthenticated && props.user ? ( //
@@ -92,5 +93,6 @@ export default function Login(props) {
                 )}
 
         </div>
+        
     )
 }
