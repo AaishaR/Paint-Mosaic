@@ -1,6 +1,9 @@
 
 import { Request, Response } from 'express';
 import artworkModel from '../models/artworkSchemas';
+import { v2 as cloudinary } from 'cloudinary'
+import dotenv from "dotenv";
+dotenv.config({ path: '../.env' });
 
 const getArtwork = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -48,4 +51,30 @@ const deleteArt = async (req: Request, res: Response): Promise<Response> => {
     }
 }
 
-export default { getArtwork, postArtwork, getArtist, deleteArt }
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
+const uploadImage = async (req: Request, res: Response): Promise<void> => {
+    try {
+        console.log("Received image upload request");
+        if (!req.file) {
+            res.status(400).json({ error: "No image uploaded" });
+        } else {
+            const result = await cloudinary.uploader.upload(req.file.path, {
+                quality: "auto",
+                fetch_format: "auto",
+            })
+            const imageUrl = result.url;
+            res.json({ imageUrl });
+        }
+    } catch (error) {
+        console.error("Error uploading image to Cloudinary:", error);
+        res.status(500).json({ error: "Failed to upload image" });
+    }
+}
+
+export default { getArtwork, postArtwork, getArtist, deleteArt, uploadImage }
