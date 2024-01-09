@@ -25,4 +25,17 @@ async function getArtist(name) {
     }
 }
 
+async function uploadImage() {
+    try {
+        const response = await fetch(`${url}/artwork/art/upload`,{
+            method: 'POST',
+            body: data
+        });
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
 module.exports = { getArtwork, getArtist }
