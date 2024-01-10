@@ -1,9 +1,9 @@
 
 import { Request, Response } from 'express';
 import artworkModel from '../models/artworkSchemas';
-import { v2 as cloudinary } from 'cloudinary'
 import dotenv from "dotenv";
 dotenv.config({ path: '../.env' });
+import { v2 as cloudinary } from 'cloudinary';
 
 const getArtwork = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -59,6 +59,9 @@ cloudinary.config({
 
 
 const uploadImage = async (req: Request, res: Response): Promise<void> => {
+    console.log(process.env.CLOUDINARY_CLOUD_NAME);
+    console.log(process.env.CLOUDINARY_API_KEY);
+    console.log(process.env.CLOUDINARY_API_SECRET);
     try {
         console.log("Received image upload request");
         if (!req.file) {

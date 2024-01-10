@@ -4,9 +4,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const artworkSchemas_1 = __importDefault(require("../models/artworkSchemas"));
-const cloudinary_1 = require("cloudinary");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
+const cloudinary_1 = require("cloudinary");
 const getArtwork = async (req, res) => {
     try {
         const artwork = await artworkSchemas_1.default.find();
@@ -57,6 +57,9 @@ cloudinary_1.v2.config({
     api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 const uploadImage = async (req, res) => {
+    console.log(process.env.CLOUDINARY_CLOUD_NAME);
+    console.log(process.env.CLOUDINARY_API_KEY);
+    console.log(process.env.CLOUDINARY_API_SECRET);
     try {
         console.log("Received image upload request");
         if (!req.file) {

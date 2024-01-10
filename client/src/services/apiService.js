@@ -25,17 +25,28 @@ async function getArtist(name) {
     }
 }
 
-async function uploadImage() {
+async function cloudinaryUpload(data) {
     try {
-        const response = await fetch(`${url}/artwork/art/upload`,{
+        const response = await fetch("https://api.cloudinary.com/v1_1/ddyh3rk7s/upload", {
             method: 'POST',
             body: data
         });
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-        throw error;
+
+        console.log(response)
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const cloudinaryData = await response.json();
+
+        return cloudinaryData.secure_url;
+
+    } catch (err) {
+        console.error('An Error Occurred While Uploading:', err);
+        // Alert.alert('An Error Occurred While Uploading');
+        throw err;
     }
 }
 
-module.exports = { getArtwork, getArtist }
+
+
+module.exports = { getArtwork, getArtist, cloudinaryUpload }
