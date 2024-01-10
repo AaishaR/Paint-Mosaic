@@ -1,6 +1,25 @@
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { PhotoIcon } from '@heroicons/react/24/solid'
+import { cloudinaryUpload } from '../services/apiService';
+import { useState } from 'react';
 
 export default function UserDetails(props) {
+    const [imageURL, setImageURL] = useState('');
+
+    const handleFileUpload = async (e) => {
+        if (e.target.files) {
+            const file = e.target.files[0];
+            console.log(file)
+            const form = new FormData();
+            form.append('upload_preset', 'paint-mosaic');
+            form.append('file', file);
+            setImageURL(await cloudinaryUpload(form));
+        }
+    }
+
+    const handleUpload = async (e) => {
+        e.preventDefault();
+        
+    }
 
     return (
         <form>
@@ -40,7 +59,7 @@ export default function UserDetails(props) {
                                         className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
                                     >
                                         <span>Upload a file</span>
-                                        <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                                        <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={handleFileUpload} />
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
                                 </div>
@@ -141,6 +160,7 @@ export default function UserDetails(props) {
                 <button
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    onClick={handleUpload}
                 >
                     Upload
                 </button>
