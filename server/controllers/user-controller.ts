@@ -13,8 +13,8 @@ dotenv.config({ path: '../.env' });
 const postRegister = async (req: Request, res: Response): Promise<Response> => {
 
 
-  const { email, password, role } = req.body;
-  if (!email || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
+  const { name, email, password, role } = req.body;
+  if (!name || !email || !password || !role) return res.status(400).json({ error: "Credentials not provided correctly" });
 
   const user = await User.findOne({ email: email });
   console.log('this is the found user ', user);

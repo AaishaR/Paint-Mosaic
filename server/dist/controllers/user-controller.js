@@ -11,8 +11,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
 // const SECRET_KEY  = process.env.SECRET_KEY!;
 const postRegister = async (req, res) => {
-    const { email, password, role } = req.body;
-    if (!email || !password || !role)
+    const { name, email, password, role } = req.body;
+    if (!name || !email || !password || !role)
         return res.status(400).json({ error: "Credentials not provided correctly" });
     const user = await userSchema_1.default.findOne({ email: email });
     console.log('this is the found user ', user);
