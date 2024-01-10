@@ -29,18 +29,9 @@ const ArtworkSchema = {
         type: String,
         required: true,
     },
-    artist: {
-        name: {
-            type: String,
-            required: true,
-        },
-        about: {
-            type: String,
-        },
-        location: {
-            type: String,
-            required: true,
-        }
+    artistId: {
+        type: String,
+        required: true,
     }
 };
 const artworkModel = mongoose.model('artwork', ArtworkSchema);
