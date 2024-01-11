@@ -1,19 +1,23 @@
 import React, { useState } from 'react'
 import apiServiceJWT from '../services/JWTService';
+import { useAuth } from '../contexts/auth';
 
 export default function Register(props) {
+
+    const {login} = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [role, setRole] = useState('')
+    const [role, setRole] = useState('');
+    const [name, setName] = useState('');
 
     const [errEmail, setErrEmail] = useState('');
     const [errPassword, setErrPassword] = useState('');
     const [errRole, setErrRole] = useState('');
+    const [errName, setErrName] = useState('');
 
     const handleSignUp = async (e) => {
-        // Check the client-session to see how to handle redirects
         e.preventDefault();
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -21,18 +25,20 @@ export default function Register(props) {
             password.trim() === '' || confirmPassword.trim() === '' ? 'Please enter a password' : password !== confirmPassword ? 'Passwords do not match! Please re-enter' : ''
         );
 
+        setErrName(name.trim() === '' ? 'Please enter name.' : '')
+
         setErrRole(role === '' ? 'Please select one of the roles.' : '')
 
         if (emailRegex.test(email)) {
             setErrEmail('');
-            (!errRole.length && !errPassword.length) && (confirmPassword.trim() !== '') && registering();
+            (!errName.length && !errRole.length && !errPassword.length) && (confirmPassword.trim() !== '') && registering();
         } else {
             setErrEmail('Please enter correct email address');
         }
     };
 
     const registering = async () => {
-        const user = { email: email, password: password, role: role };
+        const user = { name : name,  email: email, password: password, role: role };
         const res = await apiServiceJWT.register(user);
 
         if (res.error) {
@@ -42,9 +48,7 @@ export default function Register(props) {
         } else {
 
             const { accessToken } = res;
-            console.log('AT ', accessToken)
-            localStorage.setItem('accessToken', accessToken);
-            props.setIsAuthenticated(true);
+            login(accessToken);
             props.setShowSignIn(true);
             props.setShowSignUp(false);
         }
@@ -58,6 +62,9 @@ export default function Register(props) {
     return (
         <div>
             <form>
+                <label>Name:</label>
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                {errName ? <p className='err-msg'>{errName}</p> : null}
                 <label>Email:</label>
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                 {errEmail ? <p className='err-msg'>{errEmail}</p> : null}

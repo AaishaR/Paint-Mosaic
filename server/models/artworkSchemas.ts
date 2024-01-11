@@ -12,34 +12,22 @@ const ArtworkSchema = {
     description: {
         type: String,
     },
-    dimensions:{
+    price: {
         type: String,
         required: true,
     },
-    price:{
+    material: {
         type: String,
         required: true,
     },
-    material:{
+    category: {
         type: String,
         required: true,
     },
-    category:{
+    artistId: {
         type: String,
         required: true,
-    },
-    artist:{
-        name:{
-            type: String,
-            required: true,
-        },
-        about:{
-            type: String,
-        },
-        location:{
-            type: String,
-            required: true,
-        }
+
     }
 }
 

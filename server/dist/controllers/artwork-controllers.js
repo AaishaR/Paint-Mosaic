@@ -4,6 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const artworkSchemas_1 = __importDefault(require("../models/artworkSchemas"));
+const userUtils_1 = require("../utils/userUtils");
 const getArtwork = async (req, res) => {
     try {
         const artwork = await artworkSchemas_1.default.find();
@@ -17,6 +18,9 @@ const getArtwork = async (req, res) => {
 };
 const postArtwork = async (req, res) => {
     try {
+        const validUser = (0, userUtils_1.validateUser)(req);
+        if (!validUser)
+            return res.status(401).json({ error: "Authentication failed" });
         const artwork = await artworkSchemas_1.default.create(req.body);
         return res.status(201).json({ stauts: 201, message: 'Successfully created artwork', artwork: artwork });
     }

@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import UserDetails from './UserDetails';
 import apiServiceJWT from '../services/JWTService';
+import { useAuth } from '../contexts/auth';
 
 export default function Login(props) {
 
+    const {login, logout, isAuthenticated, user} = useAuth();
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userInfo, setUesrInfo] = useState('');
 
     const [errEmail, setErrEmail] = useState('');
     const [errPassword, setErrPassword] = useState('');
@@ -33,15 +35,13 @@ export default function Login(props) {
         const res = await apiServiceJWT.login(user);
 
         if (res.error) {
-            alert(`${res.message}`);
+            alert(`User doesn't exists`);
             props.setShowSignIn(false);
             props.setShowSignUp(true);
         } else {
             const { accessToken, userDetails } = res;
+            login(accessToken);
             // console.log(res)
-            setUesrInfo(userDetails);
-            localStorage.setItem('accessToken', accessToken);
-            props.setIsAuthenticated(true);
             props.setShowSignIn(true);
             props.setShowSignUp(false);
         }
@@ -53,16 +53,11 @@ export default function Login(props) {
     };
 
     const handleLogout = async () => {
-        removeToken();
+        logout();
         handleAuth();
     };
 
-    const removeToken = () => {
-        apiServiceJWT.logout('accessToken');
-    };
-
     const handleAuth = () => {
-        props.setIsAuthenticated(false);
         props.setShowSignIn(true)
         window.location.reload();
     };
@@ -71,9 +66,9 @@ export default function Login(props) {
 
         <div>
             {
-                props.isAuthenticated && props.user ? ( //
+                isAuthenticated && user ? ( //
                     <div>
-                        <UserDetails user={userInfo !== '' ? userInfo : props.user} />
+                        <UserDetails/>
                         <div className="mt-6 flex items-center justify-end gap-x-6">
                             <button
                                 type="submit"

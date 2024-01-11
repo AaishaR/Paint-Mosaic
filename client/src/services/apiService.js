@@ -47,6 +47,24 @@ async function cloudinaryUpload(data) {
     }
 }
 
+async function postArtWork(data, token){
+    try {
+        const response = await fetch(`${url}/artwork`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                'Authorization': `${token}`
+            },
+            body: JSON.stringify(data),
+        });
+
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
 
-module.exports = { getArtwork, getArtist, cloudinaryUpload }
+
+module.exports = { getArtwork, getArtist, cloudinaryUpload, postArtWork }

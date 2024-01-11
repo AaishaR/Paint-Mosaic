@@ -3,7 +3,15 @@ import artworkModel from "./artworkSchemas";
 
 
 const UserSchema = {
+    userId: {
+        type: String,
+        reguired: true,
+    },
     email: {
+        type: String,
+        required: true,
+    },
+    name: {
         type: String,
         required: true,
     },
@@ -16,7 +24,7 @@ const UserSchema = {
         enum: ['buyer', 'seller'],
         required: true,
     },
-    favoriteArtworks :[artworkModel.schema],
+    favoriteArtworks: [artworkModel.schema],
 
 }
 

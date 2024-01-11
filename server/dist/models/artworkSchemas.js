@@ -13,10 +13,6 @@ const ArtworkSchema = {
     description: {
         type: String,
     },
-    dimensions: {
-        type: String,
-        required: true,
-    },
     price: {
         type: String,
         required: true,
@@ -29,18 +25,9 @@ const ArtworkSchema = {
         type: String,
         required: true,
     },
-    artist: {
-        name: {
-            type: String,
-            required: true,
-        },
-        about: {
-            type: String,
-        },
-        location: {
-            type: String,
-            required: true,
-        }
+    artistId: {
+        type: String,
+        required: true,
     }
 };
 const artworkModel = mongoose.model('artwork', ArtworkSchema);

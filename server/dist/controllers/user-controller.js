@@ -6,13 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userSchema_1 = __importDefault(require("./../models/userSchema"));
+const uuid_1 = require("uuid");
 const userUtils_1 = require("../utils/userUtils");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
 // const SECRET_KEY  = process.env.SECRET_KEY!;
 const postRegister = async (req, res) => {
-    const { email, password, role } = req.body;
-    if (!email || !password || !role)
+    const { name, email, password, role } = req.body;
+    if (!name || !email || !password || !role)
         return res.status(400).json({ error: "Credentials not provided correctly" });
     const user = await userSchema_1.default.findOne({ email: email });
     console.log('this is the found user ', user);
@@ -22,15 +23,17 @@ const postRegister = async (req, res) => {
         if (password === '')
             throw new Error();
         const hash = await bcrypt_1.default.hash(password, 10);
+        const userId = (0, uuid_1.v4)();
         const newUser = new userSchema_1.default({
             ...req.body,
+            userId: userId,
             password: hash,
         });
         const { _id } = await newUser.save();
         // console.log('_id:', _id);
         // console.log('SECRET_KEY:', SECRET_KEY);
         const accessToken = jsonwebtoken_1.default.sign({ _id }, process.env.SECRET_KEY);
-        console.log(accessToken);
+        // console.log(accessToken)
         return res.status(201).json({ accessToken });
     }
     catch (error) {
