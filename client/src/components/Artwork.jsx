@@ -3,33 +3,36 @@ import { RiQuestionLine, RiFileInfoLine } from 'react-icons/ri';
 import { TiBookmark } from 'react-icons/ti';
 import apiServiceJWT from '../services/JWTService';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/auth';
 
 export default function Artwork(props) {
+
+    const {isAuthenticated} = useAuth();
 
     const [isArtworkFavorited, setIsArtworkFavorited] = useState(false);
 
     const handleClickToFav = (item) => {
-        const isFavorited = props.favList.filter(el => el._id === item._id);
+        // const isFavorited = props.favList.filter(el => el._id === item._id);
 
-        if (isFavorited.length) {
+        // if (isFavorited.length) {
 
-            props.setFavList((prev) => prev.filter((el) => el._id !== item._id));
-            apiServiceJWT.removeFav(props.user._id, item._id);
+        //     props.setFavList((prev) => prev.filter((el) => el._id !== item._id));
+        //     apiServiceJWT.removeFav(props.user._id, item._id);
 
-        } else {
+        // } else {
 
-            props.setFavList((prev) => [...prev, item]);
-            apiServiceJWT.addFav(props.user._id, item);
-        }
+        //     props.setFavList((prev) => [...prev, item]);
+        //     apiServiceJWT.addFav(props.user._id, item);
+        // }
 
     };
 
-    useEffect(() => {
-        let newArr = props.favList.filter(el => el._id === props.artwork._id); 
-        setIsArtworkFavorited(newArr.length) 
+    // useEffect(() => {
+    //     let newArr = props.favList.filter(el => el._id === props.artwork._id); 
+    //     setIsArtworkFavorited(newArr.length) 
 
-        // eslint-disable-next-line
-    }, [props.favList]) 
+    //     // eslint-disable-next-line
+    // }, [props.favList]) 
 
     return (
         <>
@@ -44,7 +47,7 @@ export default function Artwork(props) {
                             <h1>{props.artwork.title}</h1>
                             <div className='artist-name'>
 
-                                <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{props.artwork.artist.name} <RiQuestionLine className='questionmark' /></Link></p>
+                                {/* <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{props.artwork.artist.name} <RiQuestionLine className='questionmark' /></Link></p> */}
                             </div>
                             <div className="sub-artist-details">
                                 <div className='category'>
@@ -55,10 +58,6 @@ export default function Artwork(props) {
                                     <p className='title'>Material</p>
                                     <p className='title-values'>{props.artwork.material}</p>
                                 </div>
-                                <div className='size'>
-                                    <p className='title'>Size</p>
-                                    <p className='title-values'>{props.artwork.dimensions}</p>
-                                </div>
                             </div>
 
                         </div>
@@ -67,7 +66,7 @@ export default function Artwork(props) {
                             <div className="pricing-container">
                                 <p>{props.artwork.price}</p>
                                 {/* <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button> */}
-                                {props.isAuthenticated &&
+                                {isAuthenticated &&
                                     <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
                                 }
                             </div>
@@ -106,7 +105,7 @@ export default function Artwork(props) {
                                     <div className="pricing-container">
                                         <p>{props.artwork.price}</p>
                                         {/* <button onClick={() => { handleClick(props.artwork) }}><RiShoppingBag3Fill className="addTobag" /></button> */}
-                                        {props.isAuthenticated &&
+                                        {isAuthenticated &&
                                             <button onClick={() => { handleClickToFav(props.artwork) }} style={{ color: (isArtworkFavorited) ? 'red' : 'black' }}><TiBookmark className="bookmark" /></button>
                                         }
 

@@ -16,6 +16,7 @@ export default function HomePage(props) {
         <>
             {artworks.length ? <div className='Main-container'>
                 {/* <ArtworkSlider artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} isAuthenticated={props.isAuthenticated} /> */}
+                <ArtworkSlider artworks={artworks} />
             </div> : <div> <p> No Artwork Available</p></div>
             }
         </>
