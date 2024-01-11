@@ -79,7 +79,7 @@ const getUserDetails = async (req, res) => {
     try {
         const { artistId } = req.query;
         const user = await userSchema_1.default.findOne({ userId: artistId });
-        console.log(user);
+        // console.log(user)
         return res.status(200).send(user);
     }
     catch (error) {

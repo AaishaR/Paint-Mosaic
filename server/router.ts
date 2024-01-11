@@ -7,7 +7,7 @@ import userController  from './controllers/user-controller';
 
 router.get('/artwork', artController.getArtwork);
 router.post('/artwork', artController.postArtwork);
-router.get('/artwork/artist/:name', artController.getArtist);
+router.get('/artwork/artist/:artistId', artController.getArtist);
 router.delete('/artwork/:id', artController.deleteArt);
 
 //routes for user authentication and authorisation

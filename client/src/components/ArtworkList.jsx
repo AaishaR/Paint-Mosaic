@@ -5,15 +5,20 @@ import Artwork from './Artwork';
 
 export default function ArtistList(props) {
 
-    const { artistName } = useParams();
+    const { artistId, artistName } = useParams();
+    // const [artistName, setArtistName] = useState('');
 
     const [artist, setArtist] = useState([]);
 
     useEffect(() => {
-        getArtist(artistName).then((data) => {
+        console.log('here: ',artistId)
+        getArtist(artistId).then((data) => {
             setArtist(data.artwork)
         })
-    }, [artistName]);
+
+        console.log(artist)
+
+    }, [artistId]);
 
     return (
         <div className="artwork-list-container">
@@ -21,7 +26,7 @@ export default function ArtistList(props) {
                 <h2>{artistName}</h2>
             </div>
             {artist.length ? artist.map((artwork, index) => (
-                <Artwork key={index} artwork={artwork} favList={props.favList} setFavList={props.setFavList} user={props.user} slider={false} isAuthenticated={props.isAuthenticated} />
+                <Artwork key={index} artwork={artwork} favList={props.favList} setFavList={props.setFavList} slider={false} />
 
             )) :
                 <p>There are no art pieces available yet</p>}

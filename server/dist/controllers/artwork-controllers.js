@@ -31,8 +31,8 @@ const postArtwork = async (req, res) => {
 };
 const getArtist = async (req, res) => {
     try {
-        // console.log(req.params.name)
-        const artwork = await artworkSchemas_1.default.find({ "artist.name": req.params.name });
+        // console.log(req.params)
+        const artwork = await artworkSchemas_1.default.find({ "artistId": req.params.artistId });
         // console.log(artwork);
         return res.status(201).json({ stauts: 201, message: 'got artist', artwork: artwork });
     }

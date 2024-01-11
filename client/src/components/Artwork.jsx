@@ -11,6 +11,7 @@ export default function Artwork(props) {
 
     const [isArtworkFavorited, setIsArtworkFavorited] = useState(false);
     const [artistName, setArtistName] = useState('');
+    const [artistUserId, setArtistUserId] = useState('');
 
     const handleClickToFav = (item) => {
         // const isFavorited = props.favList.filter(el => el._id === item._id);
@@ -35,6 +36,7 @@ export default function Artwork(props) {
             const artist = await apiServiceJWT.getUserDetails(props.artwork.artistId);
             // console.log(artist)
             setArtistName(artist.name);
+            setArtistUserId(artist.userId)
 
         }
 
@@ -62,8 +64,8 @@ export default function Artwork(props) {
                             <h1>{props.artwork.title}</h1>
                             <div className='artist-name'>
 
-                                {/* <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{artistName} <RiQuestionLine className='questionmark' /></Link></p> */}
-                                <p>By -{artistName} <RiQuestionLine className='questionmark' /></p>
+                                <p>By - <Link to={`/artist/${encodeURIComponent(artistUserId)}/${artistName}`}>{artistName} <RiQuestionLine className='questionmark' /></Link></p>
+                                {/* <p>By -{artistUserId} <RiQuestionLine className='questionmark' /></p> */}
                             </div>
                             <div className="sub-artist-details">
                                 <div className='category'>

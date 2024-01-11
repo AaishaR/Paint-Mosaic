@@ -9,7 +9,7 @@ const artwork_controllers_1 = __importDefault(require("./controllers/artwork-con
 const user_controller_1 = __importDefault(require("./controllers/user-controller"));
 router.get('/artwork', artwork_controllers_1.default.getArtwork);
 router.post('/artwork', artwork_controllers_1.default.postArtwork);
-router.get('/artwork/artist/:name', artwork_controllers_1.default.getArtist);
+router.get('/artwork/artist/:artistId', artwork_controllers_1.default.getArtist);
 router.delete('/artwork/:id', artwork_controllers_1.default.deleteArt);
 //routes for user authentication and authorisation
 router.post('/user/register', user_controller_1.default.postRegister);

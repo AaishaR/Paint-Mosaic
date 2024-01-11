@@ -49,7 +49,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<HomePage/>} />
             <Route path='/account' element={<Account/>} />
-            <Route path='/artist/:artistName' element={<Artist/>} />
+            <Route path='/artist/:artistId/:artistName' element={<Artist/>} />
           </Routes>
         </FavProvider>
       </AuthProvider>

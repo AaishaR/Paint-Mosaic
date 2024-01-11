@@ -13,10 +13,10 @@ async function getArtwork() {
 
 
 //fetch all work by one artist for artist profile
-async function getArtist(name) {
+async function getArtist(artistId) {
     // console.log('here')
     try {
-        const data = await fetch(`${url}/artwork/artist/${name}`);
+        const data = await fetch(`${url}/artwork/artist/${artistId}`);
         const response = await data.json();
         // console.log(response, '🐸🐸 ' )
         return response;

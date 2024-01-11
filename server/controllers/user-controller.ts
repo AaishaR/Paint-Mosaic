@@ -86,7 +86,7 @@ const getUserDetails = async (req: Request, res: Response): Promise<Response> =>
 
     const user = await User.findOne({ userId: artistId })
 
-    console.log(user)
+    // console.log(user)
     return res.status(200).send(user);
   } catch (error) {
     console.error(error)
