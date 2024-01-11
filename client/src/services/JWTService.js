@@ -58,6 +58,21 @@ apiServiceJWT.getUser = async (token) => {
   }
 }
 
+apiServiceJWT.getUserDetails = async (artistId) => {
+  try {
+    const data = await fetch(`${BASE_URL}/details?artistId=${artistId}`,{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const response = await data.json();
+    return response;
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
 apiServiceJWT.addFav = async (_id, artwork) => {
   try {
     const response = await fetch(`${BASE_URL}/addFav`, {

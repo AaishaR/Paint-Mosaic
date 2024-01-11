@@ -14,6 +14,7 @@ router.delete('/artwork/:id', artController.deleteArt);
 
 router.post('/user/register', userController.postRegister);
 router.post('/user/login', userController.postLogin);
+router.get('/user/details', userController.getUserDetails);
 router.get('/user', userController.getUser);
 
 //updating user profile

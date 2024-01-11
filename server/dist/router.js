@@ -14,6 +14,7 @@ router.delete('/artwork/:id', artwork_controllers_1.default.deleteArt);
 //routes for user authentication and authorisation
 router.post('/user/register', user_controller_1.default.postRegister);
 router.post('/user/login', user_controller_1.default.postLogin);
+router.get('/user/details', user_controller_1.default.getUserDetails);
 router.get('/user', user_controller_1.default.getUser);
 //updating user profile
 router.post('/user/addFav', user_controller_1.default.putAddToFav);

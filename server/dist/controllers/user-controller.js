@@ -75,6 +75,18 @@ const getUser = async (req, res) => {
         return res.status(500).json({ error: "Internal server error in getUser" });
     }
 };
+const getUserDetails = async (req, res) => {
+    try {
+        const { artistId } = req.query;
+        const user = await userSchema_1.default.findOne({ userId: artistId });
+        console.log(user);
+        return res.status(200).send(user);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error in getUser" });
+    }
+};
 const putAddToFav = async (req, res) => {
     // console.log(req.body)
     try {
@@ -108,4 +120,4 @@ const putRemoveFav = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav };
+exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails };

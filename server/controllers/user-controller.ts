@@ -79,6 +79,21 @@ const getUser = async (req: Request, res: Response): Promise<Response> => {
   }
 }
 
+const getUserDetails = async (req: Request, res: Response): Promise<Response> => {
+  try {
+
+    const { artistId } = req.query
+
+    const user = await User.findOne({ userId: artistId })
+
+    console.log(user)
+    return res.status(200).send(user);
+  } catch (error) {
+    console.error(error)
+    return res.status(500).json({ error: "Internal server error in getUser" });
+  }
+}
+
 const putAddToFav = async (req: Request, res: Response): Promise<Response> => {
   // console.log(req.body)
   try {
@@ -114,4 +129,4 @@ const putRemoveFav = async (req: Request, res: Response): Promise<Response> => {
 }
 
 
-export default { postRegister, postLogin, getUser, putAddToFav, putRemoveFav };
+export default { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails };

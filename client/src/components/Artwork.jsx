@@ -7,9 +7,10 @@ import { useAuth } from '../contexts/auth';
 
 export default function Artwork(props) {
 
-    const {isAuthenticated} = useAuth();
+    const { isAuthenticated } = useAuth();
 
     const [isArtworkFavorited, setIsArtworkFavorited] = useState(false);
+    const [artistName, setArtistName] = useState('');
 
     const handleClickToFav = (item) => {
         // const isFavorited = props.favList.filter(el => el._id === item._id);
@@ -26,6 +27,20 @@ export default function Artwork(props) {
         // }
 
     };
+
+    useEffect(() => {
+
+        // console.log(props.artwork.artistId)
+        async function fetchData () {
+            const artist = await apiServiceJWT.getUserDetails(props.artwork.artistId);
+            // console.log(artist)
+            setArtistName(artist.name);
+
+        }
+
+        fetchData();
+        // eslint-disable-next-line
+    }, [])
 
     // useEffect(() => {
     //     let newArr = props.favList.filter(el => el._id === props.artwork._id); 
@@ -47,7 +62,8 @@ export default function Artwork(props) {
                             <h1>{props.artwork.title}</h1>
                             <div className='artist-name'>
 
-                                {/* <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{props.artwork.artist.name} <RiQuestionLine className='questionmark' /></Link></p> */}
+                                {/* <p>By - <Link to={`/artist/${encodeURIComponent(props.artwork.artist.name)}`}>{artistName} <RiQuestionLine className='questionmark' /></Link></p> */}
+                                <p>By -{artistName} <RiQuestionLine className='questionmark' /></p>
                             </div>
                             <div className="sub-artist-details">
                                 <div className='category'>
