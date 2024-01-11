@@ -1,9 +1,18 @@
 import { PhotoIcon } from '@heroicons/react/24/solid'
-import { cloudinaryUpload } from '../services/apiService';
+import { cloudinaryUpload, postArtWork } from '../services/apiService';
 import { useState } from 'react';
+import { useAuth } from '../contexts/auth';
 
 export default function UserDetails(props) {
+
+    const {user} = useAuth();
+
+    const [title, setTitle] = useState('');
     const [imageURL, setImageURL] = useState('');
+    const [description, setDescription] = useState('');
+    const [price, setPrice] = useState('');
+    const [material, setMaterial] = useState('');
+    const [category, setCategory] = useState('Modern Art');
 
     const handleFileUpload = async (e) => {
         if (e.target.files) {
@@ -18,7 +27,22 @@ export default function UserDetails(props) {
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        
+        const newArtWork = {
+            title: title,
+            image: imageURL,
+            description: description,
+            price: price,
+            material: material,
+            category: category,
+            artistId: user.userId
+        }
+
+
+
+        console.log(newArtWork);
+
+        postArtWork(newArtWork, '')
+
     }
 
     return (
@@ -34,7 +58,7 @@ export default function UserDetails(props) {
                             </label>
                             <div className="mt-2">
                                 <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">workcation.com/</span>
+                                    <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">{user.email}</span>
                                 </div>
                             </div>
                         </div>
@@ -71,76 +95,78 @@ export default function UserDetails(props) {
 
                     <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         <div className="sm:col-span-3">
-                            <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
                                 Title
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="first-name"
-                                    id="first-name"
+                                    name="description"
+                                    id="description"
                                     autoComplete="given-name"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    onChange={(text) => { setTitle(text.target.value) }}
                                 />
                             </div>
                         </div>
 
                         <div className="col-span-full">
-                            <label htmlFor="about" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
                                 Description
                             </label>
                             <div className="mt-2">
                                 <textarea
-                                    id="about"
-                                    name="about"
+                                    id="description"
+                                    name="description"
                                     rows={3}
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                     defaultValue={''}
+                                    onChange={(text) => { setDescription(text.target.value) }}
                                 />
                             </div>
                             <p className="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about art piece.</p>
                         </div>
 
                         <div className="sm:col-span-3">
-                            <label htmlFor="last-name" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="price" className="block text-sm font-medium leading-6 text-gray-900">
                                 Price
                             </label>
                             <div className="mt-2">
                                 <input
                                     type="text"
-                                    name="last-name"
-                                    id="last-name"
-                                    autoComplete="family-name"
+                                    name="price"
+                                    id="price"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    onChange={(text) => { setPrice(text.target.value) }}
                                 />
                             </div>
                         </div>
 
                         <div className="sm:col-span-4">
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="material" className="block text-sm font-medium leading-6 text-gray-900">
                                 Material
                             </label>
                             <div className="mt-2">
                                 <input
-                                    id="email"
-                                    name="email"
-                                    type="email"
-                                    autoComplete="email"
+                                    id="material"
+                                    name="material"
+                                    type="text"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    onChange={(text) => { setMaterial(text.target.value) }}
                                 />
                             </div>
                         </div>
 
                         <div className="sm:col-span-3">
-                            <label htmlFor="country" className="block text-sm font-medium leading-6 text-gray-900">
+                            <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
                                 Category
                             </label>
                             <div className="mt-2">
                                 <select
-                                    id="country"
-                                    name="country"
-                                    autoComplete="country-name"
+                                    id="category"
+                                    name="category"
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
+                                    onChange={(text) => { setCategory(text.target.value === '' ? 'Modern Art' : text.target.value) }}
                                 >
                                     <option>Modern Art</option>
                                     <option>Still Life</option>

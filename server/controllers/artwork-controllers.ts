@@ -1,6 +1,7 @@
 
 import { Request, Response } from 'express';
 import artworkModel from '../models/artworkSchemas';
+import { validateUser } from '../utils/userUtils';
 
 const getArtwork = async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -15,6 +16,11 @@ const getArtwork = async (req: Request, res: Response): Promise<Response> => {
 
 const postArtwork = async (req: Request, res: Response): Promise<Response> => {
     try {
+
+        const validUser = validateUser(req);
+
+        if (!validUser) return res.status(401).json({ error: "Authentication failed" });
+
         const artwork = await artworkModel.create(req.body);
         return res.status(201).json({ stauts: 201, message: 'Successfully created artwork', artwork: artwork });
     } catch (e) {

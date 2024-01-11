@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import User from './../models/userSchema';
+import { v4 as uuidv4 } from 'uuid';
 import { validateUser } from '../utils/userUtils'
 
 import dotenv from "dotenv";
@@ -25,8 +26,10 @@ const postRegister = async (req: Request, res: Response): Promise<Response> => {
     if (password === '') throw new Error();
 
     const hash = await bcrypt.hash(password, 10);
+    const userId = uuidv4();
     const newUser = new User({
       ...req.body,
+      userId: userId,
       password: hash,
     });
     const { _id } = await newUser.save();
@@ -34,7 +37,7 @@ const postRegister = async (req: Request, res: Response): Promise<Response> => {
     // console.log('_id:', _id);
     // console.log('SECRET_KEY:', SECRET_KEY);
     const accessToken = jwt.sign({ _id }, process.env.SECRET_KEY!);
-    console.log(accessToken)
+    // console.log(accessToken)
     return res.status(201).json({ accessToken });
 
   } catch (error) {

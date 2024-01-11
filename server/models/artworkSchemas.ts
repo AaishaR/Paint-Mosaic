@@ -12,10 +12,6 @@ const ArtworkSchema = {
     description: {
         type: String,
     },
-    dimensions: {
-        type: String,
-        required: true,
-    },
     price: {
         type: String,
         required: true,
