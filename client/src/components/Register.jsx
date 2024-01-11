@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import apiServiceJWT from '../services/JWTService';
+import { useAuth } from '../contexts/auth';
 
 export default function Register(props) {
+
+    const {login} = useAuth();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -45,9 +48,7 @@ export default function Register(props) {
         } else {
 
             const { accessToken } = res;
-            // console.log('AT ', accessToken)
-            localStorage.setItem('accessToken', accessToken);
-            props.setIsAuthenticated(true);
+            login(accessToken);
             props.setShowSignIn(true);
             props.setShowSignUp(false);
         }

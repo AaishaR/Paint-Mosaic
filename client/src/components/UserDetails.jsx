@@ -5,7 +5,7 @@ import { useAuth } from '../contexts/auth';
 
 export default function UserDetails(props) {
 
-    const {user} = useAuth();
+    const {token, user} = useAuth();
 
     const [title, setTitle] = useState('');
     const [imageURL, setImageURL] = useState('');
@@ -41,7 +41,7 @@ export default function UserDetails(props) {
 
         console.log(newArtWork);
 
-        postArtWork(newArtWork, '')
+        postArtWork(newArtWork, token);
 
     }
 

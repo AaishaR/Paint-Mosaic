@@ -9,7 +9,6 @@ export default function Login(props) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [userInfo, setUesrInfo] = useState('');
 
     const [errEmail, setErrEmail] = useState('');
     const [errPassword, setErrPassword] = useState('');
@@ -43,7 +42,6 @@ export default function Login(props) {
             const { accessToken, userDetails } = res;
             login(accessToken);
             // console.log(res)
-            setUesrInfo(userDetails);
             props.setShowSignIn(true);
             props.setShowSignUp(false);
         }
