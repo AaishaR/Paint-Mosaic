@@ -6,7 +6,7 @@ import HomePage from './pages/homePage';
 import Account from './pages/account';
 import Artist from './pages/artist';
 import { FavProvider } from './contexts/favouriteContext';
-import auth from './utils/auth';
+// import auth from './utils/auth';
 import { useEffect, useState } from 'react';
 import apiServiceJWT from './services/JWTService';
 import { AuthProvider } from './contexts/auth';

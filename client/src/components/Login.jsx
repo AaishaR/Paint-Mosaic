@@ -36,7 +36,7 @@ export default function Login(props) {
         const res = await apiServiceJWT.login(user);
 
         if (res.error) {
-            alert(`${res.message}`);
+            alert(`User doesn't exists`);
             props.setShowSignIn(false);
             props.setShowSignUp(true);
         } else {
