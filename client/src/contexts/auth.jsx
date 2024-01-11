@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (token) => {
         try {
-            localStorage.setItem('token', token)
+            localStorage.setItem('accessToken', token)
             setToken(token);
         } catch (error) {
             console.error('Error storing token:', error);
@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            localStorage.removeItem('token')
+            localStorage.removeItem('accessToken')
             setToken(undefined);
         } catch (error) {
             console.error('Error removing token:', error)
@@ -37,7 +37,7 @@ export const AuthProvider = ({ children }) => {
 
     const getData = async () => {
         try {
-            const value = localStorage.getItem('token');
+            const value = localStorage.getItem('accessToken');
             if (value !== null) setToken(value);
         } catch (error) {
             console.log(error)

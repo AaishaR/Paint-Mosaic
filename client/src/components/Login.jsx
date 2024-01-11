@@ -60,7 +60,6 @@ export default function Login(props) {
     };
 
     const handleAuth = () => {
-        props.setIsAuthenticated(false);
         props.setShowSignIn(true)
         window.location.reload();
     };
