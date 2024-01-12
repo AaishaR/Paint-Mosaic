@@ -39,7 +39,7 @@ export default function Login(props) {
             props.setShowSignIn(false);
             props.setShowSignUp(true);
         } else {
-            const { accessToken, userDetails } = res;
+            const { accessToken } = res;
             login(accessToken);
             // console.log(res)
             props.setShowSignIn(true);

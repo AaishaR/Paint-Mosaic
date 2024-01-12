@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/homePage';
 import Account from './pages/account';
 import Artist from './pages/artist';
+import AddWork from './pages/addWork';
 import { FavProvider } from './contexts/favouriteContext';
 // import auth from './utils/auth';
 // import { useEffect, useState } from 'react';
@@ -50,6 +51,7 @@ function App() {
             <Route exact path='/' element={<HomePage/>} />
             <Route path='/account' element={<Account/>} />
             <Route path='/artist/:artistId/:artistName' element={<Artist/>} />
+            <Route path='/addWork' element={<AddWork/>} />
           </Routes>
         </FavProvider>
       </AuthProvider>
