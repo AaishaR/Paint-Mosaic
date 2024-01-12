@@ -11,7 +11,7 @@ export default function ArtistList(props) {
     const [artist, setArtist] = useState([]);
 
     useEffect(() => {
-        console.log('here: ',artistId)
+        // console.log('here: ',artistId)
         getArtist(artistId).then((data) => {
             setArtist(data.artwork)
         })

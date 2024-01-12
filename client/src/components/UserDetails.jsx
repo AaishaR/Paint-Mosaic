@@ -28,7 +28,7 @@ export default function UserDetails(props) {
         if (e.target.files) {
             setLoading(true)
             const file = e.target.files[0];
-            console.log(file)
+            // console.log(file)
             const form = new FormData();
             form.append('upload_preset', 'paint-mosaic');
             form.append('file', file);
@@ -58,7 +58,7 @@ export default function UserDetails(props) {
                 artistId: user.userId,
             };
 
-            console.log(newArtWork);
+            // console.log(newArtWork);
 
             await postArtWork(newArtWork, token);
 
