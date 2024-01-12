@@ -6,7 +6,7 @@ import logo from '../media/mosaic.png';
 import { RiAccountPinCircleLine } from 'react-icons/ri'
 
 const navigation = [
-    { name: 'Dashboard', href: '#', current: true },
+    { name: 'Account', href: '#', current: true },
     { name: 'Team', href: '#', current: false },
     { name: 'Projects', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },
