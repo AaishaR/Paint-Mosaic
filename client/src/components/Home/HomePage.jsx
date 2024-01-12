@@ -14,10 +14,10 @@ export default function HomePage(props) {
 
     return (
         <>
-            {artworks.length ? <div className='Main-container'>
+            {artworks.length ? <div className="mx-4 my-8">
                 {/* <ArtworkSlider artworks={artworks} favList={props.favList} setFavList={props.setFavList} user={props.user} isAuthenticated={props.isAuthenticated} /> */}
                 <ArtworkSlider artworks={artworks} />
-            </div> : <div> <p> No Artwork Available</p></div>
+            </div> : <div className="mx-4 my-8"> <p> No Artwork Available</p></div>
             }
         </>
 
