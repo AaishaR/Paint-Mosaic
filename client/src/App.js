@@ -2,10 +2,10 @@
 import './App.css';
 import Navbar from './components/NavBar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/homePage';
-import Account from './pages/account';
-import Artist from './pages/artist';
-import AddWork from './pages/addWork';
+import HomePage from './components/Home/HomePage';
+import Account from './components/Account/Account';
+import Artist from './components/Artist/artist';
+import AddWork from './components/AddWork/addWork';
 import { FavProvider } from './contexts/favouriteContext';
 // import auth from './utils/auth';
 // import { useEffect, useState } from 'react';

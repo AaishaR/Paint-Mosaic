@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getArtist } from "../services/apiService";
+import { getArtist } from "../../services/apiService";
 import { useParams } from "react-router-dom";
-import Artwork from './Artwork';
+import Artwork from '../Artwork';
 
 export default function ArtistList(props) {
 

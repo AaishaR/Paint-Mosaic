@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import UserDetails from './UserDetails';
-import apiServiceJWT from '../services/JWTService';
-import { useAuth } from '../contexts/auth';
+import apiServiceJWT from '../../services/JWTService';
+import { useAuth } from '../../contexts/auth';
 
 export default function Login(props) {
 

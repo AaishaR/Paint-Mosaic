@@ -1,4 +1,4 @@
-import AddArtwork from "../components/AddArtwork";
+import AddArtwork from "./AddArtwork";
 
 export default function AddWork(props) {
     return (

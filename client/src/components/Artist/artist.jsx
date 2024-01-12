@@ -1,6 +1,6 @@
-import ArtworkList from "../components/ArtworkList"
+import ArtworkList from "./ArtworkList"
 import { useEffect, useState } from 'react';
-import { getArtwork } from '../services/apiService';
+import { getArtwork } from '../../services/apiService';
 
 export default function Artist(props) {
 

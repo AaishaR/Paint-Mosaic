@@ -1,6 +1,6 @@
-import ArtworkSlider from "../components/ArtworkSlider"
+import ArtworkSlider from "./ArtworkSlider"
 import { useEffect, useState } from 'react';
-import { getArtwork } from '../services/apiService';
+import { getArtwork } from '../../services/apiService';
 
 export default function HomePage(props) {
 

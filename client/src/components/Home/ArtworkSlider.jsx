@@ -1,7 +1,7 @@
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import Artwork from './Artwork';
+import Artwork from '../Artwork';
 
 export default function ArtworkSlider(props) {
 

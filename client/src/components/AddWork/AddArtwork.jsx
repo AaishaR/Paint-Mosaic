@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { css } from '@emotion/react';
 import { ClipLoader } from 'react-spinners';
-import { useAuth } from '../contexts/auth';
-import { cloudinaryUpload, postArtWork } from '../services/apiService';
+import { useAuth } from '../../contexts/auth';
+import { cloudinaryUpload, postArtWork } from '../../services/apiService';
 import { PhotoIcon } from '@heroicons/react/24/solid'
 
 const override = css`
