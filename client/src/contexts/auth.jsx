@@ -4,7 +4,7 @@ import apiServiceJWT from '../services/JWTService'
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [authenticated, setAuthenticated] = useState(false);
+    // const [authenticated, setAuthenticated] = useState(false);
     const [user, setUser] = useState('');
     const [token, setToken] = useState(localStorage.getItem('token'));
 
