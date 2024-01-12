@@ -14,13 +14,7 @@ import { AuthProvider } from './contexts/auth';
 
 
 function App() {
-
-  // const initialState = auth.isAuthenticated();
-  // const [isAuthenticated, setIsAuthenticated] = useState(initialState);
-  // const [userInfo, setUserinfo] = useState();
   // const [favList, setFavList] = useState([]);
-
-  // const token = localStorage.getItem('accessToken');
 
   // useEffect(() => {
   //   (async () => {
@@ -38,9 +32,7 @@ function App() {
   //       }
   //     }
   //   })();
-  // }, [token])
-
-  // console.log('userinfo before return', userInfo);
+  // }, [])
 
   return (
     <Router>

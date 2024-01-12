@@ -37,7 +37,6 @@ export default function Artwork(props) {
             // console.log(artist)
             setArtistName(artist.name);
             setArtistUserId(artist.userId)
-
         }
 
         fetchData();
