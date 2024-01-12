@@ -16,9 +16,8 @@ export default function ArtistList(props) {
             setArtist(data.artwork)
         })
 
-        console.log(artist)
 
-    }, [artistId]);
+    }, [artistId, artist]);
 
     return (
         <div className="artwork-list-container">

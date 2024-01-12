@@ -2,10 +2,12 @@ import { PhotoIcon } from '@heroicons/react/24/solid'
 import { cloudinaryUpload, postArtWork } from '../services/apiService';
 import { useState } from 'react';
 import { useAuth } from '../contexts/auth';
+import { css } from '@emotion/react';
+import { ClipLoader } from 'react-spinners';
 
 export default function UserDetails(props) {
 
-    const {token, user} = useAuth();
+    const { token, user } = useAuth();
 
     const [title, setTitle] = useState('');
     const [imageURL, setImageURL] = useState('');
@@ -13,6 +15,7 @@ export default function UserDetails(props) {
     const [price, setPrice] = useState('');
     const [material, setMaterial] = useState('');
     const [category, setCategory] = useState('Modern Art');
+    const [imagePreview, setImagePreview] = useState(null);
 
     const handleFileUpload = async (e) => {
         if (e.target.files) {
@@ -22,6 +25,13 @@ export default function UserDetails(props) {
             form.append('upload_preset', 'paint-mosaic');
             form.append('file', file);
             setImageURL(await cloudinaryUpload(form));
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result)
+            };
+
+            reader.readAsDataURL(file);
         }
     }
 
@@ -87,6 +97,14 @@ export default function UserDetails(props) {
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
                                 </div>
+                                {imagePreview && (
+                                    <img
+                                        src={imagePreview}
+                                        alt="Preview"
+                                        className="mt-4 rounded-lg border border-gray-900/25"
+                                        style={{ maxWidth: '100%', maxHeight: '200px' }}
+                                    />
+                                )}
                                 <p className="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
                             </div>
                         </div>
