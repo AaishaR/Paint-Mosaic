@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import logo from '../media/mosaic.png';
 
 const navigation = [
-    { name: 'Home', to: '/', current: true },
+    { name: 'Home', to: '/', current: false },
     { name: 'Upload Work', to: '/addWork', current: false },
     { name: 'Account', to: '/Account', current: false },
-]
+] 
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -53,6 +53,7 @@ export default function Navbar() {
                                                     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                                                     'rounded-md px-3 py-2 text-sm font-medium'
                                                 )}
+                                                aria-current={item.current ? 'page' : undefined}
                                             >
                                                 {item.name}
                                             </Link>
