@@ -5,6 +5,12 @@ import { useAuth } from '../contexts/auth';
 import { css } from '@emotion/react';
 import { ClipLoader } from 'react-spinners';
 
+const override = css`
+  display: block;
+  margin: 0 auto;
+  border-color: red;
+`;
+
 export default function UserDetails(props) {
 
     const { token, user } = useAuth();
@@ -16,9 +22,11 @@ export default function UserDetails(props) {
     const [material, setMaterial] = useState('');
     const [category, setCategory] = useState('Modern Art');
     const [imagePreview, setImagePreview] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleFileUpload = async (e) => {
         if (e.target.files) {
+            setLoading(true)
             const file = e.target.files[0];
             console.log(file)
             const form = new FormData();
@@ -28,7 +36,8 @@ export default function UserDetails(props) {
 
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImagePreview(reader.result)
+                setImagePreview(reader.result);
+                setLoading(false);
             };
 
             reader.readAsDataURL(file);
@@ -37,23 +46,35 @@ export default function UserDetails(props) {
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        const newArtWork = {
-            title: title,
-            image: imageURL,
-            description: description,
-            price: price,
-            material: material,
-            category: category,
-            artistId: user.userId
+        setLoading(true);
+        try {
+            const newArtWork = {
+                title: title,
+                image: imageURL,
+                description: description,
+                price: price,
+                material: material,
+                category: category,
+                artistId: user.userId,
+            };
+
+            console.log(newArtWork);
+
+            await postArtWork(newArtWork, token);
+
+            setTitle('');
+            setImageURL('');
+            setDescription('');
+            setPrice('');
+            setMaterial('');
+            setCategory('');
+
+        } catch (error) {
+            console.error('Error uploading artwork:', error);
+        } finally {
+            setLoading(false);
         }
-
-
-
-        console.log(newArtWork);
-
-        postArtWork(newArtWork, token);
-
-    }
+    };
 
     return (
         <form>
@@ -97,6 +118,9 @@ export default function UserDetails(props) {
                                     </label>
                                     <p className="pl-1">or drag and drop</p>
                                 </div>
+                                {loading && (
+                                    <ClipLoader css={override} size={50} color={'#123abc'} loading={loading} />
+                                )}
                                 {imagePreview && (
                                     <img
                                         src={imagePreview}
@@ -205,8 +229,9 @@ export default function UserDetails(props) {
                     type="submit"
                     className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     onClick={handleUpload}
+                    disabled={loading}
                 >
-                    Upload
+                    {loading ? 'Uploading...' : 'Upload'}
                 </button>
             </div>
         </form>
