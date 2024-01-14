@@ -2,32 +2,12 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import apiServiceJWT from '../../services/JWTService';
 import { RiQuestionLine } from 'react-icons/ri';
-import { useAuth } from '../../contexts/auth';
-import { TiBookmark } from 'react-icons/ti';
 
 export default function ArtworkSliderCard(props) {
 
-    const { isAuthenticated } = useAuth();
-
     const [artistName, setArtistName] = useState('');
     const [artistUserId, setArtistUserId] = useState('');
-    const [isArtworkFavorited, setIsArtworkFavorited] = useState(false);
 
-    const handleClickToFav = (item) => {
-        // const isFavorited = props.favList.filter(el => el._id === item._id);
-
-        // if (isFavorited.length) {
-
-        //     props.setFavList((prev) => prev.filter((el) => el._id !== item._id));
-        //     apiServiceJWT.removeFav(props.user._id, item._id);
-
-        // } else {
-
-        //     props.setFavList((prev) => [...prev, item]);
-        //     apiServiceJWT.addFav(props.user._id, item);
-        // }
-
-    };
     useEffect(() => {
         // console.log(props.artwork.artistId)
         async function fetchData() {
