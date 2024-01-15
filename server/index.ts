@@ -1,9 +1,9 @@
 import router from './router';
-
 import express, { Express, Request, Response , Application } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import db from './models/db';
+
 
 const corsOptions: cors.CorsOptions = {
   origin: 'http://localhost:3001',
@@ -13,6 +13,8 @@ const corsOptions: cors.CorsOptions = {
 //For env File 
 dotenv.config({ path: './.env' });
 db();
+
+
 const app: Application = express();
 
 const PORT = 3000;
