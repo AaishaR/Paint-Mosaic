@@ -22,4 +22,6 @@ router.get('/user', userController.getUser);
 router.post('/user/addFav', userController.putAddToFav);
 router.post('/user/removeFav', userController.putRemoveFav);
 
+router.post('/send-message', userController.postMail);
+
 export default router;

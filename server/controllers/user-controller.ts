@@ -4,6 +4,8 @@ import jwt from 'jsonwebtoken';
 import User from './../models/userSchema';
 import { v4 as uuidv4 } from 'uuid';
 import { validateUser } from '../utils/userUtils'
+import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 
 import dotenv from "dotenv";
 dotenv.config({ path: '../.env' });
@@ -128,5 +130,27 @@ const putRemoveFav = async (req: Request, res: Response): Promise<Response> => {
   }
 }
 
+const postMail = async (req: Request, res: Response): Promise<Response> => {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+  try {
+    const { name, email, subject, message, to } = req.body;
 
-export default { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails };
+    const msg = {
+      to: to,
+      from: email,
+      subject: subject,
+      text: message
+    };
+
+    await sgMail.send(msg);
+    return res.status(200).send('Message sent successfully');
+
+  } catch (error) {
+    console.error('Error sending email:', error);
+    return res.status(500).send('Internal Server Error');
+
+  }
+}
+
+
+export default { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails, postMail };

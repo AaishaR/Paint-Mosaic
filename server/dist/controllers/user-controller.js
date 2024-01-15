@@ -8,6 +8,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userSchema_1 = __importDefault(require("./../models/userSchema"));
 const uuid_1 = require("uuid");
 const userUtils_1 = require("../utils/userUtils");
+const mail_1 = __importDefault(require("@sendgrid/mail"));
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
 // const SECRET_KEY  = process.env.SECRET_KEY!;
@@ -120,4 +121,22 @@ const putRemoveFav = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
-exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails };
+const postMail = async (req, res) => {
+    mail_1.default.setApiKey(process.env.SENDGRID_API_KEY);
+    try {
+        const { name, email, subject, message, to } = req.body;
+        const msg = {
+            to: to,
+            from: email,
+            subject: subject,
+            text: message
+        };
+        await mail_1.default.send(msg);
+        return res.status(200).send('Message sent successfully');
+    }
+    catch (error) {
+        console.error('Error sending email:', error);
+        return res.status(500).send('Internal Server Error');
+    }
+};
+exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails, postMail };

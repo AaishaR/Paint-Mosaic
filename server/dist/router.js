@@ -19,4 +19,5 @@ router.get('/user', user_controller_1.default.getUser);
 //updating user profile
 router.post('/user/addFav', user_controller_1.default.putAddToFav);
 router.post('/user/removeFav', user_controller_1.default.putRemoveFav);
+router.post('/send-message', user_controller_1.default.postMail);
 exports.default = router;
