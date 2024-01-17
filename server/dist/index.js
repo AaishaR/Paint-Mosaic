@@ -8,16 +8,17 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const db_1 = __importDefault(require("./models/db"));
-const corsOptions = {
-    origin: 'http://localhost:3001',
-    optionsSuccessStatus: 200,
-};
+// const corsOptions: cors.CorsOptions = {
+//   origin: 'https://paint-mosaic-k37c.vercel.app/',
+//   optionsSuccessStatus: 200,
+// }
 //For env File 
 dotenv_1.default.config({ path: './.env' });
 (0, db_1.default)();
 const app = (0, express_1.default)();
 const PORT = 3000;
-app.use((0, cors_1.default)(corsOptions));
+//corsOptions)
+app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use(router_1.default);
 app.listen(PORT, () => {

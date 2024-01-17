@@ -15,5 +15,14 @@
     "nodemailer": "^6.9.8",
     "react-scripts": "^5.0.1",
     "uuid": "^9.0.1"
+  },
+  "scripts": {
+    "install-deps": "cd client && npm install && cd ../server && npm install",
+    "build": "npm run install-deps && cd client && npm run build && cd ../server && npm run build",
+    "start": "npm run install-deps && npm run start-server",
+    "start-server": "cd server && npm start",
+    "backend-build": "cd server && npm run build",
+    "ts.check": "cd server && tsc --project tsconfig.json",
+    "add-build": "cd server && git add dist"
   }
 }

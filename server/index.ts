@@ -5,10 +5,10 @@ import dotenv from 'dotenv';
 import db from './models/db';
 
 
-const corsOptions: cors.CorsOptions = {
-  origin: 'http://localhost:3001',
-  optionsSuccessStatus: 200,
-}
+// const corsOptions: cors.CorsOptions = {
+//   origin: 'https://paint-mosaic-k37c.vercel.app/',
+//   optionsSuccessStatus: 200,
+// }
 
 //For env File 
 dotenv.config({ path: './.env' });
@@ -18,8 +18,8 @@ db();
 const app: Application = express();
 
 const PORT = 3000;
-
-app.use(cors(corsOptions));
+//corsOptions)
+app.use(cors());
 app.use(express.json());
 app.use(router);
 app.listen(PORT, () => {
