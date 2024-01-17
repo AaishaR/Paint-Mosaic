@@ -4,7 +4,10 @@ const url = 'https://paint-mosaic.vercel.app'
 //fetching all artwork from backend
 async function getArtwork() {
     try {
-        const data = await fetch(`${url}/artwork`);
+        const data = await fetch(`${url}/artwork`, {
+            method: 'GET',
+            mode:'no-cors',
+        });
         const response = await data.json();
         return response;
     } catch (e) {
@@ -17,7 +20,10 @@ async function getArtwork() {
 async function getArtist(artistId) {
     // console.log('here')
     try {
-        const data = await fetch(`${url}/artwork/artist/${artistId}`);
+        const data = await fetch(`${url}/artwork/artist/${artistId}`, {
+            method: 'GET',
+            mode:'no-cors',
+        });
         const response = await data.json();
         // console.log(response, '🐸🐸 ' )
         return response;
@@ -30,7 +36,8 @@ async function cloudinaryUpload(data) {
     try {
         const response = await fetch("https://api.cloudinary.com/v1_1/ddyh3rk7s/upload", {
             method: 'POST',
-            body: data
+            body: data,
+            mode:'no-cors',
         });
 
         // console.log(response)
@@ -52,6 +59,7 @@ async function postArtWork(data, token){
     try {
         const response = await fetch(`${url}/artwork`, {
             method: 'POST',
+            mode:'no-cors',
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `${token}`,
