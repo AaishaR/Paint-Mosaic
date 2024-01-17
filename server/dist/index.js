@@ -12,17 +12,30 @@ const db_1 = __importDefault(require("./models/db"));
 //   origin: 'http://localhost:3000',
 //   optionsSuccessStatus: 200,
 // }
-const whitelist = ['http://localhost:3000'];
+// const whitelist = ['http://localhost:3000', 'https://paint-mosaic-jz5k.vercel.app/', 'https://paint-mosaic-jz5k.vercel.app'];
+// const corsOptions: CorsOptions = {
+//   origin: (origin, callback) => {
+//     if (whitelist.indexOf(origin!) !== -1 || !origin) {
+//       // Using ! to tell TypeScript that origin is not null or undefined
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   },
+//   methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+//   optionsSuccessStatus: 200,
+//   credentials: true,
+//   allowedHeaders: [
+//     'Content-Type',
+//     'Authorization',
+//     'X-Requested-With',
+//     'device-remember-token',
+//     'Access-Control-Allow-Origin',
+//     'Origin',
+//     'Accept']
+// };
 const corsOptions = {
-    origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
-            // Using ! to tell TypeScript that origin is not null or undefined
-            callback(null, true);
-        }
-        else {
-            callback(new Error('Not allowed by CORS'));
-        }
-    },
+    origin: 'https://paint-mosaic-jz5k.vercel.app',
     methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
     optionsSuccessStatus: 200,
     credentials: true,
@@ -33,8 +46,8 @@ const corsOptions = {
         'device-remember-token',
         'Access-Control-Allow-Origin',
         'Origin',
-        'Accept'
-    ]
+        'Accept',
+    ],
 };
 //For env File 
 dotenv_1.default.config({ path: './.env' });

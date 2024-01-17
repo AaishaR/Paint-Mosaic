@@ -35,6 +35,22 @@ import db from './models/db';
 // };
 
 
+const corsOptions = {
+  origin: 'https://paint-mosaic-jz5k.vercel.app', // Replace with your React app's domain
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  optionsSuccessStatus: 200,
+  credentials: true,
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-Requested-With',
+    'device-remember-token',
+    'Access-Control-Allow-Origin',
+    'Origin',
+    'Accept',
+  ],
+};
+
 
 //For env File 
 dotenv.config({ path: './.env' });
@@ -45,7 +61,7 @@ const app: Application = express();
 
 const PORT = 3000;
 //corsOptions)
-app.use(cors());
+app.use(cors(corsOptions));
 // app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
