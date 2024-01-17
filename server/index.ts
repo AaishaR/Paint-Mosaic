@@ -6,7 +6,7 @@ import db from './models/db';
 
 
 const corsOptions: cors.CorsOptions = {
-  origin: 'https://paint-mosaic-k37c.vercel.app/',
+  origin: 'http://localhost:3000',
   optionsSuccessStatus: 200,
 }
 
