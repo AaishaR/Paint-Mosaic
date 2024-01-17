@@ -4,7 +4,11 @@ const url = 'https://paint-mosaic.vercel.app'
 //fetching all artwork from backend
 async function getArtwork() {
     try {
-        const data = await fetch(`${url}/artwork`);
+        const data = await fetch(`${url}/artwork`, {
+            headers: {
+                'Access-Control-Allow-Origin' : '*',
+            }
+        });
         const response = await data.json();
         return response;
     } catch (e) {
@@ -17,7 +21,11 @@ async function getArtwork() {
 async function getArtist(artistId) {
     // console.log('here')
     try {
-        const data = await fetch(`${url}/artwork/artist/${artistId}`);
+        const data = await fetch(`${url}/artwork/artist/${artistId}`, {
+            headers:{
+                'Access-Control-Allow-Origin' : '*',
+            }
+        });
         const response = await data.json();
         // console.log(response, '🐸🐸 ' )
         return response;
@@ -54,7 +62,8 @@ async function postArtWork(data, token){
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-                'Authorization': `${token}`
+                'Authorization': `${token}`,
+                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(data),
         });
