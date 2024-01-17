@@ -10,6 +10,8 @@ import db from './models/db';
 //   optionsSuccessStatus: 200,
 // }
 
+const whitelist = ['http://localhost:3000'];
+
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
     if (whitelist.indexOf(origin!) !== -1 || !origin) {
@@ -32,7 +34,7 @@ const corsOptions: CorsOptions = {
     'Accept']
 };
 
-const whitelist = ['http://localhost:3000'];
+
 
 //For env File 
 dotenv.config({ path: './.env' });
