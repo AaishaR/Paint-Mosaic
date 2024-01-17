@@ -4,10 +4,7 @@ const url = 'https://paint-mosaic.vercel.app'
 //fetching all artwork from backend
 async function getArtwork() {
     try {
-        const data = await fetch(`${url}/artwork`, {
-            method: 'GET',
-            mode:'no-cors',
-        });
+        const data = await fetch(`${url}/artwork`);
         const response = await data.json();
         return response;
     } catch (e) {
