@@ -8,7 +8,6 @@ apiServiceJWT.register = async (user) => {
   try {
     const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
-      mode:'no-cors',
       headers: { 
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -27,7 +26,6 @@ apiServiceJWT.register = async (user) => {
 apiServiceJWT.login = (user) => {
   return fetch(`${BASE_URL}/login`, {
     method: 'POST',
-    mode:'no-cors',
     headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', },
     body: JSON.stringify(user),
   })
@@ -44,7 +42,6 @@ apiServiceJWT.getUser = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}`, {
       method: 'GET',
-      mode:'no-cors',
       headers: { 'Authorization': `${token}`, 'Access-Control-Allow-Origin': '*', }
     });
 
@@ -69,7 +66,6 @@ apiServiceJWT.getUserDetails = async (artistId) => {
   try {
     const data = await fetch(`${BASE_URL}/details?artistId=${artistId}`,{
       method: 'GET',
-      mode:'no-cors',
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -86,7 +82,6 @@ apiServiceJWT.addFav = async (_id, artwork) => {
   try {
     const response = await fetch(`${BASE_URL}/addFav`, {
       method: 'POST',
-      mode:'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ _id, artwork }),
     });
@@ -114,7 +109,6 @@ apiServiceJWT.addMsg = async (username, recieverName, msg) => {
   try {
     const response = await fetch(`${BASE_URL}/addmsg`, {
       method: 'POST',
-      mode:'no-cors',
       headers: { 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin': '*'},
       body: JSON.stringify({ username, recieverName, msg }),
     });
