@@ -10,7 +10,7 @@ import db from './models/db';
 //   optionsSuccessStatus: 200,
 // }
 
-const whitelist = ['http://localhost:3000', 'https://paint-mosaic-jz5k.vercel.app'];
+const whitelist = ['http://localhost:3000', 'https://paint-mosaic-jz5k.vercel.app/', 'https://paint-mosaic-jz5k.vercel.app'];
 
 const corsOptions: CorsOptions = {
   origin: (origin, callback) => {
