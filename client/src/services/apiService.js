@@ -55,7 +55,6 @@ async function postArtWork(data, token){
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `${token}`,
-                'Access-Control-Allow-Origin': '*',
             },
             body: JSON.stringify(data),
         });

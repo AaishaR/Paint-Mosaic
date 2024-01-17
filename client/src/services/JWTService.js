@@ -8,10 +8,9 @@ apiServiceJWT.register = async (user) => {
   try {
     const response = await fetch(`${BASE_URL}/register`, {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-       },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify(user),
     })
 
@@ -26,7 +25,7 @@ apiServiceJWT.register = async (user) => {
 apiServiceJWT.login = (user) => {
   return fetch(`${BASE_URL}/login`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   })
     .then((res) => res.json())
@@ -42,7 +41,7 @@ apiServiceJWT.getUser = async (token) => {
   try {
     const response = await fetch(`${BASE_URL}`, {
       method: 'GET',
-      headers: { 'Authorization': `${token}`, 'Access-Control-Allow-Origin': '*', }
+      headers: { 'Authorization': `${token}` }
     });
 
     if (response.ok) {
@@ -64,11 +63,10 @@ apiServiceJWT.getUser = async (token) => {
 
 apiServiceJWT.getUserDetails = async (artistId) => {
   try {
-    const data = await fetch(`${BASE_URL}/details?artistId=${artistId}`,{
+    const data = await fetch(`${BASE_URL}/details?artistId=${artistId}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json'
       }
     });
     const response = await data.json();
@@ -109,7 +107,7 @@ apiServiceJWT.addMsg = async (username, recieverName, msg) => {
   try {
     const response = await fetch(`${BASE_URL}/addmsg`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' , 'Access-Control-Allow-Origin': '*'},
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, recieverName, msg }),
     });
     if (response.ok) return await response.json();
