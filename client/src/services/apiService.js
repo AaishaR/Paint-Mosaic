@@ -17,10 +17,7 @@ async function getArtwork() {
 async function getArtist(artistId) {
     // console.log('here')
     try {
-        const data = await fetch(`${url}/artwork/artist/${artistId}`, {
-            method: 'GET',
-            mode: 'cors',
-        });
+        const data = await fetch(`${url}/artwork/artist/${artistId}`);
         const response = await data.json();
         // console.log(response, '🐸🐸 ' )
         return response;
@@ -33,8 +30,7 @@ async function cloudinaryUpload(data) {
     try {
         const response = await fetch("https://api.cloudinary.com/v1_1/ddyh3rk7s/upload", {
             method: 'POST',
-            body: data,
-            mode: 'cors'
+            body: data
         });
 
         // console.log(response)
@@ -56,7 +52,6 @@ async function postArtWork(data, token){
     try {
         const response = await fetch(`${url}/artwork`, {
             method: 'POST',
-            mode: 'cors',
             headers: {
                 "Content-Type": "application/json",
                 'Authorization': `${token}`,
