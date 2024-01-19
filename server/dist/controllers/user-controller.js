@@ -8,7 +8,9 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const userSchema_1 = __importDefault(require("./../models/userSchema"));
 const uuid_1 = require("uuid");
 const userUtils_1 = require("../utils/userUtils");
-const mail_1 = __importDefault(require("@sendgrid/mail"));
+const nodemailer_1 = __importDefault(require("nodemailer"));
+// import sgMail from '@sendgrid/mail';
+// import SMTPTransport = require("nodemailer/lib/smtp-transport");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
 // const SECRET_KEY  = process.env.SECRET_KEY!;
@@ -121,22 +123,65 @@ const putRemoveFav = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Internal server error' });
     }
 };
+// function create_transport(): nodemailer.Transporter<SMTPTransport.SentMessageInfo> {
+//   const smtpConfig: SMTPTransport.Options = {
+//       host: process.env.SMTP_HOST,
+//       port: parseInt(process.env.SMTP_PORT as string, 10),
+//       secure: false, // upgrade later with STARTTLS
+//       auth: {
+//           user: process.env.SMTP_EMAIL,
+//           pass: process.env.PASS,
+//       },
+//   };
+//   const transporter = nodemailer.createTransport(smtpConfig);
+//   return transporter;
+// }
+const transporter = nodemailer_1.default.createTransport({
+    host: process.env.SMTP_HOST,
+    port: parseInt(process.env.SMTP_PORT, 10),
+    secure: true,
+    auth: {
+        user: process.env.SMTP_EMAIL,
+        pass: process.env.PASS,
+    },
+});
 const postMail = async (req, res) => {
-    mail_1.default.setApiKey(process.env.SENDGRID_API_KEY);
     try {
-        const { name, email, subject, message, to } = req.body;
-        const msg = {
-            to: to,
-            from: email,
+        const { email, subject, message } = req.body;
+        const mailOptions = {
+            from: process.env.SMTP_EMAIL,
+            to: email,
             subject: subject,
-            text: message
+            message: message
         };
-        await mail_1.default.send(msg);
-        return res.status(200).send('Message sent successfully');
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.error(error);
+            }
+            else {
+                console.log("Email Sent!");
+            }
+        });
+        return res.status(200).json({ success: true, message: 'Mail Sent Successfully' });
     }
     catch (error) {
-        console.error('Error sending email:', error);
-        return res.status(500).send('Internal Server Error');
+        console.error(error);
+        return res.status(500).json({ success: false, message: 'Internal server error' });
     }
+    // sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+    // try {
+    //   const { name, email, subject, message, to } = req.body;
+    //   const msg = {
+    //     to: to,
+    //     from: email,
+    //     subject: subject,
+    //     text: message
+    //   };
+    //   await sgMail.send(msg);
+    //   return res.status(200).send('Message sent successfully');
+    // } catch (error) {
+    //   console.error('Error sending email:', error);
+    //   return res.status(500).send('Internal Server Error');
+    // }
 };
 exports.default = { postRegister, postLogin, getUser, putAddToFav, putRemoveFav, getUserDetails, postMail };

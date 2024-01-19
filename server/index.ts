@@ -5,7 +5,8 @@ import dotenv from 'dotenv';
 import db from './models/db';
 
 const corsOptions = {
-  origin: 'https://paint-mosaic-jz5k.vercel.app', 
+  // origin: 'https://paint-mosaic-jz5k.vercel.app', 
+  origin: 'http://localhost:3001', 
   methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
   optionsSuccessStatus: 200,
   credentials: true,

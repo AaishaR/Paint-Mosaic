@@ -5,8 +5,8 @@ import User from './../models/userSchema';
 import { v4 as uuidv4 } from 'uuid';
 import { validateUser } from '../utils/userUtils'
 import nodemailer from 'nodemailer';
-import sgMail from '@sendgrid/mail';
-import SMTPTransport = require("nodemailer/lib/smtp-transport");
+// import sgMail from '@sendgrid/mail';
+// import SMTPTransport = require("nodemailer/lib/smtp-transport");
 
 import dotenv from "dotenv";
 import mail = require('@sendgrid/mail');

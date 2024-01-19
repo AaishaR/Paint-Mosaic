@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArtist } from "../../services/apiService";
 import { useParams } from "react-router-dom";
 import Artwork from '../Artwork';
+import SendMail from "./SendMail";
 
 export default function ArtistList(props) {
 
@@ -34,6 +35,7 @@ export default function ArtistList(props) {
             ) : (
                 <p>There are no art pieces available yet</p>
             )}
+            <SendMail/>
         </div>
     )
 }
