@@ -67,5 +67,24 @@ async function postArtWork(data, token){
 }
 
 
+async function sendMail(data){
+    try {
+        const response = await fetch(`${url}/send-message`, {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
 
-module.exports = { getArtwork, getArtist, cloudinaryUpload, postArtWork }
+        return await response.json();
+    } catch (error) {
+        console.error(error);
+        throw error;
+        
+    }
+}
+
+
+
+module.exports = { getArtwork, getArtist, cloudinaryUpload, postArtWork, sendMail }

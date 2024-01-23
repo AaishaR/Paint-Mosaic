@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArtist } from "../../services/apiService";
 import { useParams } from "react-router-dom";
 import Artwork from '../Artwork';
+import SendMail from "./SendMail";
 
 export default function ArtistList(props) {
 
@@ -16,9 +17,9 @@ export default function ArtistList(props) {
             setArtist(data.artwork)
         })
 
-
     }, [artistId, artist]);
 
+    // console.log(artist)
     return (
         <div className=" min-h-screen flex flex-col items-center justify-center">
             <div className="text-center py-4">
@@ -34,6 +35,9 @@ export default function ArtistList(props) {
             ) : (
                 <p>There are no art pieces available yet</p>
             )}
+            <div>
+                <SendMail artistId={artistId}/>
+            </div>
         </div>
     )
 }
