@@ -159,11 +159,11 @@ const transporter = nodemailer.createTransport({
 
 const postMail = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const {email, subject, message } = req.body;
+    const {send_to, subject, message , yourName} = req.body;
 
     const mailOptions = {
       from: process.env.SMTP_EMAIL,
-      to: email,
+      to: send_to,
       subject: subject,
       message: message
     }

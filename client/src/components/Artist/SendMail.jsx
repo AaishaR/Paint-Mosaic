@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
+import { sendMail } from '../../services/apiService';
 
 export default function SendMail() {
 
     const [formData, setFormData] = useState({
+        email: 'aaisha.rehman95@gmail.com',
         subject: '',
         yourName: '',
         message: '',
@@ -18,10 +20,10 @@ export default function SendMail() {
         // console.log(formData)
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add your logic here to handle the form submission with formData
         console.log('Form submitted:', formData);
+        await sendMail(formData);
     };
 
     const isSubmitDisabled = !(

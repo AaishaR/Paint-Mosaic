@@ -48,6 +48,11 @@ export default function AddArtwork() {
     const handleUpload = async (e) => {
         e.preventDefault();
         setLoading(true);
+        console.log(title)
+        console.log(imageURL)
+        console.log(description)
+        console.log(price)
+        console.log(material)
         try {
             const newArtWork = {
                 title: title,
@@ -59,7 +64,8 @@ export default function AddArtwork() {
                 artistId: user.userId,
             };
 
-            // console.log(newArtWork);
+            console.log('we here')
+            console.log('new artwork: ', newArtWork);
 
             await postArtWork(newArtWork, token);
 
@@ -133,7 +139,9 @@ export default function AddArtwork() {
                                             id="description"
                                             autoComplete="given-name"
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            onChange={(text) => { setTitle(text.target.value) }}
+                                            onChange={(text) => { 
+                                                console.log('shbgsk ',text.target.value)
+                                                setTitle(text.target.value) }}
                                         />
                                     </div>
                                 </div>
