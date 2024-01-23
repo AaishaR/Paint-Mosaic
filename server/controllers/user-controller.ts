@@ -8,8 +8,9 @@ import nodemailer from 'nodemailer';
 // import sgMail from '@sendgrid/mail';
 // import SMTPTransport = require("nodemailer/lib/smtp-transport");
 
-import dotenv from "dotenv";
 import mail = require('@sendgrid/mail');
+
+import dotenv from "dotenv";
 dotenv.config({ path: '../.env' });
 
 // const SECRET_KEY  = process.env.SECRET_KEY!;
@@ -147,29 +148,30 @@ const putRemoveFav = async (req: Request, res: Response): Promise<Response> => {
 //   return transporter;
 // }
 
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST as string,
-  port: parseInt(process.env.SMTP_PORT as string, 10),
-  secure: true,
-  auth: {
-    user: process.env.SMTP_EMAIL as string,
-    pass: process.env.PASS as string,
-  },
-});
+
 
 const postMail = async (req: Request, res: Response): Promise<Response> => {
   try {
-    const {send_to, subject, message , yourName} = req.body;
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST as string,
+      port: parseInt(process.env.SMTP_PORT as string, 10),
+      secure: true,
+      auth: {
+        user: process.env.SMTP_EMAIL as string,
+        pass: process.env.SMTP_PASS as string,
+      },
+    });
+    const { email, subject, message, yourName } = req.body;
 
     const mailOptions = {
       from: process.env.SMTP_EMAIL,
-      to: send_to,
+      to: email,
       subject: subject,
-      message: message
+      text: message
     }
 
     transporter.sendMail(mailOptions, function (error, info) {
-      if(error){
+      if (error) {
         console.error(error);
       } else {
         console.log("Email Sent!")
@@ -177,11 +179,11 @@ const postMail = async (req: Request, res: Response): Promise<Response> => {
     })
 
     return res.status(200).json({ success: true, message: 'Mail Sent Successfully' });
-    
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({ success: false, message: 'Internal server error' });
-    
+
   }
   // sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
   // try {

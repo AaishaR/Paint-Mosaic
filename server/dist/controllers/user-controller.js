@@ -9,8 +9,6 @@ const userSchema_1 = __importDefault(require("./../models/userSchema"));
 const uuid_1 = require("uuid");
 const userUtils_1 = require("../utils/userUtils");
 const nodemailer_1 = __importDefault(require("nodemailer"));
-// import sgMail from '@sendgrid/mail';
-// import SMTPTransport = require("nodemailer/lib/smtp-transport");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config({ path: '../.env' });
 // const SECRET_KEY  = process.env.SECRET_KEY!;
@@ -136,23 +134,23 @@ const putRemoveFav = async (req, res) => {
 //   const transporter = nodemailer.createTransport(smtpConfig);
 //   return transporter;
 // }
-const transporter = nodemailer_1.default.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT, 10),
-    secure: true,
-    auth: {
-        user: process.env.SMTP_EMAIL,
-        pass: process.env.PASS,
-    },
-});
 const postMail = async (req, res) => {
     try {
-        const { send_to, subject, message, yourName } = req.body;
+        const transporter = nodemailer_1.default.createTransport({
+            host: process.env.SMTP_HOST,
+            port: parseInt(process.env.SMTP_PORT, 10),
+            secure: true,
+            auth: {
+                user: process.env.SMTP_EMAIL,
+                pass: process.env.SMTP_PASS,
+            },
+        });
+        const { email, subject, message, yourName } = req.body;
         const mailOptions = {
             from: process.env.SMTP_EMAIL,
-            to: send_to,
+            to: email,
             subject: subject,
-            message: message
+            text: message
         };
         transporter.sendMail(mailOptions, function (error, info) {
             if (error) {
