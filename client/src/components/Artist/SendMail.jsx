@@ -7,10 +7,10 @@ export default function SendMail(props) {
 
     // const { user } = useAuth();
 
-    // const [artistEmail, setArtistEmail] = useState('');
+    const [artistEmail, setArtistEmail] = useState('');
 
     const [formData, setFormData] = useState({
-        email: '',
+        email: artistEmail,
         subject: '',
         yourName: '',
         message: '',
@@ -29,19 +29,11 @@ export default function SendMail(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        await apiServiceJWT.getUserDetails(props.artistId).then((data) => {
-            setFormData((prevData) => ({
-                ...prevData,
-                email: data.email,
-            }));
-        })
-
-        // const artist = await apiServiceJWT.getUserDetails(props.artistId);
-        
-
-        console.log('Form submitted:', formData);
-        await sendMail(formData);
+        try {
+            await sendMail(formData);
+        } catch (error) {
+            console.error('Error in handleSubmit:', error);
+        }
     };
 
     const isSubmitDisabled = !(
@@ -50,7 +42,27 @@ export default function SendMail(props) {
         formData.message
     );
 
-    // console.log(artistEmail)
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const artist = await apiServiceJWT.getUserDetails(props.artistId);
+                // console.log(artist)
+                setArtistEmail(artist.email);
+                setFormData((prevData) => ({
+                    ...prevData,
+                    email: artist.email,
+                }));
+
+            } catch (error) {
+                console.error('Error in fetchData:', error);
+            }
+
+        }
+
+        fetchData();
+        // eslint-disable-next-line
+    }, [])
+
 
 
     return (
@@ -64,23 +76,24 @@ export default function SendMail(props) {
                         </p>
 
                         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                            {/* <div className="sm:col-span-4">
+                            <div className="sm:col-span-4">
                                 <label htmlFor="sendTo" className="block text-sm font-medium leading-6 text-gray-900">
                                     Send To:
                                 </label>
                                 <div className="mt-2">
                                     <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-                                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">{user.email}</span>
+                                        <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">{artistEmail}</span>
                                         <input
                                             type="text"
                                             name="sendTo"
                                             id="sendTo"
+                                            disabled={true}
                                             autoComplete="email"
                                             className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                                         />
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
 
                             <div className="sm:col-span-3">
                                 <label htmlFor="subject" className="block text-sm font-medium leading-6 text-gray-900">
