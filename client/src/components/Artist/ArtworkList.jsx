@@ -17,9 +17,9 @@ export default function ArtistList(props) {
             setArtist(data.artwork)
         })
 
-
     }, [artistId, artist]);
 
+    // console.log(artist)
     return (
         <div className=" min-h-screen flex flex-col items-center justify-center">
             <div className="text-center py-4">
@@ -35,7 +35,9 @@ export default function ArtistList(props) {
             ) : (
                 <p>There are no art pieces available yet</p>
             )}
-            <SendMail/>
+            <div>
+                <SendMail artistId={artistId}/>
+            </div>
         </div>
     )
 }
