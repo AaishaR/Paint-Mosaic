@@ -1,6 +1,6 @@
 
-const BASE_URL = 'http://localhost:3000/user';
-// const BASE_URL = 'https://paint-mosaic.vercel.app/user';
+// const BASE_URL = 'http://localhost:3000/user';
+const BASE_URL = 'https://paint-mosaic.vercel.app/user';
 
 const apiServiceJWT = {};
 

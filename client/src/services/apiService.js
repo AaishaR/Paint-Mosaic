@@ -1,5 +1,5 @@
-const url = 'http://localhost:3000'
-// const url = 'https://paint-mosaic.vercel.app'
+// const url = 'http://localhost:3000'
+const url = 'https://paint-mosaic.vercel.app'
 
 //fetching all artwork from backend
 async function getArtwork() {

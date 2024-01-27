@@ -6,13 +6,13 @@ import Spinner from "../Spinner";
 export default function HomePage(props) {
 
     const [artworks, setArtworks] = useState([]);
-    const[loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         getArtwork().then((data) => {
             setArtworks(data)
-        }).finally(()=> {
-            // setLoading(false);
+        }).finally(() => {
+            setLoading(false);
         })
     }, []);
 
