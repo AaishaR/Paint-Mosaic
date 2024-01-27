@@ -5,7 +5,7 @@ import artworkModel from "./artworkSchemas";
 const UserSchema = {
     userId: {
         type: String,
-        reguired: true,
+        required: true,
     },
     email: {
         type: String,
