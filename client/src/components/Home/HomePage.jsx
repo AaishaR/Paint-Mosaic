@@ -12,7 +12,7 @@ export default function HomePage(props) {
         getArtwork().then((data) => {
             setArtworks(data)
         }).finally(()=> {
-            setLoading(false);
+            // setLoading(false);
         })
     }, []);
 
