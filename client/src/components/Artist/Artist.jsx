@@ -1,7 +1,7 @@
 import ArtworkList from "./ArtworkList"
 import { useEffect, useState } from 'react';
 import { getArtwork } from '../../services/apiService';
-import SendMail from "./SendMail";
+// import SendMail from "./SendMail";
 
 export default function Artist(props) {
 

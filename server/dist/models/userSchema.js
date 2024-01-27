@@ -8,7 +8,7 @@ const artworkSchemas_1 = __importDefault(require("./artworkSchemas"));
 const UserSchema = {
     userId: {
         type: String,
-        reguired: true,
+        required: true,
     },
     email: {
         type: String,
